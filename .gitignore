@@ -1,0 +1,9 @@
+# Configuración local de Claude Code
+.claude/
+
+# Documentos internos / material de referencia (no publicar)
+*.docx
+*.pdf
+
+# Sistema
+.DS_Store

@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pregrado | Universidad Nacional del Centro del Perú</title>
+<meta name="description" content="Estudia una carrera de pregrado en la UNCP. Formación de calidad, acreditada y con visión de futuro." />
+<style>
+  /* ===========================================================
+     PALETA Y VARIABLES
+     Color principal: #00301C
+  ============================================================ */
+  :root{
+    --verde-900:#00301C;   /* principal */
+    --verde-800:#0a4a2e;
+    --verde-700:#12603d;
+    --verde-600:#1c7a4f;
+    --verde-500:#2a9d68;
+    --dorado:#c9a24b;      /* acento */
+    --dorado-claro:#e6c877;
+    --crema:#f4f7f3;
+    --gris:#6b7772;
+    --texto:#1a221e;
+    --blanco:#ffffff;
+    --sombra:0 10px 30px rgba(0,48,28,.12);
+    --sombra-fuerte:0 20px 50px rgba(0,48,28,.25);
+    --radio:16px;
+    --transicion:.4s cubic-bezier(.16,1,.3,1);
+    --contenedor:1200px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--texto);
+    background:var(--blanco);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block}
+  a{text-decoration:none;color:inherit}
+  ul{list-style:none}
+
+  .contenedor{
+    width:100%;
+    max-width:var(--contenedor);
+    margin:0 auto;
+    padding:0 20px;
+  }
+
+  .seccion{padding:90px 0}
+  .titulo-seccion{
+    text-align:center;
+    margin-bottom:55px;
+  }
+  .titulo-seccion span{
+    color:var(--dorado);
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-size:.85rem;
+  }
+  .titulo-seccion h2{
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    color:var(--verde-900);
+    margin-top:8px;
+    line-height:1.2;
+  }
+  .titulo-seccion p{
+    color:var(--gris);
+    max-width:640px;
+    margin:14px auto 0;
+  }
+
+  .btn{
+    display:inline-block;
+    padding:14px 32px;
+    border-radius:50px;
+    font-weight:700;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:var(--transicion);
+    font-size:1rem;
+  }
+  .btn-primario{
+    background:var(--dorado);
+    color:var(--verde-900);
+  }
+  .btn-primario:hover{
+    background:var(--dorado-claro);
+    transform:translateY(-4px);
+    box-shadow:0 12px 24px rgba(201,162,75,.4);
+  }
+  .btn-linea{
+    background:transparent;
+    color:var(--blanco);
+    border-color:rgba(255,255,255,.6);
+  }
+  .btn-linea:hover{
+    background:var(--blanco);
+    color:var(--verde-900);
+    transform:translateY(-4px);
+  }
+
+  /* ===========================================================
+     HEADER / NAVBAR
+  ============================================================ */
+  header{
+    position:fixed;
+    top:0;left:0;width:100%;
+    z-index:1000;
+    padding:18px 0;
+    transition:var(--transicion);
+  }
+  header.scrolled{
+    background:var(--verde-900);
+    padding:10px 0;
+    box-shadow:0 6px 20px rgba(0,0,0,.25);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--blanco);
+    font-weight:800;
+  }
+  .logo .marca{
+    width:46px;height:46px;
+    background:var(--dorado);
+    color:var(--verde-900);
+    border-radius:12px;
+    display:grid;place-items:center;
+    font-size:1.3rem;
+    font-weight:900;
+    flex-shrink:0;
+  }
+  .logo small{
+    display:block;
+    font-weight:400;
+    font-size:.72rem;
+    opacity:.85;
+  }
+  .menu{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .menu a{
+    color:var(--blanco);
+    padding:8px 16px;
+    border-radius:50px;
+    font-weight:500;
+    transition:var(--transicion);
+    position:relative;
+  }
+  .menu a:not(.btn):hover{background:rgba(255,255,255,.12)}
+  .menu .btn{margin-left:10px}
+
+  .hamburguesa{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;border:none;cursor:pointer;
+    padding:6px;
+  }
+  .hamburguesa span{
+    width:26px;height:3px;background:var(--blanco);border-radius:3px;
+    transition:var(--transicion);
+  }
+  .hamburguesa.activa span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .hamburguesa.activa span:nth-child(2){opacity:0}
+  .hamburguesa.activa span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+  /* ===========================================================
+     BANNER / HERO CARRUSEL  (estilo ue.edu.pe)
+  ============================================================ */
+  .banner{
+    position:relative;
+    height:100vh;
+    min-height:600px;
+    overflow:hidden;
+  }
+  .slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity 1.2s ease;
+    display:grid;
+    place-items:center;
+  }
+  .slide.activa{opacity:1;z-index:2}
+  .slide::before{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(120deg,rgba(0,48,28,.92) 0%,rgba(0,48,28,.55) 60%,rgba(0,48,28,.35) 100%);
+    z-index:1;
+  }
+  .slide-bg{
+    position:absolute;inset:0;
+    background-size:cover;
+    background-position:center;
+    transform:scale(1.15);
+    transition:transform 7s ease;
+  }
+  .slide.activa .slide-bg{transform:scale(1)}
+
+  /* Imágenes aleatorias del banner (loremflickr = fotos al azar por tema).
+     Para usar TUS fotos: reemplaza la url por background-image:url('imagenes/foto1.jpg') */
+  .slide-bg{background-size:cover;background-position:center}
+  .slide:nth-child(1) .slide-bg{background-image:url('https://loremflickr.com/1600/900/university,campus')}
+  .slide:nth-child(2) .slide-bg{background-image:url('https://loremflickr.com/1600/900/students,library')}
+  .slide:nth-child(3) .slide-bg{background-image:url('https://loremflickr.com/1600/900/graduation,students')}
+
+  .slide-contenido{
+    position:relative;
+    z-index:3;
+    max-width:var(--contenedor);
+    width:100%;
+    padding:0 20px;
+    color:var(--blanco);
+  }
+  .slide-texto{max-width:640px}
+  .slide-texto .etiqueta{
+    display:inline-block;
+    background:rgba(201,162,75,.2);
+    border:1px solid var(--dorado);
+    color:var(--dorado-claro);
+    padding:6px 18px;
+    border-radius:50px;
+    font-size:.8rem;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:22px;
+    opacity:0;transform:translateY(30px);
+  }
+  .slide-texto h1{
+    font-size:clamp(2.2rem,6vw,4rem);
+    line-height:1.08;
+    margin-bottom:20px;
+    opacity:0;transform:translateY(30px);
+  }
+  .slide-texto h1 em{color:var(--dorado);font-style:normal}
+  .slide-texto p{
+    font-size:clamp(1rem,2vw,1.2rem);
+    opacity:0;transform:translateY(30px);
+    margin-bottom:32px;
+    max-width:520px;
+  }
+  .slide-texto .acciones{
+    display:flex;gap:16px;flex-wrap:wrap;
+    opacity:0;transform:translateY(30px);
+  }
+  /* animación de entrada escalonada del slide activo */
+  .slide.activa .etiqueta{animation:subir .8s .2s forwards}
+  .slide.activa h1{animation:subir .8s .4s forwards}
+  .slide.activa p{animation:subir .8s .6s forwards}
+  .slide.activa .acciones{animation:subir .8s .8s forwards}
+  @keyframes subir{to{opacity:1;transform:translateY(0)}}
+
+  /* controles del banner */
+  .banner-flecha{
+    position:absolute;
+    top:50%;transform:translateY(-50%);
+    z-index:5;
+    width:52px;height:52px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(4px);
+    border:1px solid rgba(255,255,255,.3);
+    color:var(--blanco);
+    border-radius:50%;
+    cursor:pointer;
+    font-size:1.4rem;
+    display:grid;place-items:center;
+    transition:var(--transicion);
+  }
+  .banner-flecha:hover{background:var(--dorado);color:var(--verde-900)}
+  .flecha-izq{left:24px}
+  .flecha-der{right:24px}
+  .banner-puntos{
+    position:absolute;
+    bottom:34px;left:50%;transform:translateX(-50%);
+    z-index:5;
+    display:flex;gap:12px;
+  }
+  .punto{
+    width:12px;height:12px;border-radius:50%;
+    background:rgba(255,255,255,.4);
+    cursor:pointer;transition:var(--transicion);
+  }
+  .punto.activo{background:var(--dorado);width:34px;border-radius:50px}
+
+  .scroll-abajo{
+    position:absolute;
+    bottom:30px;right:34px;z-index:5;
+    color:var(--blanco);
+    font-size:.75rem;
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    opacity:.8;
+  }
+  .scroll-abajo .raton{
+    width:24px;height:38px;border:2px solid var(--blanco);border-radius:14px;
+    position:relative;
+  }
+  .scroll-abajo .raton::before{
+    content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);
+    width:4px;height:8px;background:var(--blanco);border-radius:4px;
+    animation:rueda 1.5s infinite;
+  }
+  @keyframes rueda{0%{opacity:1;top:6px}100%{opacity:0;top:18px}}
+
+  /* ===== FORMULARIO DENTRO DEL BANNER ===== */
+  .banner-form-wrap{
+    position:absolute;
+    top:0;right:0;
+    width:100%;height:100vh;min-height:600px;
+    z-index:6;
+    display:flex;
+    align-items:center;
+    pointer-events:none; /* deja pasar clics al banner, menos al formulario */
+  }
+  .banner-form-wrap .contenedor{
+    display:flex;
+    justify-content:flex-end;
+  }
+  .banner-form{
+    pointer-events:auto;
+    width:100%;
+    max-width:380px;
+    background:rgba(255,255,255,.97);
+    border-radius:20px;
+    padding:32px 30px;
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+    border-top:5px solid var(--dorado);
+    animation:formEntra 1s .6s both;
+  }
+  @keyframes formEntra{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+  .banner-form h3{
+    color:var(--verde-900);
+    font-size:1.5rem;
+    margin-bottom:4px;
+  }
+  .banner-form .sub{
+    color:var(--gris);
+    font-size:.9rem;
+    margin-bottom:20px;
+  }
+  .campo{margin-bottom:14px}
+  .campo label{
+    display:block;
+    font-size:.8rem;
+    font-weight:600;
+    color:var(--verde-900);
+    margin-bottom:5px;
+  }
+  .campo input,.campo select{
+    width:100%;
+    padding:12px 14px;
+    border:1.5px solid #d8e0db;
+    border-radius:10px;
+    font-size:.95rem;
+    font-family:inherit;
+    color:var(--texto);
+    background:#fff;
+    transition:var(--transicion);
+  }
+  .campo input:focus,.campo select:focus{
+    outline:none;
+    border-color:var(--verde-600);
+    box-shadow:0 0 0 3px rgba(42,157,104,.15);
+  }
+  .banner-form .btn{
+    width:100%;
+    margin-top:6px;
+    border:none;
+    font-size:1rem;
+  }
+  .banner-form .aviso{
+    text-align:center;
+    font-size:.72rem;
+    color:var(--gris);
+    margin-top:12px;
+  }
+  .form-ok{
+    display:none;
+    text-align:center;
+    padding:20px 0;
+    color:var(--verde-700);
+    font-weight:600;
+  }
+  .form-ok.visible{display:block}
+  .form-ok .check{
+    width:60px;height:60px;margin:0 auto 14px;
+    background:var(--verde-600);color:#fff;
+    border-radius:50%;display:grid;place-items:center;
+    font-size:1.8rem;
+    animation:formEntra .5s both;
+  }
+
+  /* ===========================================================
+     ANIMACIÓN AL HACER SCROLL (estilo somos.ucv)
+  ============================================================ */
+  .revelar{
+    opacity:0;
+    transform:translateY(50px);
+    transition:opacity .9s ease,transform .9s cubic-bezier(.16,1,.3,1);
+  }
+  .revelar.visible{opacity:1;transform:translateY(0)}
+  .revelar.izq{transform:translateX(-60px)}
+  .revelar.der{transform:translateX(60px)}
+  .revelar.izq.visible,.revelar.der.visible{transform:translateX(0)}
+  .revelar.zoom{transform:scale(.85)}
+  .revelar.zoom.visible{transform:scale(1)}
+  .d1{transition-delay:.1s}.d2{transition-delay:.25s}.d3{transition-delay:.4s}.d4{transition-delay:.55s}
+
+  /* ===========================================================
+     FRANJA DE ESTADÍSTICAS
+  ============================================================ */
+  .stats{
+    background:var(--verde-900);
+    color:var(--blanco);
+    position:relative;
+    overflow:hidden;
+  }
+  .stats::after{
+    content:"";position:absolute;top:-60px;right:-60px;
+    width:260px;height:260px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,75,.25),transparent 70%);
+  }
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+    text-align:center;
+    position:relative;z-index:2;
+  }
+  .stat h3{
+    font-size:clamp(2.2rem,5vw,3.2rem);
+    color:var(--dorado);
+    font-weight:900;
+  }
+  .stat p{opacity:.9;font-weight:500}
+
+  /* ===========================================================
+     CARRERAS
+  ============================================================ */
+  .carreras-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px;
+  }
+  .carrera{
+    background:var(--blanco);
+    border-radius:var(--radio);
+    overflow:hidden;
+    box-shadow:var(--sombra);
+    transition:var(--transicion);
+    border:1px solid #eef2ef;
+    position:relative;
+  }
+  .carrera:hover{
+    transform:translateY(-12px);
+    box-shadow:var(--sombra-fuerte);
+  }
+  .carrera-img{
+    height:190px;
+    background:linear-gradient(135deg,var(--verde-700),var(--verde-900));
+    background-size:cover;
+    background-position:center;
+    display:grid;place-items:center;
+    color:var(--blanco);
+    font-size:3rem;
+    position:relative;
+    overflow:hidden;
+    transition:var(--transicion);
+  }
+  .carrera:hover .carrera-img{transform:scale(1.05)}
+  /* velo verde sobre la foto para mantener la identidad de color */
+  .carrera-img::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(0,48,28,.25),rgba(0,48,28,.75));
+    z-index:1;
+  }
+  .carrera-img .emoji{position:relative;z-index:2;text-shadow:0 4px 12px rgba(0,0,0,.4)}
+  .carrera-img::after{
+    content:"";position:absolute;inset:0;z-index:2;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.15),transparent);
+    transform:translateX(-100%);
+    transition:transform .6s ease;
+  }
+  .carrera:hover .carrera-img::after{transform:translateX(100%)}
+  .carrera-cuerpo{padding:26px}
+  .carrera-cuerpo .fac{
+    color:var(--dorado);font-size:.78rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:1px;
+  }
+  .carrera-cuerpo h3{
+    color:var(--verde-900);
+    font-size:1.25rem;
+    margin:6px 0 12px;
+  }
+  .carrera-cuerpo p{color:var(--gris);font-size:.95rem;margin-bottom:18px}
+  .carrera-link{
+    color:var(--verde-700);
+    font-weight:700;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:var(--transicion);
+  }
+  .carrera-link:hover{gap:14px;color:var(--dorado)}
+
+  /* ===========================================================
+     POR QUÉ ELEGIRNOS
+  ============================================================ */
+  .porque{background:var(--crema)}
+  .beneficios{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+  }
+  .beneficio{
+    background:var(--blanco);
+    padding:36px 28px;
+    border-radius:var(--radio);
+    text-align:center;
+    transition:var(--transicion);
+    border-bottom:4px solid transparent;
+  }
+  .beneficio:hover{
+    border-bottom-color:var(--dorado);
+    transform:translateY(-8px);
+    box-shadow:var(--sombra);
+  }
+  .beneficio .icono{
+    width:78px;height:78px;
+    margin:0 auto 20px;
+    background:linear-gradient(135deg,var(--verde-600),var(--verde-900));
+    border-radius:20px;
+    display:grid;place-items:center;
+    font-size:2rem;
+    color:var(--dorado-claro);
+    transition:var(--transicion);
+  }
+  .beneficio:hover .icono{transform:rotate(-8deg) scale(1.08)}
+  .beneficio h3{color:var(--verde-900);margin-bottom:10px}
+  .beneficio p{color:var(--gris);font-size:.95rem}
+
+  /* ===========================================================
+     CTA ADMISIÓN
+  ============================================================ */
+  .cta{
+    background:linear-gradient(120deg,var(--verde-900),var(--verde-700));
+    color:var(--blanco);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta::before,.cta::after{
+    content:"";position:absolute;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,75,.18),transparent 70%);
+  }
+  .cta::before{width:340px;height:340px;top:-120px;left:-80px}
+  .cta::after{width:300px;height:300px;bottom:-120px;right:-60px}
+  .cta .contenido{position:relative;z-index:2}
+  .cta h2{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:16px}
+  .cta p{opacity:.9;max-width:600px;margin:0 auto 30px;font-size:1.1rem}
+  .cta .acciones{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+  /* ===========================================================
+     FOOTER
+  ============================================================ */
+  footer{
+    background:#001f12;
+    color:rgba(255,255,255,.75);
+    padding:70px 0 24px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1.3fr;
+    gap:40px;
+    margin-bottom:50px;
+  }
+  .footer-col h4{
+    color:var(--blanco);
+    margin-bottom:20px;
+    font-size:1.05rem;
+    position:relative;padding-bottom:12px;
+  }
+  .footer-col h4::after{
+    content:"";position:absolute;bottom:0;left:0;
+    width:40px;height:3px;background:var(--dorado);border-radius:3px;
+  }
+  .footer-col p,.footer-col li{margin-bottom:12px;font-size:.92rem}
+  .footer-col a{transition:var(--transicion)}
+  .footer-col a:hover{color:var(--dorado);padding-left:6px}
+  .redes{display:flex;gap:12px;margin-top:18px}
+  .redes a{
+    width:42px;height:42px;
+    background:rgba(255,255,255,.1);
+    border-radius:50%;
+    display:grid;place-items:center;
+    color:var(--blanco);
+    transition:var(--transicion);
+    font-weight:700;
+  }
+  .redes a:hover{background:var(--dorado);color:var(--verde-900);transform:translateY(-4px)}
+  .footer-abajo{
+    border-top:1px solid rgba(255,255,255,.12);
+    padding-top:22px;
+    text-align:center;
+    font-size:.85rem;
+  }
+
+  /* ===========================================================
+     RESPONSIVE
+  ============================================================ */
+  /* En escritorio: espacio para el formulario y sin flechas laterales */
+  @media (min-width:993px){
+    .slide-texto{max-width:540px}
+    .banner-flecha{display:none}
+  }
+
+  @media (max-width:900px){
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}
+    .footer-grid{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* En tablet/móvil: el formulario se acomoda debajo del banner */
+  @media (max-width:992px){
+    .banner-form-wrap{
+      position:relative;
+      height:auto;min-height:0;
+      background:var(--verde-800);
+      padding:40px 0;
+    }
+    .banner-form-wrap .contenedor{justify-content:center}
+    .banner-form{max-width:480px;animation:none}
+  }
+  @media (max-width:768px){
+    .hamburguesa{display:flex}
+    .menu{
+      position:fixed;
+      top:0;right:-100%;
+      width:min(80%,320px);
+      height:100vh;
+      background:var(--verde-900);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:100px 30px 30px;
+      gap:6px;
+      transition:right .4s ease;
+      box-shadow:-10px 0 40px rgba(0,0,0,.4);
+    }
+    .menu.abierto{right:0}
+    .menu a{width:100%}
+    .menu .btn{margin-left:0;margin-top:14px}
+    .flecha-izq{left:10px}.flecha-der{right:10px}
+    .banner-flecha{width:42px;height:42px;font-size:1.1rem}
+    .scroll-abajo{display:none}
+    .seccion{padding:60px 0}
+  }
+  @media (max-width:520px){
+    .stats-grid{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr}
+    .slide-texto .acciones{flex-direction:column}
+    .slide-texto .acciones .btn{text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="header">
+  <div class="contenedor nav">
+    <a href="#inicio" class="logo">
+      <span class="marca">U</span>
+      <span>UNCP<small>Pregrado</small></span>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#carreras">Carreras</a>
+      <a href="#porque">Por qué UNCP</a>
+      <a href="#admision">Admisión</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#admision" class="btn btn-primario">Postula aquí</a>
+    </nav>
+    <button class="hamburguesa" id="hamburguesa" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= BANNER / HERO CARRUSEL ================= -->
+<section class="banner" id="inicio">
+
+  <!-- Slide 1 -->
+  <div class="slide activa">
+    <div class="slide-bg"></div>
+    <div class="slide-contenido">
+      <div class="slide-texto">
+        <span class="etiqueta">Admisión 2026 · Inscripciones abiertas</span>
+        <h1>Construye tu futuro en la <em>UNCP</em></h1>
+        <p>Más de 50 años formando profesionales líderes con excelencia académica y compromiso con el desarrollo del país.</p>
+        <div class="acciones">
+          <a href="#admision" class="btn btn-primario">Postula ahora</a>
+          <a href="#carreras" class="btn btn-linea">Ver carreras</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <div class="slide-bg"></div>
+    <div class="slide-contenido">
+      <div class="slide-texto">
+        <span class="etiqueta">Educación de calidad</span>
+        <h1>Carreras <em>acreditadas</em> y con visión global</h1>
+        <p>Planes de estudio actualizados, laboratorios modernos y convenios internacionales para tu desarrollo profesional.</p>
+        <div class="acciones">
+          <a href="#carreras" class="btn btn-primario">Explorar programas</a>
+          <a href="#porque" class="btn btn-linea">Conoce más</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <div class="slide-bg"></div>
+    <div class="slide-contenido">
+      <div class="slide-texto">
+        <span class="etiqueta">Vida universitaria</span>
+        <h1>Vive la experiencia <em>UNCP</em></h1>
+        <p>Deporte, cultura, investigación y una comunidad que te acompaña en cada paso de tu formación.</p>
+        <div class="acciones">
+          <a href="#contacto" class="btn btn-primario">Contáctanos</a>
+          <a href="#admision" class="btn btn-linea">Proceso de admisión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- controles -->
+  <button class="banner-flecha flecha-izq" id="anterior" aria-label="Anterior">&#10094;</button>
+  <button class="banner-flecha flecha-der" id="siguiente" aria-label="Siguiente">&#10095;</button>
+  <div class="banner-puntos" id="puntos"></div>
+
+  <div class="scroll-abajo">
+    <span>Desliza</span>
+    <span class="raton"></span>
+  </div>
+
+  <!-- ===== FORMULARIO "Déjanos tu información" ===== -->
+  <div class="banner-form-wrap">
+    <div class="contenedor">
+      <form class="banner-form" id="formInfo">
+        <div class="form-campos">
+          <h3>Déjanos tu información</h3>
+          <p class="sub">Un asesor te contactará con todos los detalles de admisión.</p>
+
+          <div class="campo">
+            <label for="nombre">Nombres y apellidos</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: María Pérez" required>
+          </div>
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+          </div>
+          <div class="campo">
+            <label for="telefono">Celular</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="999 999 999" required>
+          </div>
+          <div class="campo">
+            <label for="interes">Carrera de interés</label>
+            <select id="interes" name="interes" required>
+              <option value="" disabled selected>Selecciona una carrera</option>
+              <option>Ingeniería de Sistemas</option>
+              <option>Medicina Humana</option>
+              <option>Administración de Empresas</option>
+              <option>Derecho y Ciencias Políticas</option>
+              <option>Ingeniería Agronómica</option>
+              <option>Educación</option>
+              <option>Otra</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primario">Quiero más información</button>
+          <p class="aviso">Al enviar aceptas nuestra política de tratamiento de datos.</p>
+        </div>
+
+        <div class="form-ok" id="formOk">
+          <div class="check">&#10003;</div>
+          ¡Gracias! Hemos recibido tus datos.<br>Pronto te contactaremos.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ESTADÍSTICAS ================= -->
+<section class="seccion stats">
+  <div class="contenedor">
+    <div class="stats-grid">
+      <div class="stat revelar zoom">
+        <h3 data-cuenta="50">0</h3>
+        <p>Años de trayectoria</p>
+      </div>
+      <div class="stat revelar zoom d1">
+        <h3 data-cuenta="40">0</h3>
+        <p>Carreras profesionales</p>
+      </div>
+      <div class="stat revelar zoom d2">
+        <h3 data-cuenta="25000">0</h3>
+        <p>Estudiantes</p>
+      </div>
+      <div class="stat revelar zoom d3">
+        <h3 data-cuenta="95">0</h3>
+        <p>% de empleabilidad</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CARRERAS ================= -->
+<section class="seccion" id="carreras">
+  <div class="contenedor">
+    <div class="titulo-seccion revelar">
+      <span>Oferta académica</span>
+      <h2>Encuentra tu carrera ideal</h2>
+      <p>Programas de pregrado diseñados para formarte como un profesional competitivo y comprometido.</p>
+    </div>
+
+    <div class="carreras-grid">
+      <article class="carrera revelar d1">
+        <div class="carrera-img" style="background-image:url('https://loremflickr.com/600/400/programming,computer')"><span class="emoji">&#9881;</span></div>
+        <div class="carrera-cuerpo">
+          <span class="fac">Facultad de Ingeniería</span>
+          <h3>Ingeniería de Sistemas</h3>
+          <p>Desarrolla soluciones tecnológicas, software y sistemas inteligentes para transformar organizaciones.</p>
+          <a href="#" class="carrera-link">Ver más &#8594;</a>
+        </div>
+      </article>
+
+      <article class="carrera revelar d2">
+        <div class="carrera-img" style="background-image:url('https://loremflickr.com/600/400/medicine,doctor')"><span class="emoji">&#9877;</span></div>
+        <div class="carrera-cuerpo">
+          <span class="fac">Ciencias de la Salud</span>
+          <h3>Medicina Humana</h3>
+          <p>Fórmate para cuidar y salvar vidas con una sólida base científica, ética y humana.</p>
+          <a href="#" class="carrera-link">Ver más &#8594;</a>
+        </div>
+      </article>
+
+      <article class="carrera revelar d3">
+        <div class="carrera-img" style="background-image:url('https://loremflickr.com/600/400/business,office')"><span class="emoji">&#128200;</span></div>
+        <div class="carrera-cuerpo">
+          <span class="fac">Ciencias Administrativas</span>
+          <h3>Administración de Empresas</h3>
+          <p>Lidera y gestiona organizaciones con visión estratégica, innovación y sentido empresarial.</p>
+          <a href="#" class="carrera-link">Ver más &#8594;</a>
+        </div>
+      </article>
+
+      <article class="carrera revelar d1">
+        <div class="carrera-img" style="background-image:url('https://loremflickr.com/600/400/law,justice')"><span class="emoji">&#9878;</span></div>
+        <div class="carrera-cuerpo">
+          <span class="fac">Derecho</span>
+          <h3>Derecho y Ciencias Políticas</h3>
+          <p>Defiende la justicia y contribuye al desarrollo de una sociedad más equitativa.</p>
+          <a href="#" class="carrera-link">Ver más &#8594;</a>
+        </div>
+      </article>
+
+      <article class="carrera revelar d2">
+        <div class="carrera-img" style="background-image:url('https://loremflickr.com/600/400/agriculture,farm')"><span class="emoji">&#127793;</span></div>
+        <div class="carrera-cuerpo">
+          <span class="fac">Ciencias Agrarias</span>
+          <h3>Ingeniería Agronómica</h3>
+          <p>Impulsa la producción sostenible y la seguridad alimentaria con tecnología e innovación.</p>
+          <a href="#" class="carrera-link">Ver más &#8594;</a>
+        </div>
+      </article>
+
+      <article class="carrera revelar d3">
+        <div class="carrera-img" style="background-image:url('https://loremflickr.com/600/400/teacher,classroom')"><span class="emoji">&#128218;</span></div>
+        <div class="carrera-cuerpo">
+          <span class="fac">Educación</span>
+          <h3>Educación y Pedagogía</h3>
+          <p>Forma a las nuevas generaciones con vocación, innovación pedagógica y compromiso social.</p>
+          <a href="#" class="carrera-link">Ver más &#8594;</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POR QUÉ ELEGIRNOS ================= -->
+<section class="seccion porque" id="porque">
+  <div class="contenedor">
+    <div class="titulo-seccion revelar">
+      <span>Nuestras ventajas</span>
+      <h2>¿Por qué estudiar en la UNCP?</h2>
+      <p>Te brindamos todo lo necesario para que alcances tu máximo potencial profesional.</p>
+    </div>
+
+    <div class="beneficios">
+      <div class="beneficio revelar d1">
+        <div class="icono">&#127891;</div>
+        <h3>Docentes de excelencia</h3>
+        <p>Aprende de profesionales con amplia experiencia académica y profesional.</p>
+      </div>
+      <div class="beneficio revelar d2">
+        <div class="icono">&#128300;</div>
+        <h3>Investigación e innovación</h3>
+        <p>Centros de investigación y laboratorios equipados con tecnología de punta.</p>
+      </div>
+      <div class="beneficio revelar d3">
+        <div class="icono">&#127758;</div>
+        <h3>Convenios internacionales</h3>
+        <p>Intercambios y alianzas con universidades de prestigio en todo el mundo.</p>
+      </div>
+      <div class="beneficio revelar d4">
+        <div class="icono">&#128188;</div>
+        <h3>Alta empleabilidad</h3>
+        <p>Bolsa de trabajo y vínculo directo con empresas líderes del país.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ADMISIÓN ================= -->
+<section class="seccion cta" id="admision">
+  <div class="contenedor contenido revelar zoom">
+    <h2>¡Tu futuro comienza aquí!</h2>
+    <p>Inscríbete en el proceso de admisión 2026 y da el primer paso hacia tu carrera profesional en la UNCP.</p>
+    <div class="acciones">
+      <a href="#" class="btn btn-primario">Iniciar postulación</a>
+      <a href="#contacto" class="btn btn-linea">Descargar prospecto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="contacto">
+  <div class="contenedor">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="#inicio" class="logo" style="margin-bottom:18px">
+          <span class="marca">U</span>
+          <span>UNCP<small>Pregrado</small></span>
+        </a>
+        <p>Universidad Nacional del Centro del Perú. Formando profesionales de excelencia al servicio del país.</p>
+        <div class="redes">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="#" aria-label="YouTube">yt</a>
+          <a href="#" aria-label="TikTok">tk</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="#carreras">Carreras</a></li>
+          <li><a href="#porque">Por qué UNCP</a></li>
+          <li><a href="#admision">Admisión</a></li>
+          <li><a href="#">Becas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Admisión</h4>
+        <ul>
+          <li><a href="#">Cronograma</a></li>
+          <li><a href="#">Modalidades</a></li>
+          <li><a href="#">Prospecto</a></li>
+          <li><a href="#">Resultados</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li>&#128205; Av. Mariscal Castilla N° 3909, El Tambo - Huancayo</li>
+          <li>&#9742; (064) 481-062</li>
+          <li>&#9993; informes@uncp.edu.pe</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-abajo">
+      © 2026 Universidad Nacional del Centro del Perú · Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ===== HEADER al hacer scroll ===== */
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', ()=>{
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ===== MENÚ MÓVIL ===== */
+  const hamburguesa = document.getElementById('hamburguesa');
+  const menu = document.getElementById('menu');
+  hamburguesa.addEventListener('click', ()=>{
+    hamburguesa.classList.toggle('activa');
+    menu.classList.toggle('abierto');
+  });
+  menu.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      hamburguesa.classList.remove('activa');
+      menu.classList.remove('abierto');
+    });
+  });
+
+  /* ===== BANNER CARRUSEL ===== */
+  const slides = document.querySelectorAll('.slide');
+  const puntosCont = document.getElementById('puntos');
+  let indice = 0, temporizador;
+
+  slides.forEach((_, i)=>{
+    const p = document.createElement('span');
+    p.className = 'punto' + (i===0 ? ' activo' : '');
+    p.addEventListener('click', ()=> irA(i));
+    puntosCont.appendChild(p);
+  });
+  const puntos = puntosCont.querySelectorAll('.punto');
+
+  function mostrar(n){
+    slides[indice].classList.remove('activa');
+    puntos[indice].classList.remove('activo');
+    indice = (n + slides.length) % slides.length;
+    slides[indice].classList.add('activa');
+    puntos[indice].classList.add('activo');
+  }
+  function irA(n){ mostrar(n); reiniciar(); }
+  function siguiente(){ mostrar(indice+1); }
+  function anterior(){ mostrar(indice-1); }
+  function reiniciar(){
+    clearInterval(temporizador);
+    temporizador = setInterval(siguiente, 6000);
+  }
+
+  document.getElementById('siguiente').addEventListener('click', ()=>{siguiente();reiniciar();});
+  document.getElementById('anterior').addEventListener('click', ()=>{anterior();reiniciar();});
+  reiniciar();
+
+  /* ===== ANIMACIÓN AL HACER SCROLL (IntersectionObserver) ===== */
+  const observador = new IntersectionObserver((entradas)=>{
+    entradas.forEach(entrada=>{
+      if(entrada.isIntersecting){
+        entrada.target.classList.add('visible');
+        // contador animado si aplica
+        if(entrada.target.classList.contains('stat')){
+          animarContador(entrada.target.querySelector('[data-cuenta]'));
+        }
+        observador.unobserve(entrada.target);
+      }
+    });
+  }, {threshold:0.15});
+
+  document.querySelectorAll('.revelar').forEach(el=> observador.observe(el));
+
+  /* ===== CONTADOR ANIMADO ===== */
+  function animarContador(el){
+    if(!el) return;
+    const destino = +el.dataset.cuenta;
+    const duracion = 1600;
+    const inicio = performance.now();
+    function paso(ahora){
+      const avance = Math.min((ahora - inicio)/duracion, 1);
+      const valor = Math.floor(avance * destino);
+      el.textContent = valor.toLocaleString('es-PE') + (avance===1 ? sufijo(destino) : '');
+      if(avance < 1) requestAnimationFrame(paso);
+    }
+    requestAnimationFrame(paso);
+  }
+  function sufijo(n){
+    if(n===95) return '%';
+    if(n>=1000) return '+';
+    return '+';
+  }
+
+  /* ===== ENVÍO DEL FORMULARIO DEL BANNER ===== */
+  const formInfo = document.getElementById('formInfo');
+  formInfo.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    // Aquí luego puedes enviar los datos a tu servidor / correo.
+    formInfo.querySelector('.form-campos').style.display = 'none';
+    document.getElementById('formOk').classList.add('visible');
+  });
+</script>
+
+</body>
+</html>
