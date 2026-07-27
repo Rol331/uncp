@@ -20,6 +20,12 @@ index.html          — portada / landing
 estilos.css         — CSS de TODAS las páginas (variables, header, submenú, banner, carrera)
 scripts.js          — JS compartido (header scroll, menú móvil, submenú, .revelar, contador)
 carreras/*.html     — 22 páginas de carrera (una por carrera)
+imagenes/           — fotos optimizadas y versionadas (8.3 MB en total)
+  portada/slide-N.jpg      1600x900  carrusel de la portada (3)
+  banner/<slug>.jpg        1600x900  banner de cada carrera (21)
+  tarjetas/<slug>.jpg       600x400  tarjetas de #carreras en la portada (6)
+  galeria/<slug>-N.jpg      800x600  galería de cada carrera (50)
+img-carreras/       — ORIGINALES sin optimizar, en .gitignore (~505 MB)
 ```
 
 - `index.html` carga `estilos.css` + `scripts.js` y además tiene un `<script>` en línea solo para lo suyo (carrusel del banner y submit del formulario).
@@ -52,8 +58,8 @@ En el header, "Carreras" es un `<button class="enlace-sub">` dentro de `.tiene-s
 
 ## Estructura de una página de carrera (`carreras/*.html`)
 
-1. **Banner** (`.banner-interior`, `#inicio`) — miga de pan, etiqueta de área, `h1`, bajada, chips con Título/Grado y botones. La foto va en `background-image` de `.banner-interior-bg`.
-2. **Información** (`#info`) — `.carrera-layout` (contenido + `aside.ficha` sticky) con tres bloques: **Perfil del Egresado**, **Campo Ocupacional** (`.lista-check`) y **Laboratorios** (`.labs`).
+1. **Banner** (`.banner-interior`, `#inicio`) — miga de pan, etiqueta de área, `h1`, bajada, chips con Título/Grado y botones. La foto va en `background-image` de `.banner-interior-bg`, sobre ella cae el velo verde de `.banner-interior::before`.
+2. **Información** (`#info`) — `.carrera-layout` (contenido + `aside.ficha` sticky) con cuatro bloques: **Perfil del Egresado**, **Campo Ocupacional** (`.lista-check`), **Laboratorios** (`.labs`) y **Galería** (`.galeria`, con `loading="lazy"`).
 3. **Otras carreras del área** (`#otras`).
 4. **CTA Admisión** (`#admision`) + footer.
 
@@ -68,8 +74,11 @@ Las 22 áreas/carreras salen de `INFORMACIÓN PARA PÁGINMA WEB.docx`:
 ## Pendientes / notas
 
 - **El formulario NO envía datos a ningún backend.** En el submit solo se oculta y muestra el mensaje de éxito (`#formOk`). Ver comentario `// Aquí luego puedes enviar los datos a tu servidor / correo.`
-- **Todas las imágenes son placeholders de `loremflickr.com`** (banner de portada, tarjetas de carrera y banner de cada página de carrera) — reemplazar por fotos reales. En cada `carreras/*.html` hay un comentario `REEMPLAZAR LA FOTO` justo antes del `background-image`.
+- **Ing. Metalúrgica y de Materiales no tiene fotos** en `img-carreras/`: su banner usa el degradado verde institucional y en el HTML hay un comentario `FALTA FOTO` con la línea lista para descomentar.
+- **Las fotos de Administración de Empresas y Administración Hotelera parecen intercambiadas en origen**: la carpeta `administracion-empresas/` contiene un bar y un laboratorio de alimentos y bebidas (que es el laboratorio de Hotelería según el documento), y `administracion-hotelara/` tiene fotos genéricas de campus. Se respetó la organización de las carpetas.
+- Las 3 carreras de Química comparten una sola carpeta de fotos (`ingenria-quimica/`), con una foto cada una y sin galería.
 - Ing. Agronómica y Educación **no figuran** en el documento oficial, por eso no tienen página.
+- Para regenerar las imágenes o las páginas hay scripts de apoyo (`imagenes.py`, `datos.py`, `paginas.py`) que no están versionados; el pipeline es `sips` (decodifica, incluido RAW) → `ffmpeg` (aplica rotación EXIF, recorta *cover* y borra metadatos).
 - Sin página índice de las 22 carreras: el listado completo vive solo en el submenú.
 - Enlaces aún sin destino: redes sociales del footer, Becas, Cronograma, Modalidades, Prospecto, Resultados.
 

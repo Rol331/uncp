@@ -5,5 +5,9 @@
 *.docx
 *.pdf
 
+# Fotos originales sin optimizar (~505 MB, incluye RAW .NEF/.CR2/.ARW).
+# Las versiones listas para web viven en imagenes/ y esas SÍ se versionan.
+img-carreras/
+
 # Sistema
 .DS_Store

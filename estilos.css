@@ -207,12 +207,12 @@
   }
   .slide.activa .slide-bg{transform:scale(1)}
 
-  /* Imágenes aleatorias del banner (loremflickr = fotos al azar por tema).
-     Para usar TUS fotos: reemplaza la url por background-image:url('imagenes/foto1.jpg') */
+  /* Fotos del carrusel (1600x900, generadas desde img-carreras/).
+     Para cambiarlas basta reemplazar el archivo en imagenes/portada/. */
   .slide-bg{background-size:cover;background-position:center}
-  .slide:nth-child(1) .slide-bg{background-image:url('https://loremflickr.com/1600/900/university,campus')}
-  .slide:nth-child(2) .slide-bg{background-image:url('https://loremflickr.com/1600/900/students,library')}
-  .slide:nth-child(3) .slide-bg{background-image:url('https://loremflickr.com/1600/900/graduation,students')}
+  .slide:nth-child(1) .slide-bg{background-image:url('imagenes/portada/slide-1.jpg')}
+  .slide:nth-child(2) .slide-bg{background-image:url('imagenes/portada/slide-2.jpg')}
+  .slide:nth-child(3) .slide-bg{background-image:url('imagenes/portada/slide-3.jpg')}
 
   .slide-contenido{
     position:relative;
@@ -963,6 +963,35 @@
     margin-bottom:14px;
   }
   .lab p{font-size:.93rem;color:var(--texto)}
+
+  /* galería de fotos de la carrera */
+  .galeria{
+    display:grid;
+    gap:14px;
+    grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+  }
+  .galeria figure{
+    position:relative;
+    border-radius:var(--radio);
+    overflow:hidden;
+    box-shadow:var(--sombra);
+    background:var(--verde-900);
+  }
+  .galeria img{
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    transition:transform .6s cubic-bezier(.16,1,.3,1);
+  }
+  .galeria figure::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 55%,rgba(0,48,28,.55));
+    opacity:0;
+    transition:opacity var(--transicion);
+  }
+  .galeria figure:hover img{transform:scale(1.07)}
+  .galeria figure:hover::after{opacity:1}
 
   /* ficha lateral */
   .ficha{
