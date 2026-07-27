@@ -511,6 +511,43 @@
   }
   .carrera-link:hover{gap:14px;color:var(--dorado)}
 
+  /* encabezado de cada área dentro de la sección Carreras */
+  .area-titulo{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin:60px 0 28px;
+  }
+  .area-titulo:first-of-type{margin-top:0}
+  .area-titulo .num{
+    flex-shrink:0;
+    background:var(--verde-900);
+    color:var(--dorado-claro);
+    font-size:.72rem;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    padding:7px 16px;
+    border-radius:50px;
+  }
+  .area-titulo h3{
+    color:var(--verde-900);
+    font-size:clamp(1.1rem,2.2vw,1.4rem);
+    line-height:1.25;
+  }
+  .area-titulo::after{
+    content:"";
+    flex:1;
+    height:2px;
+    min-width:20px;
+    background:linear-gradient(90deg,var(--dorado),rgba(201,162,75,0));
+    border-radius:2px;
+  }
+  @media (max-width:600px){
+    .area-titulo{flex-wrap:wrap;gap:10px;margin:44px 0 22px}
+    .area-titulo::after{display:none}
+  }
+
   /* ===========================================================
      POR QUÉ ELEGIRNOS
   ============================================================ */
