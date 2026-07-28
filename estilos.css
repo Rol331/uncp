@@ -123,25 +123,34 @@
   .logo{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:14px;
     color:var(--blanco);
     font-weight:800;
   }
-  .logo .marca{
-    width:46px;height:46px;
-    background:var(--dorado);
-    color:var(--verde-900);
-    border-radius:12px;
-    display:grid;place-items:center;
-    font-size:1.3rem;
-    font-weight:900;
+  /* Logo institucional (imagenes/logo-uncp.png): sello + "UNCP" en blanco.
+     Está pensado para fondos oscuros — sobre fondo claro solo se ve el sello.
+     Para fondos claros usar imagenes/logo-sello.png. */
+  .logo-img{
+    height:46px;
+    width:auto;
     flex-shrink:0;
+    transition:height var(--transicion);
   }
-  .logo small{
-    display:block;
-    font-weight:400;
-    font-size:.72rem;
-    opacity:.85;
+  header.scrolled .logo-img{height:38px}
+  footer .logo-img{height:52px}
+  .logo-etiqueta{
+    font-size:.76rem;
+    font-weight:600;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--dorado-claro);
+    padding-left:14px;
+    border-left:1px solid rgba(255,255,255,.3);
+    white-space:nowrap;
+  }
+  @media (max-width:430px){
+    .logo-img,footer .logo-img{height:36px}
+    .logo-etiqueta{display:none}
   }
   .menu{
     display:flex;
