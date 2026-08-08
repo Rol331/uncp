@@ -87,13 +87,39 @@ function animarContador(el){
   function paso(ahora){
     const avance = Math.min((ahora - inicio)/duracion, 1);
     const valor = Math.floor(avance * destino);
-    el.textContent = valor.toLocaleString('es-PE') + (avance===1 ? sufijo(destino) : '');
+    // el sufijo lo define el HTML con data-sufijo ("+", "%" o nada)
+    el.textContent = valor.toLocaleString('es-PE') + (avance===1 ? (el.dataset.sufijo || '') : '');
     if(avance < 1) requestAnimationFrame(paso);
   }
   requestAnimationFrame(paso);
 }
-function sufijo(n){
-  if(n===95) return '%';
-  if(n>=1000) return '+';
-  return '+';
+
+/* ===== VISOR DE LA GALERÍA (clic en una foto = se amplía) ===== */
+const visor = document.getElementById('visor');
+if(visor){
+  const visorImg = document.getElementById('visorImg');
+  const cerrarBtn = document.getElementById('visorCerrar');
+
+  function abrirVisor(img){
+    visorImg.src = img.currentSrc || img.src;
+    visorImg.alt = img.alt || '';
+    visor.classList.add('abierto');
+    document.body.style.overflow = 'hidden';
+    cerrarBtn.focus();
+  }
+  function cerrarVisor(){
+    visor.classList.remove('abierto');
+    document.body.style.overflow = '';
+    // se limpia al terminar la transición para que no parpadee
+    setTimeout(()=>{ if(!visor.classList.contains('abierto')) visorImg.src = ''; }, 300);
+  }
+
+  document.querySelectorAll('.galeria img').forEach(img=>{
+    img.addEventListener('click', ()=> abrirVisor(img));
+  });
+  cerrarBtn.addEventListener('click', cerrarVisor);
+  visor.addEventListener('click', (e)=>{ if(e.target !== visorImg) cerrarVisor(); });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && visor.classList.contains('abierto')) cerrarVisor();
+  });
 }

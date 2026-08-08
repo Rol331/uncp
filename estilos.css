@@ -485,7 +485,6 @@
     background:linear-gradient(180deg,rgba(0,48,28,.25),rgba(0,48,28,.75));
     z-index:1;
   }
-  .carrera-img .emoji{position:relative;z-index:2;text-shadow:0 4px 12px rgba(0,0,0,.4)}
   .carrera-img::after{
     content:"";position:absolute;inset:0;z-index:2;
     background:linear-gradient(120deg,transparent,rgba(255,255,255,.15),transparent);
@@ -676,6 +675,14 @@
     .banner-form-wrap .contenedor{justify-content:center}
     .banner-form{max-width:480px;animation:none}
   }
+  /* franja intermedia: el menú tiene 6 entradas y necesita apretarse
+     para no chocar con el logo antes de pasar a hamburguesa */
+  @media (max-width:1080px) and (min-width:769px){
+    .menu{gap:0}
+    .menu a{padding:8px 10px;font-size:.9rem}
+    .menu .btn{margin-left:6px;padding:11px 18px;font-size:.88rem}
+    .logo-img{height:46px}
+  }
   @media (max-width:768px){
     .hamburguesa{display:flex}
     .menu{
@@ -742,15 +749,18 @@
     top:92px;
     left:50%;
     transform:translateX(-50%) translateY(-14px);
-    width:min(1060px,calc(100vw - 32px));
+    width:min(1280px,calc(100vw - 32px));
+    max-height:calc(100vh - 110px);
+    overflow-y:auto;
     background:var(--blanco);
     border-radius:20px;
     border-top:4px solid var(--dorado);
     box-shadow:0 30px 70px rgba(0,48,28,.28);
-    padding:30px 34px;
+    padding:30px 30px;
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:26px 30px;
+    grid-template-columns:repeat(5,1fr);
+    align-items:start;
+    gap:26px 24px;
     opacity:0;
     visibility:hidden;
     pointer-events:none;
@@ -801,7 +811,7 @@
     padding-left:16px;
   }
   .menu .submenu-area a.filial::after{
-    content:"Filial Tarma";
+    content:attr(data-filial);
     display:block;
     font-size:.68rem;
     font-weight:400;
@@ -1002,11 +1012,11 @@
   }
   .lab p{font-size:.93rem;color:var(--texto)}
 
-  /* galería de fotos de la carrera */
+  /* galería de fotos del programa — formato horizontal (16:9) */
   .galeria{
     display:grid;
     gap:14px;
-    grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   }
   .galeria figure{
     position:relative;
@@ -1014,10 +1024,11 @@
     overflow:hidden;
     box-shadow:var(--sombra);
     background:var(--verde-900);
+    cursor:zoom-in;
   }
   .galeria img{
     width:100%;
-    aspect-ratio:4/3;
+    aspect-ratio:16/9;
     object-fit:cover;
     transition:transform .6s cubic-bezier(.16,1,.3,1);
   }
@@ -1028,8 +1039,168 @@
     opacity:0;
     transition:opacity var(--transicion);
   }
+  /* lupa que aparece al pasar el mouse: avisa que la imagen se amplía */
+  .galeria figure::before{
+    content:"\2315";
+    position:absolute;
+    z-index:2;
+    right:12px;bottom:10px;
+    width:34px;height:34px;
+    border-radius:50%;
+    background:rgba(0,48,28,.75);
+    color:var(--dorado-claro);
+    display:grid;place-items:center;
+    font-size:1.05rem;
+    opacity:0;
+    transform:translateY(6px);
+    transition:opacity var(--transicion),transform var(--transicion);
+  }
   .galeria figure:hover img{transform:scale(1.07)}
   .galeria figure:hover::after{opacity:1}
+  .galeria figure:hover::before{opacity:1;transform:translateY(0)}
+  .galeria-nota{
+    margin-top:12px;
+    font-size:.82rem;
+    color:var(--gris);
+  }
+
+  /* visor a pantalla completa de la galería */
+  .visor{
+    position:fixed;inset:0;
+    z-index:3000;
+    display:grid;place-items:center;
+    padding:28px;
+    background:rgba(0,26,15,.93);
+    backdrop-filter:blur(6px);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .3s ease,visibility .3s;
+  }
+  .visor.abierto{opacity:1;visibility:visible}
+  .visor img{
+    max-width:min(1200px,100%);
+    max-height:88vh;
+    width:auto;
+    border-radius:var(--radio);
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
+    transform:scale(.94);
+    transition:transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .visor.abierto img{transform:scale(1)}
+  .visor-cerrar{
+    position:absolute;
+    top:20px;right:24px;
+    width:46px;height:46px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.14);
+    color:var(--blanco);
+    font-size:1.2rem;
+    cursor:pointer;
+    transition:var(--transicion);
+  }
+  .visor-cerrar:hover{background:var(--dorado);color:var(--verde-900)}
+
+  /* ===========================================================
+     PLAN DE ESTUDIOS (acordeón por semestre)
+  ============================================================ */
+  .plan{display:grid;gap:10px}
+  .plan-sem{
+    background:var(--blanco);
+    border:1px solid #e7ede9;
+    border-radius:14px;
+    overflow:hidden;
+    transition:border-color var(--transicion),box-shadow var(--transicion);
+  }
+  .plan-sem[open]{border-color:var(--dorado);box-shadow:var(--sombra)}
+  .plan-sem summary{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 20px;
+    cursor:pointer;
+    font-weight:700;
+    color:var(--verde-900);
+    list-style:none;
+    transition:background .25s ease;
+  }
+  .plan-sem summary::-webkit-details-marker{display:none}
+  .plan-sem summary:hover{background:var(--crema)}
+  .plan-num{
+    flex-shrink:0;
+    width:30px;height:30px;
+    border-radius:9px;
+    background:linear-gradient(135deg,var(--verde-600),var(--verde-900));
+    color:var(--dorado-claro);
+    display:grid;place-items:center;
+    font-size:.85rem;
+  }
+  .plan-tit{flex:1}
+  .plan-n{
+    font-size:.74rem;
+    font-weight:600;
+    color:var(--gris);
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+  /* flecha del acordeón */
+  .plan-sem summary::after{
+    content:"\25BC";
+    font-size:.62rem;
+    color:var(--dorado);
+    transition:transform var(--transicion);
+  }
+  .plan-sem[open] summary::after{transform:rotate(180deg)}
+  .plan-sem ul{
+    display:grid;
+    gap:8px;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    padding:4px 20px 20px;
+  }
+  .plan-sem li{
+    position:relative;
+    padding-left:18px;
+    font-size:.93rem;
+    color:var(--texto);
+  }
+  .plan-sem li::before{
+    content:"";
+    position:absolute;
+    left:0;top:.62em;
+    width:7px;height:7px;
+    border-radius:50%;
+    background:var(--dorado);
+  }
+
+  /* ===========================================================
+     PLANA DOCENTE (pendiente del Word; los estilos ya están listos)
+  ============================================================ */
+  .docentes{
+    display:grid;
+    gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  }
+  .docente{
+    background:var(--blanco);
+    border:1px solid #e7ede9;
+    border-radius:var(--radio);
+    box-shadow:var(--sombra);
+    padding:20px;
+    text-align:center;
+    transition:var(--transicion);
+  }
+  .docente:hover{transform:translateY(-7px);box-shadow:var(--sombra-fuerte)}
+  .docente img{
+    width:104px;height:104px;
+    border-radius:50%;
+    object-fit:cover;
+    margin:0 auto 14px;
+    border:3px solid var(--crema);
+  }
+  .docente h4{color:var(--verde-900);font-size:1rem;margin-bottom:4px}
+  .docente-grado{color:var(--dorado);font-size:.76rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:1px}
+  .docente-area{color:var(--gris);font-size:.86rem;margin-top:6px}
 
   /* ficha lateral */
   .ficha{
@@ -1098,12 +1269,13 @@
   /* ===========================================================
      RESPONSIVE — SUBMENÚ Y PÁGINA DE CARRERA
   ============================================================ */
+  @media (max-width:1320px){
+    .submenu{grid-template-columns:repeat(3,1fr);width:min(880px,calc(100vw - 32px))}
+  }
   @media (max-width:1100px){
     .submenu{
       grid-template-columns:repeat(2,1fr);
       width:min(720px,calc(100vw - 32px));
-      max-height:calc(100vh - 120px);
-      overflow-y:auto;
     }
   }
   @media (max-width:992px){
@@ -1161,3 +1333,209 @@
   @media (max-width:520px){
     .bi-datos div{width:100%}
   }
+
+  /* ===========================================================
+     BOTÓN FLOTANTE DE WHATSAPP (en todas las páginas)
+  ============================================================ */
+  .wsp{
+    position:fixed;
+    right:22px;bottom:22px;
+    z-index:2000;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:13px 20px 13px 15px;
+    border-radius:50px;
+    background:#25d366;
+    color:#fff;
+    font-weight:700;
+    font-size:.95rem;
+    box-shadow:0 12px 30px rgba(37,211,102,.45);
+    transition:var(--transicion);
+  }
+  .wsp svg{width:26px;height:26px;fill:currentColor;flex-shrink:0}
+  .wsp:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 40px rgba(37,211,102,.55);
+    background:#1fb855;
+  }
+  /* efecto de "latido" para que se note al entrar */
+  .wsp::before{
+    content:"";
+    position:absolute;inset:0;
+    border-radius:50px;
+    border:2px solid #25d366;
+    animation:latido 2.4s infinite;
+  }
+  @keyframes latido{
+    0%{transform:scale(1);opacity:.7}
+    70%{transform:scale(1.18);opacity:0}
+    100%{opacity:0}
+  }
+  @media (max-width:600px){
+    .wsp{right:16px;bottom:16px;padding:14px;gap:0}
+    .wsp span{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .wsp::before{animation:none}
+  }
+
+  /* ===========================================================
+     ACCESOS DIRECTOS DE ADMISIÓN (portada, debajo de los programas)
+  ============================================================ */
+  .accesos{background:var(--crema)}
+  .accesos-grid{
+    display:grid;
+    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+  }
+  .acceso{
+    position:relative;
+    display:block;
+    min-height:210px;
+    border-radius:var(--radio);
+    overflow:hidden;
+    box-shadow:var(--sombra);
+    background:linear-gradient(135deg,var(--verde-700),var(--verde-900));
+    background-size:cover;
+    background-position:center;
+    transition:var(--transicion);
+  }
+  .acceso::before{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(0,48,28,.25) 0%,rgba(0,48,28,.88) 100%);
+    transition:var(--transicion);
+  }
+  .acceso:hover{transform:translateY(-10px);box-shadow:var(--sombra-fuerte)}
+  .acceso:hover::before{background:linear-gradient(180deg,rgba(0,48,28,.35) 0%,rgba(0,48,28,.94) 100%)}
+  .acceso-txt{
+    position:absolute;
+    left:0;right:0;bottom:0;
+    padding:22px 22px 20px;
+    color:var(--blanco);
+  }
+  .acceso-txt strong{
+    display:block;
+    font-size:1.02rem;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+    line-height:1.25;
+  }
+  .acceso-txt span{
+    display:block;
+    font-size:.83rem;
+    color:rgba(255,255,255,.78);
+    margin-top:5px;
+  }
+  .acceso-txt .fl{
+    display:inline-block;
+    color:var(--dorado-claro);
+    font-weight:700;
+    margin-top:10px;
+    transition:var(--transicion);
+  }
+  .acceso:hover .acceso-txt .fl{transform:translateX(7px)}
+
+  /* ===========================================================
+     VIDEO INSTITUCIONAL
+  ============================================================ */
+  .video-seccion{
+    background:linear-gradient(120deg,var(--verde-900),var(--verde-700));
+    color:var(--blanco);
+  }
+  .video-seccion .titulo-seccion h2{color:var(--blanco)}
+  .video-seccion .titulo-seccion p{color:rgba(255,255,255,.8)}
+  .video-marco{
+    position:relative;
+    max-width:900px;
+    margin:0 auto;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 30px 70px rgba(0,0,0,.4);
+    aspect-ratio:16/9;
+    background:#000;
+  }
+  .video-marco iframe{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    border:0;
+  }
+
+  /* ===========================================================
+     PÁGINA DE ADMISIÓN — DOCUMENTOS DEL PROCESO
+  ============================================================ */
+  .docs-grid{
+    display:grid;
+    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(265px,1fr));
+  }
+  .doc{
+    background:var(--blanco);
+    border:1px solid #e7ede9;
+    border-radius:var(--radio);
+    box-shadow:var(--sombra);
+    padding:28px 24px;
+    text-align:center;
+    transition:var(--transicion);
+  }
+  .doc:hover{
+    transform:translateY(-9px);
+    box-shadow:var(--sombra-fuerte);
+    border-color:var(--dorado);
+  }
+  .doc .doc-icono{
+    width:58px;height:58px;
+    margin:0 auto 16px;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--verde-600),var(--verde-900));
+    color:var(--dorado-claro);
+    display:grid;place-items:center;
+    font-size:1.5rem;
+  }
+  .doc h3{
+    color:var(--verde-900);
+    font-size:1rem;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    margin-bottom:8px;
+  }
+  .doc p{color:var(--gris);font-size:.9rem;margin-bottom:16px}
+  .doc .doc-link{
+    display:inline-block;
+    color:var(--verde-700);
+    font-weight:700;
+    font-size:.9rem;
+    transition:var(--transicion);
+  }
+  .doc:hover .doc-link{color:var(--dorado);transform:translateX(5px)}
+
+  /* banner sencillo para páginas internas sin foto propia */
+  .banner-simple{
+    position:relative;
+    padding:170px 0 90px;
+    text-align:center;
+    color:var(--blanco);
+    background:linear-gradient(120deg,var(--verde-900),var(--verde-700));
+    overflow:hidden;
+  }
+  .banner-simple .bs-bg{
+    position:absolute;inset:0;
+    background-size:cover;
+    background-position:center;
+    opacity:.35;
+  }
+  .banner-simple .contenedor{position:relative;z-index:2}
+  .banner-simple h1{
+    font-size:clamp(2rem,5vw,3.2rem);
+    line-height:1.12;
+    margin-bottom:14px;
+  }
+  .banner-simple p{
+    color:rgba(255,255,255,.85);
+    max-width:640px;
+    margin:0 auto;
+  }
+  .banner-simple .miga{justify-content:center;margin-bottom:20px}
