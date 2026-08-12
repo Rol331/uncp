@@ -23,8 +23,8 @@ scripts.js          — JS compartido (header, menú móvil, submenú, .revelar,
 carreras/*.html     — 39 páginas de programa (una por programa de estudio)
 imagenes/           — fotos optimizadas y versionadas
   portada/slide-N.jpg      1600x900  carrusel de la portada (3)
-  banner/<slug>.jpg        1600x900  banner de cada programa (38 de 39)
-  tarjetas/<slug>.jpg       600x400  tarjetas de #carreras en la portada (38 de 39)
+  banner/<slug>.jpg        1600x900  banner de cada programa (los 39)
+  tarjetas/<slug>.jpg       600x400  tarjetas de #carreras en la portada (las 39)
   galeria/<slug>-N.jpg      800x600  galería de cada programa (114, en 37 programas)
 img-carreras/       — ORIGINALES sin optimizar, en .gitignore (~505 MB)
 ```
@@ -139,12 +139,12 @@ programas), `seleccion.json` (qué foto es el banner y cuáles la galería de ca
 - **Falta la plana docente.** El bloque está comentado en las 39 páginas (`.docentes` ya tiene
   estilos). El Word con los docentes está en un Drive que aún no se ha descargado:
   `https://drive.google.com/drive/folders/1mvOI3K0wUhYwSu-5HqHhyI9AknZGG6t-`
-- **Solo a Ingeniería Ambiental le falta la foto.** Su banner usa el degradado verde institucional
-  y en el HTML quedan los comentarios `FALTA FOTO` con la línea lista para descomentar; tampoco
-  tiene galería ni foto en su tarjeta de la portada. No vino en la entrega de fotos del cliente
-  (`1. SELECCION DE FOTOS UNCP - CARRERAS.rar`), hay que pedirla aparte.
-- **Agronomía Tropical tiene banner y tarjeta pero no galería**: de ese programa llegó una sola
-  foto. En su página hay un comentario `SIN GALERIA` explicándolo.
+- **Los 39 programas ya tienen banner y tarjeta.** Sin galería quedan dos, porque de cada uno hay
+  una sola foto; en sus páginas hay un comentario `SIN GALERIA` explicándolo:
+  - **Agronomía Tropical** — del RAR del cliente llegó una sola foto de ese programa.
+  - **Ingeniería Ambiental** — no vino en el RAR. El cliente eligió a mano (12/08/2026) la foto
+    `P2211186` de la carpeta de *Forestal y Ambiental*, así que **las dos carreras comparten esa
+    foto**: es el banner de Ambiental y a la vez `galeria-4` de Forestal y Ambiental.
 - **`.galeria img` necesita `height:auto`, no lo quites.** Sin esa línea el atributo HTML
   `height="600"` del `<img>` pisa al `aspect-ratio:16/9` y la galería se dibuja vertical
   (344x600) recortando los lados. Estuvo así hasta el 12/08/2026.
