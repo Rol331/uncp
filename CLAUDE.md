@@ -23,9 +23,9 @@ scripts.js          — JS compartido (header, menú móvil, submenú, .revelar,
 carreras/*.html     — 39 páginas de programa (una por programa de estudio)
 imagenes/           — fotos optimizadas y versionadas
   portada/slide-N.jpg      1600x900  carrusel de la portada (3)
-  banner/<slug>.jpg        1600x900  banner de cada programa (21)
-  tarjetas/<slug>.jpg       600x400  tarjetas de #carreras en la portada (21)
-  galeria/<slug>-N.jpg      800x600  galería de cada programa (50)
+  banner/<slug>.jpg        1600x900  banner de cada programa (38 de 39)
+  tarjetas/<slug>.jpg       600x400  tarjetas de #carreras en la portada (38 de 39)
+  galeria/<slug>-N.jpg      800x600  galería de cada programa (114, en 37 programas)
 img-carreras/       — ORIGINALES sin optimizar, en .gitignore (~505 MB)
 ```
 
@@ -125,6 +125,11 @@ este orden:
 Para las imágenes: `imagenes.py`, con el pipeline `sips` (decodifica, incluido RAW) → `ffmpeg`
 (aplica rotación EXIF, recorta *cover* y borra metadatos).
 
+`imagenes.py` se perdió; está rehecho en `img-carreras/_pipeline/` (fuera del repo, junto a los
+originales): `fotos.py` (`listar` / `hojas` / `generar` + el mapeo carpeta→slug de los 39
+programas), `seleccion.json` (qué foto es el banner y cuáles la galería de cada programa),
+`marcado.py` (mete banner, galería y tarjetas en el HTML) y `NOTAS.md`.
+
 **Los slugs de `FIJOS` en `datos.py` no se pueden cambiar**: las fotos se llaman igual que ellos.
 
 ## Pendientes / notas
@@ -134,15 +139,22 @@ Para las imágenes: `imagenes.py`, con el pipeline `sips` (decodifica, incluido 
 - **Falta la plana docente.** El bloque está comentado en las 39 páginas (`.docentes` ya tiene
   estilos). El Word con los docentes está en un Drive que aún no se ha descargado:
   `https://drive.google.com/drive/folders/1mvOI3K0wUhYwSu-5HqHhyI9AknZGG6t-`
-- **18 de los 39 programas no tienen fotos**: Ing. Metalúrgica, los 7 de Educación y los 10 del
-  Área V. Su banner usa el degradado verde institucional y en el HTML hay un comentario
-  `FALTA FOTO` con la línea lista para descomentar; tampoco tienen galería.
+- **Solo a Ingeniería Ambiental le falta la foto.** Su banner usa el degradado verde institucional
+  y en el HTML quedan los comentarios `FALTA FOTO` con la línea lista para descomentar; tampoco
+  tiene galería ni foto en su tarjeta de la portada. No vino en la entrega de fotos del cliente
+  (`1. SELECCION DE FOTOS UNCP - CARRERAS.rar`), hay que pedirla aparte.
+- **Agronomía Tropical tiene banner y tarjeta pero no galería**: de ese programa llegó una sola
+  foto. En su página hay un comentario `SIN GALERIA` explicándolo.
+- **`.galeria img` necesita `height:auto`, no lo quites.** Sin esa línea el atributo HTML
+  `height="600"` del `<img>` pisa al `aspect-ratio:16/9` y la galería se dibuja vertical
+  (344x600) recortando los lados. Estuvo así hasta el 12/08/2026.
 - **Las fotos de Administración de Empresas y Administración Hotelera parecen intercambiadas en
   origen**: la carpeta `administracion-empresas/` contiene un bar y un laboratorio de alimentos y
   bebidas (que es el laboratorio de Hotelería según el documento), y `administracion-hotelara/`
   tiene fotos genéricas de campus. Se respetó la organización de las carpetas.
-- Las 3 carreras de Química comparten una sola carpeta de fotos (`ingenria-quimica/`), con una
-  foto cada una y sin galería.
+- Las 3 carreras de Química ya tienen fotos propias: en la entrega del cliente vinieron en
+  carpetas separadas, así que se les rehizo el banner y se les dio galería (antes compartían la
+  carpeta `ingenria-quimica/` con una foto cada una).
 - Los iconos (emoji) de las tarjetas de programa y de la ficha lateral se eliminaron a pedido del
   cliente. Los de `.lab` (laboratorios) y `.beneficio` siguen ahí.
 - Sin página índice de los 39 programas: el listado completo vive en el submenú y en la portada.

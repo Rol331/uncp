@@ -1028,6 +1028,9 @@
   }
   .galeria img{
     width:100%;
+    /* height:auto es obligatorio: sin él, el height="600" del <img> pisa al aspect-ratio
+       y la foto se dibuja vertical recortando los lados. */
+    height:auto;
     aspect-ratio:16/9;
     object-fit:cover;
     transition:transform .6s cubic-bezier(.16,1,.3,1);
