@@ -1038,6 +1038,10 @@
   .galeria figure::after{
     content:"";
     position:absolute;inset:0;
+    /* pointer-events:none es obligatorio: este velo cubre toda la foto y, aunque tenga
+       opacity:0, se come el clic. Sin esto el visor de scripts.js no se abre nunca,
+       porque escucha en `.galeria img` y el clic aterriza en el <figure>. */
+    pointer-events:none;
     background:linear-gradient(180deg,transparent 55%,rgba(0,48,28,.55));
     opacity:0;
     transition:opacity var(--transicion);
@@ -1046,6 +1050,7 @@
   .galeria figure::before{
     content:"\2315";
     position:absolute;
+    pointer-events:none;   /* la lupa es decorativa, no debe robarle el clic a la foto */
     z-index:2;
     right:12px;bottom:10px;
     width:34px;height:34px;

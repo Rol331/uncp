@@ -145,9 +145,13 @@ programas), `seleccion.json` (qué foto es el banner y cuáles la galería de ca
   - **Ingeniería Ambiental** — no vino en el RAR. El cliente eligió a mano (12/08/2026) la foto
     `P2211186` de la carpeta de *Forestal y Ambiental*, así que **las dos carreras comparten esa
     foto**: es el banner de Ambiental y a la vez `galeria-4` de Forestal y Ambiental.
-- **`.galeria img` necesita `height:auto`, no lo quites.** Sin esa línea el atributo HTML
-  `height="600"` del `<img>` pisa al `aspect-ratio:16/9` y la galería se dibuja vertical
-  (344x600) recortando los lados. Estuvo así hasta el 12/08/2026.
+- **Dos líneas de `.galeria` que no se pueden quitar** (las dos corregidas el 12/08/2026, las dos
+  llevan comentario en `estilos.css`):
+  - `height:auto` en `.galeria img` — sin eso el atributo HTML `height="600"` del `<img>` pisa al
+    `aspect-ratio:16/9` y la galería se dibuja vertical (344x600) recortando los lados.
+  - `pointer-events:none` en `.galeria figure::after` y `::before` — el velo `inset:0` cubre la
+    foto y, aunque tenga `opacity:0`, **se come el clic**: aterriza en el `<figure>` y el visor de
+    `scripts.js` (que escucha en `.galeria img`) no abría nunca.
 - **Las fotos de Administración de Empresas y Administración Hotelera parecen intercambiadas en
   origen**: la carpeta `administracion-empresas/` contiene un bar y un laboratorio de alimentos y
   bebidas (que es el laboratorio de Hotelería según el documento), y `administracion-hotelara/`
