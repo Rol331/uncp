@@ -18,6 +18,9 @@ Página promocional/informativa con captación de leads (formulario de solicitud
 ```
 index.html          — portada / landing
 admision.html       — Admisión 2026-II (documentos oficiales del proceso)
+prospecto.html      — Prospecto de admisión   ┐ MAQUETAS: sin backend, ver Pendientes
+inscripcion.html    — Inscripción en línea    │ (las 3 salen de #accesos de la portada)
+resultados.html     — Resultados de admisión  ┘
 estilos.css         — CSS de TODAS las páginas
 scripts.js          — JS compartido (header, menú móvil, submenú, .revelar, contador, visor de galería)
 carreras/*.html     — 39 páginas de programa (una por programa de estudio)
@@ -96,6 +99,10 @@ y cuatro en Filial Satipo).
 
 - Inscripción / *Solicitar información*: `https://erpadmision.uncp.edu.pe/inscripcion`
 - Prospecto: `https://drive.google.com/file/d/1tqgMdpMqXMnMaxNtdWzaMPL4I5DOa6M0/view`
+- **Las 4 tarjetas de `#accesos` ya NO salen del sitio**: van a `admision.html`,
+  `prospecto.html`, `inscripcion.html` y `resultados.html`. Dentro de esas tres maquetas los
+  enlaces de inscripción, prospecto y resultados también son locales. El resto del sitio
+  (botón *Inscríbete aquí* del header, CTA y footer de las 41 páginas) **sigue apuntando afuera**.
 - WhatsApp: `https://wa.me/51939054663`
 - Redes: `facebook.com/uncpadmisionoficial`, `instagram.com/admision_uncp`,
   `youtube.com/channel/UCzA77CCORqPaHkwLDgd9V_Q`, `tiktok.com/@uncp_admision`
@@ -130,12 +137,26 @@ originales): `fotos.py` (`listar` / `hojas` / `generar` + el mapeo carpeta→slu
 programas), `seleccion.json` (qué foto es el banner y cuáles la galería de cada programa),
 `marcado.py` (mete banner, galería y tarjetas en el HTML) y `NOTAS.md`.
 
+`paginas_extra.py` (mismo directorio) rehace `prospecto.html`, `inscripcion.html` y
+`resultados.html`. Les copia la cabecera y el pie de `admision.html`, así el header, el submenú y
+el footer salen idénticos al resto del sitio; el `<select>` de los 39 programas lo saca de
+`index.html`. **Esas tres páginas no se editan a mano**, se regeneran con ese script.
+
 **Los slugs de `FIJOS` en `datos.py` no se pueden cambiar**: las fotos se llaman igual que ellos.
 
 ## Pendientes / notas
 
 - **El formulario NO envía datos a ningún backend.** En el submit solo se oculta y muestra el
   mensaje de éxito (`#formOk`). Ver comentario `// Aquí luego puedes enviar los datos a tu servidor / correo.`
+- **`prospecto.html`, `inscripcion.html` y `resultados.html` son solo maquetación** (hechas el
+  12/08/2026 para que las tarjetas de `#accesos` no manden al sitio oficial). No tienen backend:
+  - Los `<input>`, `<select>` y botones van con `disabled` y el `<form>` con `onsubmit="return false"`.
+  - Cada página lleva arriba una franja `.maqueta` diciéndolo. **No la quites** mientras siga sin
+    conexión, y no le saques el `disabled` a los campos: harían creer que se envía algo.
+  - La tabla de `resultados.html` **no tiene datos reales**: son guiones y textos de molde a
+    propósito, para que nadie los confunda con resultados oficiales.
+  - Falta: cargar el PDF del prospecto y su botón de descarga, y conectar el registro y la
+    consulta por DNI al sistema de la Universidad.
 - **Falta la plana docente.** El bloque está comentado en las 39 páginas (`.docentes` ya tiene
   estilos). El Word con los docentes está en un Drive que aún no se ha descargado:
   `https://drive.google.com/drive/folders/1mvOI3K0wUhYwSu-5HqHhyI9AknZGG6t-`
