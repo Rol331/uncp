@@ -97,12 +97,15 @@ y cuatro en Filial Satipo).
 
 ## Enlaces externos que usa el sitio
 
-- Inscripción / *Solicitar información*: `https://erpadmision.uncp.edu.pe/inscripcion`
-- Prospecto: `https://drive.google.com/file/d/1tqgMdpMqXMnMaxNtdWzaMPL4I5DOa6M0/view`
-- **Las 4 tarjetas de `#accesos` ya NO salen del sitio**: van a `admision.html`,
-  `prospecto.html`, `inscripcion.html` y `resultados.html`. Dentro de esas tres maquetas los
-  enlaces de inscripción, prospecto y resultados también son locales. El resto del sitio
-  (botón *Inscríbete aquí* del header, CTA y footer de las 41 páginas) **sigue apuntando afuera**.
+- **Todo el sitio navega hacia adentro** (unificado el 12/08/2026 con
+  `_pipeline/unificar.py`). Ya nada apunta a `erpadmision.uncp.edu.pe/inscripcion` ni a
+  `uncpadmision.edu.pe/resultados/`:
+  - *Inscríbete aquí* / *Postula ahora* / *Solicitar información* → `inscripcion.html` (203 enlaces)
+  - *Resultados* del footer → `resultados.html` (41)
+  - *Ver el prospecto* (antes decía *Descargar prospecto*) y *Prospecto* → `prospecto.html` (83)
+- **Única salida que queda a propósito:** el botón *Descargar el prospecto (PDF)* de
+  `prospecto.html`, que va al Drive `1tqgMdpMqXMnMaxNtdWzaMPL4I5DOa6M0`. Es el documento en sí,
+  no una pantalla ajena, y si se quita se pierde la descarga real del prospecto.
 - WhatsApp: `https://wa.me/51939054663`
 - Redes: `facebook.com/uncpadmisionoficial`, `instagram.com/admision_uncp`,
   `youtube.com/channel/UCzA77CCORqPaHkwLDgd9V_Q`, `tiktok.com/@uncp_admision`
@@ -155,8 +158,13 @@ el footer salen idénticos al resto del sitio; el `<select>` de los 39 programas
     conexión, y no le saques el `disabled` a los campos: harían creer que se envía algo.
   - La tabla de `resultados.html` **no tiene datos reales**: son guiones y textos de molde a
     propósito, para que nadie los confunda con resultados oficiales.
-  - Falta: cargar el PDF del prospecto y su botón de descarga, y conectar el registro y la
-    consulta por DNI al sistema de la Universidad.
+  - `prospecto.html` **sí entrega el PDF** con su botón del banner; su maqueta es el resto
+    (capítulos y formas de obtenerlo).
+  - **Falta conectar el registro de `inscripcion.html` y la consulta por DNI de
+    `resultados.html`** al sistema de la Universidad. Mientras no se conecten, el sitio ya no
+    tiene salida hacia el sistema oficial: un postulante no puede inscribirse de verdad desde
+    aquí. Si hace falta que pueda, hay que volver a poner
+    `https://erpadmision.uncp.edu.pe/inscripcion` en los botones de acción.
 - **Falta la plana docente.** El bloque está comentado en las 39 páginas (`.docentes` ya tiene
   estilos). El Word con los docentes está en un Drive que aún no se ha descargado:
   `https://drive.google.com/drive/folders/1mvOI3K0wUhYwSu-5HqHhyI9AknZGG6t-`
