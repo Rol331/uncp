@@ -145,6 +145,11 @@ programas), `seleccion.json` (qué foto es el banner y cuáles la galería de ca
 el footer salen idénticos al resto del sitio; el `<select>` de los 39 programas lo saca de
 `index.html`. **Esas tres páginas no se editan a mano**, se regeneran con ese script.
 
+Otros dos del mismo directorio, para cambios que van en las 44 páginas a la vez (los dos traen
+simulación: sin `--escribir` solo informan):
+- `unificar.py` — manda a las páginas locales los enlaces que salían al sistema oficial.
+- `redes.py` — pone los logos SVG de Facebook, Instagram, YouTube y TikTok en el footer.
+
 **Los slugs de `FIJOS` en `datos.py` no se pueden cambiar**: las fotos se llaman igual que ellos.
 
 ## Pendientes / notas
@@ -190,6 +195,9 @@ el footer salen idénticos al resto del sitio; el `<select>` de los 39 programas
   carpeta `ingenria-quimica/` con una foto cada una).
 - Los iconos (emoji) de las tarjetas de programa y de la ficha lateral se eliminaron a pedido del
   cliente. Los de `.lab` (laboratorios) y `.beneficio` siguen ahí.
+- Las redes del footer llevan el **logo de cada marca en SVG** (antes eran las letras «f», «ig»,
+  «yt», «tk»). Van en línea, con `fill:currentColor`, así heredan el color del círculo y el hover
+  dorado funciona sin reglas aparte. Se ponen con `_pipeline/redes.py`.
 - Sin página índice de los 39 programas: el listado completo vive en el submenú y en la portada.
 
 ## Material de referencia (NO publicar)

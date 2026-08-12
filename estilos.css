@@ -642,6 +642,9 @@
     transition:var(--transicion);
     font-weight:700;
   }
+  /* los logos son SVG en línea; currentColor los pinta con el color del círculo,
+     así el hover dorado sigue funcionando sin reglas aparte */
+  .redes a svg{width:19px;height:19px;fill:currentColor}
   .redes a:hover{background:var(--dorado);color:var(--verde-900);transform:translateY(-4px)}
   .footer-abajo{
     border-top:1px solid rgba(255,255,255,.12);
