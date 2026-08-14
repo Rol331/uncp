@@ -11,3 +11,5 @@ img-carreras/
 
 # Sistema
 .DS_Store
+# candado que deja LibreOffice mientras tiene abierto un .docx
+.~lock.*#
