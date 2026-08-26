@@ -25,6 +25,8 @@ inscripcion.html    — Inscripción en línea    · explica el trámite y manda
 posgrado.html            — Posgrado 2026-II ┐ maestrías y doctorados (25/08/2026); salen del
 posgrado-cronograma.html — Cronograma       │ menú «Posgrado» del header, no de #accesos
 posgrado-costos.html     — Costos           ┘
+qr.html             — un QR por programa, para imprimir (26/08/2026). NO está enlazada en
+                      el sitio a propósito: es herramienta interna, se llega por la URL
 estilos.css         — CSS de TODAS las páginas
 scripts.js          — JS compartido (header, menú móvil, submenú, .revelar, contador, visor de galería)
 carreras/*.html     — 39 páginas de programa (una por programa de estudio)
@@ -33,6 +35,7 @@ imagenes/           — fotos optimizadas y versionadas
   banner/<slug>.jpg        1600x900  banner de cada programa (los 39)
   tarjetas/<slug>.jpg       600x400  tarjetas de #carreras en la portada (las 39)
   galeria/<slug>-N.jpg      800x600  galería de cada programa (114, en 37 programas)
+  qr/<slug>.svg             ~2 KB    código QR de cada programa (los 39), vectorial
 img-carreras/       — ORIGINALES sin optimizar, en .gitignore (~505 MB)
 ```
 
@@ -200,6 +203,24 @@ traen simulación: sin `--escribir` solo informan):
   ya encuentra `id="submenuPosgrado"`. **Correr antes que `paginas_extra.py`**, que copia la
   cabecera de `admision.html`.
 
+`qr.py` (mismo directorio) hace los 39 `imagenes/qr/<slug>.svg` y `qr.html`. Los programas los lee
+del submenú de `admision.html`, así no hay una segunda lista que mantener, e importa los helpers de
+`paginas_extra.py` para que la página salga con la cabecera y el pie del sitio.
+
+- Es el único script que necesita algo de fuera: **`segno`** (Python puro), en un venv del mismo
+  directorio (fuera del repo): `python3 -m venv venv && ./venv/bin/pip install segno`.
+  Se corre con `./venv/bin/python qr.py --escribir`.
+- **El dominio va cableado en `BASE`** (`https://uncpadmision.edu.pe/`, el de producción, que
+  confirmó el cliente el 26/08/2026 — y ahí las 39 URLs responden 200). Un QR impreso no se
+  corrige: si el sitio se publica en otra dirección hay que regenerarlos **antes** de mandar a
+  imprenta, con `--base https://otra-direccion/`.
+- Los QR llevan `error="q"` (25% de recuperación, aguanta tinta corrida y dobleces) y van en
+  `#00301C`, no en negro. Van de la versión 5 a la 8 según el largo del slug.
+- Los estilos `.qr-*` y la hoja de impresión están en `estilos.css`, y las reglas de `@media print`
+  cuelgan de `body class="pagina-qr"`, que se la pone el propio script. Esa hoja **fuerza
+  `.revelar{opacity:1}`**: si no, al imprimir el título sale en blanco porque el JS de las
+  animaciones no corre.
+
 **Los slugs de `FIJOS` en `datos.py` no se pueden cambiar**: las fotos se llaman igual que ellos.
 
 ## Pendientes / notas
@@ -277,7 +298,14 @@ Archivos internos, ignorados por git (`.docx`, `.pdf` en `.gitignore`):
   botones de las páginas de programa. Las dos son imágenes anotadas, no texto: para leerlas hay que
   convertirlas con LibreOffice (`soffice --headless --convert-to pdf`) y mirar las páginas.
 
-## Git
+## Git y publicación
 
-- Rama principal: `main`.
-- `.claude/`, `*.docx`, `*.pdf` y `.DS_Store` están en `.gitignore`.
+- Rama principal: `main`. Repo: `https://github.com/Rol331/uncp.git`.
+- `.claude/`, `*.docx`, `*.pdf`, `.DS_Store` y el candado de LibreOffice están en `.gitignore`.
+- **Dos direcciones** (comprobado el 26/08/2026):
+  - `https://rol331.github.io/uncp/` — GitHub Pages, sale de `main` en cada push. Es donde se
+    revisa el trabajo.
+  - `https://uncpadmision.edu.pe/` — **producción**, la que ve el postulante y a la que apuntan
+    los QR. **No se actualiza sola:** ese día tenía el despliegue anterior (las 39 páginas de
+    programa e `inscripcion.html` sí, pero `posgrado.html` daba 404). Copiar los archivos ahí es
+    un paso aparte, fuera de este repo.

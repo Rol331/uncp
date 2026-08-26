@@ -1741,3 +1741,110 @@
     .prospecto{grid-template-columns:1fr}
     .prospecto-portada{max-width:260px;margin:0 auto}
   }
+
+  /* ===========================================================
+     CÓDIGOS QR  (solo los usa qr.html)
+     Los SVG salen de _pipeline/qr.py; la hoja de impresión deja
+     únicamente la grilla, y se activa con la clase del <body>.
+  ============================================================ */
+  .qr-area{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    color:var(--verde-900);
+    font-size:1.05rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin:44px 0 18px;
+    padding-bottom:10px;
+    border-bottom:2px solid var(--crema);
+  }
+  .qr-area:first-of-type{margin-top:0}
+  .qr-area em{
+    color:var(--dorado);
+    font-style:normal;
+    font-size:.8rem;
+    font-weight:800;
+    white-space:nowrap;
+  }
+  .qr-grid{
+    display:grid;
+    gap:20px;
+    grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  }
+  .qr-item{
+    background:var(--blanco);
+    border:1px solid #e7ede9;
+    border-radius:var(--radio);
+    box-shadow:var(--sombra);
+    padding:18px 16px 16px;
+    text-align:center;
+    transition:var(--transicion);
+  }
+  .qr-item:hover{border-color:var(--dorado);box-shadow:var(--sombra-fuerte)}
+  .qr-item img{
+    width:100%;
+    max-width:180px;
+    height:auto;
+    margin:0 auto 12px;
+  }
+  .qr-item strong{
+    display:block;
+    color:var(--verde-900);
+    font-size:.9rem;
+    line-height:1.35;
+  }
+  .qr-url{
+    display:block;
+    color:var(--gris);
+    font-size:.7rem;
+    word-break:break-all;
+    margin:6px 0 12px;
+  }
+  .qr-baja{
+    display:inline-block;
+    color:var(--verde-700);
+    font-weight:700;
+    font-size:.8rem;
+    border:1.5px solid #dbe5df;
+    border-radius:50px;
+    padding:6px 16px;
+    transition:var(--transicion);
+  }
+  .qr-baja:hover{background:var(--verde-900);color:var(--blanco);border-color:var(--verde-900)}
+
+  /* hoja de impresión: fuera todo lo que no sea la grilla */
+  @media print{
+    .pagina-qr header,
+    .pagina-qr footer,
+    .pagina-qr .wsp,
+    .pagina-qr .banner-simple,
+    .pagina-qr .cta,
+    .pagina-qr .qr-baja,
+    .pagina-qr .titulo-seccion span{display:none}
+    /* la bajada se queda: es la que dice a qué dominio apuntan los códigos */
+    .pagina-qr .titulo-seccion p{font-size:.8rem;margin-top:6px}
+    .pagina-qr .seccion{padding:0}
+    .pagina-qr .titulo-seccion{margin-bottom:18px}
+    .pagina-qr .qr-grid{grid-template-columns:repeat(3,1fr);gap:10px}
+    .pagina-qr .qr-item{
+      box-shadow:none;
+      border-color:#ccc;
+      break-inside:avoid;
+      page-break-inside:avoid;
+      padding:10px 8px 8px;
+    }
+    /* 130px = 3.4 cm impresos: entran 3 filas por hoja y se siguen
+       escaneando de sobra (el QR más denso mide 49 módulos) */
+    .pagina-qr .qr-item img{max-width:130px;margin-bottom:8px}
+    .pagina-qr .qr-item strong{font-size:.78rem}
+    .pagina-qr .qr-url{font-size:.6rem;margin:4px 0 0}
+    .pagina-qr .qr-area{
+      break-after:avoid;
+      page-break-after:avoid;
+      margin:18px 0 10px;
+    }
+    /* .revelar deja los bloques en opacity:0 hasta que el JS los marca;
+       al imprimir hay que forzarlos o la hoja sale en blanco */
+    .pagina-qr .revelar{opacity:1;transform:none}
+  }
