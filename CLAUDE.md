@@ -141,6 +141,12 @@ y cuatro en Filial Satipo).
   prospecto `1CazEJW7UAE7crV3TvLICqckq4QVcHqyS` · doctorados `1d_oUhzM6WzdPWfXQwDvljPC_xmyS5s40` ·
   maestrías `1DHG-EeGuouNROZ2eP2O6fUyaoA7GfYwi` · vacantes `1BM3PPinlHoEFJo5JTMcJmHHHEqIHul6A`.
   `unificar.py` no los toca: solo conoce el id del prospecto de pregrado.
+- **El sistema de inscripción de posgrado**, `uncpadmision.edu.pe/posgrado/registration/login.php`.
+  **No es el de pregrado** (`erpadmision.uncp.edu.pe/inscripcion`): son dos sistemas distintos.
+  Está en dos sitios, los dos pedidos por el cliente el 26/08/2026: el botón flotante dorado
+  *Inscripción Posgrado* de la portada (abajo a la izquierda, espejo del de WhatsApp, **solo en
+  `index.html`**) y el botón *Inscríbete en línea* del banner de `posgrado.html`. En el generador
+  es la constante `SISTEMA_POSGRADO`.
 - WhatsApp: `https://wa.me/51939054663`
 - Redes: `facebook.com/uncpadmisionoficial`, `instagram.com/admision_uncp`,
   `youtube.com/channel/UCzA77CCORqPaHkwLDgd9V_Q`, `tiktok.com/@uncp_admision`
