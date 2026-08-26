@@ -1418,6 +1418,40 @@
   }
 
   /* ===========================================================
+     BOTÓN FLOTANTE DE POSGRADO  (solo index.html)
+     Espejo del de WhatsApp, abajo a la izquierda, en el dorado
+     institucional. Va al sistema de inscripción de posgrado, que es
+     otro que el de pregrado: por eso la etiqueta dice "Posgrado".
+  ============================================================ */
+  .flotante-pos{
+    position:fixed;
+    left:22px;bottom:22px;
+    z-index:2000;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:13px 20px 13px 15px;
+    border-radius:50px;
+    background:var(--dorado);
+    color:var(--verde-900);
+    font-weight:700;
+    font-size:.95rem;
+    box-shadow:0 12px 30px rgba(0,48,28,.35);
+    transition:var(--transicion);
+  }
+  .flotante-pos svg{width:26px;height:26px;fill:currentColor;flex-shrink:0}
+  .flotante-pos:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 40px rgba(0,48,28,.45);
+    background:var(--dorado-claro);
+  }
+  /* a ≤600px los dos flotantes se tocarían: se quedan solo con el icono */
+  @media (max-width:600px){
+    .flotante-pos{left:16px;bottom:16px;padding:14px;gap:0}
+    .flotante-pos span{display:none}
+  }
+
+  /* ===========================================================
      ACCESOS DIRECTOS DE ADMISIÓN (portada, debajo de los programas)
   ============================================================ */
   .accesos{background:var(--crema)}
