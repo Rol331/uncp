@@ -678,15 +678,17 @@
     .banner-form-wrap .contenedor{justify-content:center}
     .banner-form{max-width:480px;animation:none}
   }
-  /* franja intermedia: el menú tiene 6 entradas y necesita apretarse
-     para no chocar con el logo antes de pasar a hamburguesa */
-  @media (max-width:1080px) and (min-width:769px){
+  /* franja intermedia: el menú tiene 7 entradas (dos de ellas con submenú)
+     y necesita apretarse para no chocar con el logo antes de pasar a
+     hamburguesa. Los botones .enlace-sub no son <a>, hay que nombrarlos. */
+  @media (max-width:1180px) and (min-width:993px){
     .menu{gap:0}
     .menu a{padding:8px 10px;font-size:.9rem}
+    .menu .enlace-sub{padding:8px 10px;font-size:.9rem;gap:5px}
     .menu .btn{margin-left:6px;padding:11px 18px;font-size:.88rem}
     .logo-img{height:46px}
   }
-  @media (max-width:768px){
+  @media (max-width:992px){
     .hamburguesa{display:flex}
     .menu{
       position:fixed;
@@ -842,6 +844,30 @@
     padding:8px 0 0;
   }
   .menu .submenu-aviso a:hover{background:none;padding-left:0;color:var(--dorado)}
+
+  /* ===========================================================
+     SUBMENÚ COMPACTO (Posgrado)
+     Carreras necesita el panel fijo de 1280px porque son 39 enlaces
+     en 5 columnas; Posgrado son 3, así que cae anclado bajo su botón.
+     Solo escritorio: a ≤768px vale el acordeón del mega menú, que ya
+     funciona para cualquier .submenu con .submenu-area dentro.
+     Gana a `header.scrolled .submenu{top:66px}` por especificidad
+     (4 clases contra 2), así no se reposiciona al hacer scroll.
+  ============================================================ */
+  @media (min-width:993px){
+    .menu .tiene-sub .submenu.compacto{
+      position:absolute;
+      /* 12px < los 27px del puente .tiene-sub::after, que tapa el hueco */
+      top:calc(100% + 12px);
+      left:50%;
+      width:max-content;
+      min-width:210px;
+      max-height:none;
+      display:block;
+      padding:18px 16px;
+      border-radius:16px;
+    }
+  }
 
   /* ===========================================================
      PÁGINA DE CARRERA — BANNER INTERIOR
@@ -1293,7 +1319,7 @@
     .carrera-layout{grid-template-columns:1fr;gap:44px}
     .ficha{position:static}
   }
-  @media (max-width:768px){
+  @media (max-width:992px){
     /* el mega menú pasa a ser un acordeón dentro del menú lateral */
     .menu .tiene-sub{width:100%}
     .menu .tiene-sub::after{display:none}
@@ -1522,6 +1548,25 @@
     transition:var(--transicion);
   }
   .doc:hover .doc-link{color:var(--dorado);transform:translateX(5px)}
+
+  /* tarjeta cuyo documento el cliente todavía no entregó: se ve igual que
+     las demás pero apagada y sin <a>, para que nadie le haga clic en vano */
+  .doc.doc-inactivo{
+    background:var(--crema);
+    box-shadow:none;
+    cursor:default;
+  }
+  .doc.doc-inactivo:hover{
+    transform:none;
+    box-shadow:none;
+    border-color:#e7ede9;
+  }
+  .doc.doc-inactivo .doc-icono{
+    background:linear-gradient(135deg,#c3cec8,#96a8a1);
+    color:var(--blanco);
+  }
+  .doc.doc-inactivo h3{color:var(--gris)}
+  .doc.doc-inactivo .doc-link{color:var(--gris);font-weight:600}
 
   /* banner sencillo para páginas internas sin foto propia */
   .banner-simple{

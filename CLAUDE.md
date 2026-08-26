@@ -22,6 +22,9 @@ prospecto.html      — Prospecto de admisión   ┐ MAQUETAS: sin backend, ver 
 resultados.html     — Resultados de admisión  ┘ (las 2 salen de #accesos de la portada)
 inscripcion.html    — Inscripción en línea    · explica el trámite y manda al sistema oficial
                                                 (ya no tiene formulario, ver Pendientes)
+posgrado.html            — Posgrado 2026-II ┐ maestrías y doctorados (25/08/2026); salen del
+posgrado-cronograma.html — Cronograma       │ menú «Posgrado» del header, no de #accesos
+posgrado-costos.html     — Costos           ┘
 estilos.css         — CSS de TODAS las páginas
 scripts.js          — JS compartido (header, menú móvil, submenú, .revelar, contador, visor de galería)
 carreras/*.html     — 39 páginas de programa (una por programa de estudio)
@@ -36,7 +39,7 @@ img-carreras/       — ORIGINALES sin optimizar, en .gitignore (~505 MB)
 - `index.html` carga `estilos.css` + `scripts.js` y además tiene un `<script>` en línea solo
   para lo suyo (carrusel del banner y submit del formulario).
 - Las páginas de `carreras/` y `admision.html` usan las mismas hojas compartidas.
-- El header, el submenú y el footer están **duplicados en las 41 páginas**: no se editan a mano,
+- El header, el submenú y el footer están **duplicados en las 47 páginas**: no se editan a mano,
   se regeneran con los scripts de apoyo (ver *Regenerar*).
 
 ## Diseño
@@ -62,19 +65,33 @@ img-carreras/       — ORIGINALES sin optimizar, en .gitignore (~505 MB)
 - **Footer** (`#contacto`) — con las redes sociales y el WhatsApp.
 - **Botón flotante de WhatsApp** (`.wsp`) en todas las páginas.
 
-## Submenú de programas (mega menú)
+## Los dos submenús del header
 
-En el header, "Carreras" es un `<button class="enlace-sub">` dentro de `.tiene-sub`, con el panel
-`.submenu` (**5 columnas, una por área**).
+El menú tiene **7 entradas**: Inicio · Carreras ▾ · Admisión 2026-II · **Posgrado ▾** · Por qué
+UNCP · Contacto · *Inscríbete aquí*. Las dos con ▾ son `<button class="enlace-sub">` dentro de un
+`.tiene-sub`. `scripts.js` recorre **todos** los `.tiene-sub`, así que no hubo que tocar el JS al
+agregar el segundo (25/08/2026, con `_pipeline/menu_posgrado.py`).
+
+**Carreras — mega menú** (`.submenu`, 5 columnas, una por área):
 
 - **Escritorio:** se abre al pasar el mouse (`:hover`) o al hacer clic. El panel es
   `position:fixed` centrado en el viewport (`top:92px`, `66px` con `.scrolled`), así nunca se
   desborda. Un `::after` invisible en `.tiene-sub` hace de puente para que no se cierre al bajar
   el mouse. A ≤1320px pasa a 3 columnas y a ≤1100px a 2.
-- **Móvil (≤768px):** el panel pasa a `position:static` y funciona como acordeón
-  (`max-height` 0 → 60vh) dentro del menú lateral.
 - Los programas de filial llevan `class="filial" data-filial="Filial Tarma|Satipo"`; el rótulo
   lo pinta el `::after` con `content:attr(data-filial)`.
+
+**Posgrado — submenú compacto** (`.submenu.compacto`): son 3 enlaces, no 39, así que en vez del
+panel fijo cae `position:absolute` anclado bajo su botón. Gana a `header.scrolled .submenu` por
+especificidad (4 clases contra 2), por eso no se reposiciona al hacer scroll.
+
+**Móvil (≤992px):** los dos paneles pasan a `position:static` y funcionan como acordeón
+(`max-height` 0 → 60vh) dentro del menú lateral. Sirve para cualquier `.submenu` que tenga un
+`.submenu-area` dentro, sin reglas aparte.
+
+**Ojo con el punto de quiebre:** la hamburguesa aparecía a ≤768px, pero con 7 entradas el menú se
+partía en dos líneas entre 768 y 992px, así que **se subió a ≤992px** (993–1180px es la banda que
+aprieta tipografía y paddings; ahí también entran los `.enlace-sub`, que no son `<a>`).
 
 ## Estructura de una página de programa (`carreras/*.html`)
 
@@ -116,6 +133,11 @@ y cuatro en Filial Satipo).
     `erpadmision.uncp.edu.pe/inscripcion` (pedido del cliente el 14/08/2026, así el postulante
     sí puede inscribirse de verdad). `unificar.py` los reconoce por la etiqueta y ya no los toca:
     están en su lista `PROTEGIDOS`, **no la vacíes** o al volver a correrlo se pierden.
+- **Los 4 documentos de posgrado** (25/08/2026), en `posgrado.html` y en el CTA de sus dos
+  subpáginas. Son el documento en sí, igual que el prospecto de pregrado, así que salen a Drive:
+  prospecto `1CazEJW7UAE7crV3TvLICqckq4QVcHqyS` · doctorados `1d_oUhzM6WzdPWfXQwDvljPC_xmyS5s40` ·
+  maestrías `1DHG-EeGuouNROZ2eP2O6fUyaoA7GfYwi` · vacantes `1BM3PPinlHoEFJo5JTMcJmHHHEqIHul6A`.
+  `unificar.py` no los toca: solo conoce el id del prospecto de pregrado.
 - WhatsApp: `https://wa.me/51939054663`
 - Redes: `facebook.com/uncpadmisionoficial`, `instagram.com/admision_uncp`,
   `youtube.com/channel/UCzA77CCORqPaHkwLDgd9V_Q`, `tiktok.com/@uncp_admision`
@@ -150,21 +172,33 @@ originales): `fotos.py` (`listar` / `hojas` / `generar` + el mapeo carpeta→slu
 programas), `seleccion.json` (qué foto es el banner y cuáles la galería de cada programa),
 `marcado.py` (mete banner, galería y tarjetas en el HTML) y `NOTAS.md`.
 
-`paginas_extra.py` (mismo directorio) rehace `prospecto.html`, `inscripcion.html` y
-`resultados.html`. Les copia la cabecera y el pie de `admision.html`, así el header, el submenú y
-el footer salen idénticos al resto del sitio. **Esas tres páginas no se editan a mano**, se
-regeneran con ese script. Su `opciones_programas()` (el `<select>` de los 39 programas sacado de
-`index.html`) quedó sin uso al borrarse la ficha de inscripción, pero se conserva para cuando el
-sistema se conecte.
+`paginas_extra.py` (mismo directorio) rehace **seis** páginas: `prospecto.html`,
+`inscripcion.html`, `resultados.html`, `posgrado.html`, `posgrado-cronograma.html` y
+`posgrado-costos.html`. Les copia la cabecera y el pie de `admision.html`, así el header, el
+submenú y el footer salen idénticos al resto del sitio. **Esas seis páginas no se editan a mano**,
+se regeneran con ese script. Detalles suyos:
+- `docs_grid()` arma las tarjetas `.doc`; si el destino es `None` sale un `<div class="doc
+  doc-inactivo">` sin enlace, para los documentos que el cliente aún no entregó.
+- `pie_con_cta()` cambia el CTA del pie en las páginas de posgrado: el de `admision.html` habla de
+  pregrado (manda a `inscripcion.html` y a los 39 programas) y ahí engañaría al postulante.
+- `banner(..., padre=("Posgrado","posgrado.html"))` mete el eslabón intermedio en la miga de pan.
+- Los pasos y las tarjetas se arman **dentro de f-strings**, y ahí Python no admite comentarios
+  (`SyntaxError: f-string expression part cannot include '#'`): van arriba de la función.
+- Su `opciones_programas()` (el `<select>` de los 39 programas sacado de `index.html`) quedó sin
+  uso al borrarse la ficha de inscripción, pero se conserva para cuando el sistema se conecte.
 
-Otros tres del mismo directorio, para cambios que van en varias páginas a la vez (los tres traen
-simulación: sin `--escribir` solo informan):
+Otros cuatro del mismo directorio, para cambios que van en varias páginas a la vez (los cuatro
+traen simulación: sin `--escribir` solo informan):
 - `unificar.py` — manda a las páginas locales los enlaces que salían al sistema oficial, **salvo
   los de su lista `PROTEGIDOS`** (ver *Enlaces externos*).
 - `redes.py` — pone los logos SVG de Facebook, Instagram, YouTube y TikTok en el footer.
 - `botones.py` — los tres botones de acción de las 39 páginas de `carreras/` (*Cómo postular*,
   *Solicitar información* del banner e *Inscríbete en línea* de la ficha). Es idempotente: busca
   el texto viejo, así que una segunda corrida no encuentra nada y no rompe nada.
+- `menu_posgrado.py` — cuelga la entrada *Posgrado ▾* del header a la derecha de *Admisión
+  2026-II*, en las 47 páginas (las de `carreras/` con `../`). Idempotente: se salta la página si
+  ya encuentra `id="submenuPosgrado"`. **Correr antes que `paginas_extra.py`**, que copia la
+  cabecera de `admision.html`.
 
 **Los slugs de `FIJOS` en `datos.py` no se pueden cambiar**: las fotos se llaman igual que ellos.
 
@@ -190,6 +224,17 @@ simulación: sin `--escribir` solo informan):
   puede inscribirse de verdad. Los textos de los cuatro pasos y de los requisitos son los que
   dictó el cliente en `1 CORRECCIÓN.docx`: **los requisitos ya no son para inscribirse, son los
   documentos que se piden si ingresas**.
+- **Posgrado: faltan 3 enlaces y 1 fecha** (páginas hechas el 25/08/2026 con el diseño que pasó el
+  cliente). Las tarjetas están puestas pero **apagadas y sin `<a>`** (`.doc.doc-inactivo`, dicen
+  *Disponible próximamente*), así que basta pegar la URL en `paginas_extra.py` y regenerar:
+  - *Perfil del proyecto de investigación* (sección Información adicional).
+  - *Doctorados* y *Maestrías* de la sección Resultados.
+  - En el cronograma, la **publicación de resultados dice «Fecha por confirmar»**: la captura del
+    cliente ponía *martes 25 de marzo de 2026*, entre inscripciones de julio-agosto y constancias
+    del 28 de agosto, así que parece errata. Confirmar con él (¿25 de agosto?).
+  - El menú y el footer de esas páginas son los compartidos, o sea que su *Inscríbete aquí* y sus
+    enlaces siguen siendo de **pregrado**. Si el cliente quiere que posgrado tenga los suyos, hay
+    que separarlos.
 - **Falta la plana docente.** El bloque está comentado en las 39 páginas (`.docentes` ya tiene
   estilos). El Word con los docentes está en un Drive que aún no se ha descargado:
   `https://drive.google.com/drive/folders/1mvOI3K0wUhYwSu-5HqHhyI9AknZGG6t-`
