@@ -1,0 +1,8 @@
+# No listar el contenido del panel.
+Options -Indexes
+
+# Estos archivos son de uso interno; PHP los ejecuta, pero por si acaso
+# negamos que se sirvan como texto.
+<FilesMatch "^(config\.php|config\.sample\.php|_lib\.php|_guard\.php|campos\.php)$">
+  Require all denied
+</FilesMatch>

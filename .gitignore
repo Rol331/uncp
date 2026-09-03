@@ -9,6 +9,13 @@
 # Las versiones listas para web viven en imagenes/ y esas SÍ se versionan.
 img-carreras/
 
+# Panel de administración: datos vivos y secretos, se crean EN EL SERVIDOR.
+# El repo es público -> la contraseña y los datos nunca deben subirse.
+/admin/config.php
+/datos-admision.json
+/documentos/*
+!/documentos/.htaccess
+
 # Sistema
 .DS_Store
 # candado que deja LibreOffice mientras tiene abierto un .docx
