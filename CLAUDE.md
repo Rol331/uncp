@@ -362,10 +362,14 @@ tres textos: **bajada del banner, perfil del egresado y campo ocupacional** (un 
   por el texto de su `.rotulo` («Perfil del egresado» / «Campo ocupacional»). Si no hay override,
   queda el texto del HTML.
 - El formulario se **precarga con el texto actual**: si no hay override, se extrae del propio
-  `carreras/<slug>.html` con `parse_bajada` / `parse_perfil` / `parse_campo` (regex sobre la
-  estructura uniforme que generan los scripts).
-- Pendiente: el **plan de estudios** y los **laboratorios** (más estructurados) aún no son
-  editables desde el panel.
+  `carreras/<slug>.html` con `parse_bajada` / `parse_perfil` / `parse_campo` / `parse_plan` /
+  `parse_labs` (regex sobre la estructura uniforme que generan los scripts).
+- **Plan de estudios**: se edita por semestre (título + cursos, uno por línea); el último
+  semestre vacío sirve para agregar, y borrar título+cursos elimina uno. `textos-web.js`
+  reconstruye el acordeón `<details>` (el «N cursos» se recalcula).
+- **Laboratorios**: lista de textos (uno por línea); se reconstruyen con un icono fijo. Los
+  `.lab` reconstruidos van sin `revelar` (si no, quedarían invisibles: el IntersectionObserver
+  de `scripts.js` ya corrió y no los observaría).
 
 ## Git y publicación
 

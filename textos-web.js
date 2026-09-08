@@ -46,6 +46,44 @@
             });
           }
         }
+
+        if (rot === 'plan de estudios' && Array.isArray(d.plan) && d.plan.length) {
+          var cont = bl.querySelector('.plan');
+          if (cont) {
+            cont.innerHTML = '';
+            d.plan.forEach(function (sem, i) {
+              var cursos = Array.isArray(sem.cursos) ? sem.cursos : [];
+              var det = document.createElement('details');
+              det.className = 'plan-sem';
+              if (i === 0) det.open = true;
+              var sum = document.createElement('summary');
+              var num = document.createElement('span'); num.className = 'plan-num'; num.textContent = (i + 1);
+              var tit = document.createElement('span'); tit.className = 'plan-tit'; tit.textContent = sem.titulo || ('Semestre ' + (i + 1));
+              var n = document.createElement('span'); n.className = 'plan-n';
+              n.textContent = cursos.length + ' curso' + (cursos.length === 1 ? '' : 's');
+              sum.appendChild(num); sum.appendChild(tit); sum.appendChild(n);
+              det.appendChild(sum);
+              var ulp = document.createElement('ul');
+              cursos.forEach(function (c) { var li = document.createElement('li'); li.textContent = c; ulp.appendChild(li); });
+              det.appendChild(ulp);
+              cont.appendChild(det);
+            });
+          }
+        }
+
+        if (rot === 'laboratorios de enseñanza' && Array.isArray(d.labs) && d.labs.length) {
+          var conl = bl.querySelector('.labs');
+          if (conl) {
+            conl.innerHTML = '';
+            d.labs.forEach(function (txt) {
+              var div = document.createElement('div'); div.className = 'lab';
+              var ic = document.createElement('div'); ic.className = 'icono-lab'; ic.innerHTML = '&#128300;';
+              var p = document.createElement('p'); p.textContent = txt;
+              div.appendChild(ic); div.appendChild(p);
+              conl.appendChild(div);
+            });
+          }
+        }
       });
     })
     .catch(function () { /* silencio: se quedan los textos del HTML */ });

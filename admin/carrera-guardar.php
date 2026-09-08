@@ -82,6 +82,34 @@ if (array_key_exists('txt_campo', $_POST)) {
     $t[$slug]['campo'] = $campo;
 }
 
+// Plan de estudios (arreglos paralelos plan_titulo[] / plan_cursos[]).
+if (isset($_POST['plan_titulo']) && is_array($_POST['plan_titulo'])) {
+    $titulos   = $_POST['plan_titulo'];
+    $cursosArr = $_POST['plan_cursos'] ?? [];
+    $plan = [];
+    foreach ($titulos as $i => $tit) {
+        $tit = limpiar_texto((string) $tit, 120);
+        $cursos = [];
+        foreach (preg_split('/\r\n|\r|\n/', (string) ($cursosArr[$i] ?? '')) as $c) {
+            $c = limpiar_texto($c, 160);
+            if ($c !== '') $cursos[] = $c;
+        }
+        // Se guarda el semestre solo si tiene título o algún curso.
+        if ($tit !== '' || $cursos) $plan[] = ['titulo' => $tit, 'cursos' => $cursos];
+    }
+    $t[$slug]['plan'] = $plan;
+}
+
+// Laboratorios (uno por línea).
+if (array_key_exists('txt_labs', $_POST)) {
+    $labs = [];
+    foreach (preg_split('/\r\n|\r|\n/', (string) $_POST['txt_labs']) as $l) {
+        $l = limpiar_texto($l, 400);
+        if ($l !== '') $labs[] = $l;
+    }
+    $t[$slug]['labs'] = $labs;
+}
+
 if (!textos_guardar($t)) {
     volver($slug, 'No se pudieron guardar los textos (permisos de escritura).');
 }

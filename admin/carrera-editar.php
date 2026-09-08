@@ -21,6 +21,12 @@ $bajada  = texto_actual($t, $slug, 'bajada', $html);
 $perfil  = texto_actual($t, $slug, 'perfil', $html);
 $campo   = texto_actual($t, $slug, 'campo',  $html);
 $campoTxt = is_array($campo) ? implode("\n", $campo) : '';
+$plan    = texto_actual($t, $slug, 'plan',   $html);   // array de {titulo, cursos}
+$labs    = texto_actual($t, $slug, 'labs',   $html);   // array de textos
+$labsTxt = is_array($labs) ? implode("\n", $labs) : '';
+// Semestres a mostrar: los existentes + uno vacío (para agregar).
+$planSlots = is_array($plan) ? $plan : [];
+$planSlots[] = ['titulo' => '', 'cursos' => []];
 
 function bloque_imagen(string $titulo, string $tam, ?string $urlActual, string $campo): void { ?>
   <fieldset class="doc">
@@ -80,6 +86,30 @@ cabecera('carreras', $nombre, $slug);
           <legend>Campo ocupacional</legend>
           <label class="campo">Dónde podrá trabajar <span class="opc">(un ítem por línea)</span>
             <textarea name="txt_campo" rows="6"><?= htmlspecialchars($campoTxt) ?></textarea>
+          </label>
+        </fieldset>
+
+        <h3 class="sub-galeria">Plan de estudios</h3>
+        <p class="ayuda">Cada semestre: su título y sus cursos (uno por línea). El número de cursos se calcula solo.
+          Para <strong>agregar</strong> un semestre, llena el último (vacío). Para <strong>quitar</strong> uno, borra su título y sus cursos.</p>
+        <?php foreach ($planSlots as $i => $sem):
+            $esUltimo = ($i === count($planSlots) - 1); ?>
+          <fieldset class="doc">
+            <legend>Semestre <?= $i + 1 ?><?= $esUltimo ? ' · nuevo (opcional)' : '' ?></legend>
+            <label class="campo">Título
+              <input type="text" name="plan_titulo[]" value="<?= htmlspecialchars($sem['titulo'] ?? '') ?>" placeholder="Ej.: Primer semestre">
+            </label>
+            <label class="campo">Cursos <span class="opc">(uno por línea)</span>
+              <textarea name="plan_cursos[]" rows="6"><?= htmlspecialchars(implode("\n", $sem['cursos'] ?? [])) ?></textarea>
+            </label>
+          </fieldset>
+        <?php endforeach; ?>
+
+        <h3 class="sub-galeria">Laboratorios</h3>
+        <fieldset class="doc">
+          <legend>Laboratorios de enseñanza</legend>
+          <label class="campo">Uno por línea
+            <textarea name="txt_labs" rows="5"><?= htmlspecialchars($labsTxt) ?></textarea>
           </label>
         </fieldset>
 

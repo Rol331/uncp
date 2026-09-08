@@ -128,11 +128,38 @@ function parse_campo(?string $h): array {
     return $out;
 }
 
+function parse_plan(?string $h): array {
+    $out = [];
+    if (!$h || !preg_match('/<div class="plan">(.*?)<\/div>/s', $h, $m)) return $out;
+    if (!preg_match_all('/<details[^>]*>(.*?)<\/details>/s', $m[1], $dets)) return $out;
+    foreach ($dets[1] as $det) {
+        $titulo = '';
+        if (preg_match('/<span class="plan-tit">(.*?)<\/span>/s', $det, $mt)) $titulo = _limpiar_html_a_texto($mt[1]);
+        $cursos = [];
+        if (preg_match('/<ul>(.*?)<\/ul>/s', $det, $mu) && preg_match_all('/<li>(.*?)<\/li>/s', $mu[1], $lis)) {
+            foreach ($lis[1] as $li) $cursos[] = _limpiar_html_a_texto($li);
+        }
+        $out[] = ['titulo' => $titulo, 'cursos' => $cursos];
+    }
+    return $out;
+}
+
+function parse_labs(?string $h): array {
+    $out = [];
+    if ($h && preg_match('/Laboratorios de Enseñanza(.*?)(?:<span class="rotulo">|<\/section>)/s', $h, $m)
+        && preg_match_all('/<div class="lab[^"]*">.*?<p>(.*?)<\/p>/s', $m[1], $labs)) {
+        foreach ($labs[1] as $lab) $out[] = _limpiar_html_a_texto($lab);
+    }
+    return $out;
+}
+
 /** Texto actual: override de textos.json si existe, si no lo del HTML. */
 function texto_actual(array $t, string $slug, string $campo, ?string $html) {
     if (isset($t[$slug][$campo])) return $t[$slug][$campo];
     if ($campo === 'bajada') return parse_bajada($html);
     if ($campo === 'perfil') return parse_perfil($html);
     if ($campo === 'campo')  return parse_campo($html);
+    if ($campo === 'plan')   return parse_plan($html);
+    if ($campo === 'labs')   return parse_labs($html);
     return '';
 }
