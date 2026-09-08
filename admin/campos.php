@@ -54,4 +54,16 @@ return [
         ],
     ],
 
+    'posgrado_resultados' => [
+        'menu'   => 'Posgrado · Resultados',
+        'titulo' => 'Resultados de Posgrado',
+        'ayuda'  => 'Sube el PDF con la relación de ingresantes, o pega el enlace. '
+                  . 'Las dos tarjetas aparecen en la página de Posgrado.',
+        'tipo'   => 'documentos',
+        'items'  => [
+            'res-doctorado' => 'Resultados · Doctorados',
+            'res-maestria'  => 'Resultados · Maestrías',
+        ],
+    ],
+
 ];

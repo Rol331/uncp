@@ -7,8 +7,12 @@
     .then(function (d) {
       if (!d) return;
 
-      // Documentos de admisión: <a data-doc="clave"> toma su enlace del JSON.
-      aplicar(d.documentos, 'data-doc', function (el, valor) {
+      // Documentos: <a data-doc="clave"> toma su enlace del JSON. Se juntan los de
+      // admisión y los de resultados de posgrado (sus claves no se repiten).
+      var docs = {};
+      if (d.documentos) for (var a in d.documentos) docs[a] = d.documentos[a];
+      if (d.posgrado_resultados) for (var b in d.posgrado_resultados) docs[b] = d.posgrado_resultados[b];
+      aplicar(docs, 'data-doc', function (el, valor) {
         el.setAttribute('href', valor);
       });
 

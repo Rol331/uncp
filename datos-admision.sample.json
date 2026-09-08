@@ -22,5 +22,9 @@
   "posgrado_costos": {
     "maestria": "S/ 211.00",
     "doctorado": "S/ 231.00"
+  },
+  "posgrado_resultados": {
+    "res-doctorado": "https://drive.google.com/file/d/1CNYwP8uSObubEEnnefPG2BwMRoazM_I-/view?usp=sharing",
+    "res-maestria": "https://drive.google.com/file/d/1j8SU2S3Oz37iAdkM3bp-z26E1ZKmhg-i/view?usp=sharing"
   }
 }
