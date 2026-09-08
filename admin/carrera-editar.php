@@ -29,7 +29,7 @@ function bloque_imagen(string $titulo, string $tam, ?string $urlActual, string $
   </fieldset>
 <?php }
 
-cabecera('carreras', $nombre);
+cabecera('carreras', $nombre, $slug);
 ?>
       <p class="miga"><a href="carreras.php">← Todas las carreras</a></p>
       <h2><?= htmlspecialchars($nombre) ?></h2>

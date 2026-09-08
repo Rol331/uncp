@@ -1,8 +1,9 @@
 <?php
 // Cabecera y pie comunes del panel (barra + menú lateral).
 require_once __DIR__ . '/_lib.php';
+require_once __DIR__ . '/_carreras.php';
 
-function cabecera(string $activo, string $titulo = 'Datos de Admisión'): void {
+function cabecera(string $activo, string $titulo = 'Datos de Admisión', string $slugActivo = ''): void {
     $secciones = require __DIR__ . '/campos.php';
     ?><!doctype html>
 <html lang="es">
@@ -10,7 +11,7 @@ function cabecera(string $activo, string $titulo = 'Datos de Admisión'): void {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel · <?= htmlspecialchars($titulo) ?></title>
-  <link rel="stylesheet" href="estilo.css?v=4">
+  <link rel="stylesheet" href="estilo.css?v=5">
 </head>
 <body>
   <header class="barra">
@@ -26,6 +27,16 @@ function cabecera(string $activo, string $titulo = 'Datos de Admisión'): void {
         </a>
       <?php endforeach; ?>
       <a href="carreras.php" class="<?= $activo === 'carreras' ? 'activo' : '' ?>">Carreras · Imágenes</a>
+      <?php if ($activo === 'carreras'):
+          $lista = carreras_lista(); asort($lista, SORT_NATURAL | SORT_FLAG_CASE); ?>
+        <div class="submenu">
+          <?php foreach ($lista as $slug => $nombre): ?>
+            <a href="carrera-editar.php?slug=<?= urlencode($slug) ?>" class="sub <?= $slug === $slugActivo ? 'activo' : '' ?>">
+              <?= htmlspecialchars($nombre) ?>
+            </a>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
     </aside>
 
     <main class="contenido">
