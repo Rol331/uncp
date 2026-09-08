@@ -14,6 +14,14 @@ $csrf   = token_csrf();
 $ok     = isset($_GET['ok']);
 $err    = $_GET['err'] ?? '';
 
+// Textos actuales (override o los del HTML).
+$t       = textos_leer();
+$html    = carrera_html($slug);
+$bajada  = texto_actual($t, $slug, 'bajada', $html);
+$perfil  = texto_actual($t, $slug, 'perfil', $html);
+$campo   = texto_actual($t, $slug, 'campo',  $html);
+$campoTxt = is_array($campo) ? implode("\n", $campo) : '';
+
 function bloque_imagen(string $titulo, string $tam, ?string $urlActual, string $campo): void { ?>
   <fieldset class="doc">
     <legend><?= htmlspecialchars($titulo) ?></legend>
@@ -55,7 +63,27 @@ cabecera('carreras', $nombre, $slug);
           <p class="ayuda">Esta carrera no tiene galería.</p>
         <?php endif; ?>
 
+        <h3 class="sub-galeria">Textos</h3>
+        <fieldset class="doc">
+          <legend>Bajada del banner</legend>
+          <label class="campo">Frase corta bajo el título
+            <input type="text" name="txt_bajada" value="<?= htmlspecialchars((string) $bajada) ?>">
+          </label>
+        </fieldset>
+        <fieldset class="doc">
+          <legend>Perfil del egresado</legend>
+          <label class="campo">Descripción del profesional
+            <textarea name="txt_perfil" rows="5"><?= htmlspecialchars((string) $perfil) ?></textarea>
+          </label>
+        </fieldset>
+        <fieldset class="doc">
+          <legend>Campo ocupacional</legend>
+          <label class="campo">Dónde podrá trabajar <span class="opc">(un ítem por línea)</span>
+            <textarea name="txt_campo" rows="6"><?= htmlspecialchars($campoTxt) ?></textarea>
+          </label>
+        </fieldset>
+
         <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
-        <div class="acciones"><button type="submit">Guardar imágenes</button></div>
+        <div class="acciones"><button type="submit">Guardar cambios</button></div>
       </form>
 <?php pie(); ?>

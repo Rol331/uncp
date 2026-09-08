@@ -11,7 +11,7 @@ function cabecera(string $activo, string $titulo = 'Datos de Admisión', string 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel · <?= htmlspecialchars($titulo) ?></title>
-  <link rel="stylesheet" href="estilo.css?v=5">
+  <link rel="stylesheet" href="estilo.css?v=6">
 </head>
 <body>
   <header class="barra">

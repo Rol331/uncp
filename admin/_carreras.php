@@ -69,3 +69,70 @@ function borrar_override(?string $rutaRelRaiz): void {
     $abs = __DIR__ . '/../' . $rutaRelRaiz;
     if (is_file($abs)) @unlink($abs);
 }
+
+// ── Textos de carreras (Fase B) ──────────────────────────────────────
+const RUTA_TEXTOS   = __DIR__ . '/../textos.json';
+const RUTA_CARRERAS = __DIR__ . '/../carreras';
+
+function textos_leer(): array {
+    if (is_file(RUTA_TEXTOS)) {
+        $d = json_decode((string) file_get_contents(RUTA_TEXTOS), true);
+        if (is_array($d)) return $d;
+    }
+    return [];
+}
+
+function textos_guardar(array $t): bool {
+    $json = json_encode($t, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    if ($json === false) return false;
+    $tmp = RUTA_TEXTOS . '.tmp';
+    if (file_put_contents($tmp, $json, LOCK_EX) === false) return false;
+    return rename($tmp, RUTA_TEXTOS);
+}
+
+function limpiar_texto(string $s, int $max): string {
+    $s = trim(strip_tags($s));
+    if (mb_strlen($s) > $max) $s = mb_substr($s, 0, $max);
+    return $s;
+}
+
+// Lee el HTML de una carrera (para sacar los textos actuales por defecto).
+function carrera_html(string $slug): ?string {
+    $f = RUTA_CARRERAS . "/$slug.html";
+    return is_file($f) ? (string) file_get_contents($f) : null;
+}
+
+function _limpiar_html_a_texto(string $s): string {
+    return trim(html_entity_decode(strip_tags($s), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+}
+
+function parse_bajada(?string $h): string {
+    if ($h && preg_match('/<p class="bajada">(.*?)<\/p>/s', $h, $m)) return _limpiar_html_a_texto($m[1]);
+    return '';
+}
+
+function parse_perfil(?string $h): string {
+    if ($h && preg_match('/Perfil del egresado.*?<p>(.*?)<\/p>/s', $h, $m)) return _limpiar_html_a_texto($m[1]);
+    return '';
+}
+
+function parse_campo(?string $h): array {
+    $out = [];
+    if ($h && preg_match('/Campo ocupacional.*?<ul class="lista-check">(.*?)<\/ul>/s', $h, $m)
+        && preg_match_all('/<li>(.*?)<\/li>/s', $m[1], $lis)) {
+        foreach ($lis[1] as $li) {
+            // El texto va en el <span> sin atributos (el segundo).
+            if (preg_match('/<span>(.*?)<\/span>/s', $li, $mm)) $out[] = _limpiar_html_a_texto($mm[1]);
+        }
+    }
+    return $out;
+}
+
+/** Texto actual: override de textos.json si existe, si no lo del HTML. */
+function texto_actual(array $t, string $slug, string $campo, ?string $html) {
+    if (isset($t[$slug][$campo])) return $t[$slug][$campo];
+    if ($campo === 'bajada') return parse_bajada($html);
+    if ($campo === 'perfil') return parse_perfil($html);
+    if ($campo === 'campo')  return parse_campo($html);
+    return '';
+}

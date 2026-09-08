@@ -350,7 +350,22 @@ galería 800×600, recorte *cover*, corrige EXIF).
   las fotos originales de `imagenes/`.
 - La lista de carreras (slug → nombre) está en `admin/carreras-lista.json`, generada de la
   portada. La galería detecta cuántas fotos tiene cada carrera con `glob` de `imagenes/galeria/`.
-- Pendiente **Fase B**: editar los textos de cada carrera (perfil, campo ocupacional, plan).
+- El menú lateral despliega las 39 carreras como submenú (`_layout.php`).
+
+### Textos de carreras (Fase B)
+
+En la misma página de cada carrera (`carrera-editar.php`) se editan, además de las imágenes,
+tres textos: **bajada del banner, perfil del egresado y campo ocupacional** (un ítem por línea).
+
+- Los overrides se guardan en **`textos.json`** (fuera de git) y `textos-web.js` (en las 39
+  páginas de carrera) los aplica: la bajada por su clase, y perfil/campo ubicando el `.bloque`
+  por el texto de su `.rotulo` («Perfil del egresado» / «Campo ocupacional»). Si no hay override,
+  queda el texto del HTML.
+- El formulario se **precarga con el texto actual**: si no hay override, se extrae del propio
+  `carreras/<slug>.html` con `parse_bajada` / `parse_perfil` / `parse_campo` (regex sobre la
+  estructura uniforme que generan los scripts).
+- Pendiente: el **plan de estudios** y los **laboratorios** (más estructurados) aún no son
+  editables desde el panel.
 
 ## Git y publicación
 

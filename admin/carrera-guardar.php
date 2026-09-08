@@ -60,6 +60,29 @@ for ($n = 1; $n <= $slots; $n++) {
 }
 
 if (!medios_guardar($m)) {
-    volver($slug, 'No se pudieron guardar los cambios (permisos de escritura).');
+    volver($slug, 'No se pudieron guardar las imágenes (permisos de escritura).');
+}
+
+// ── Textos ───────────────────────────────────────────────────────────
+$t = textos_leer();
+if (!isset($t[$slug]) || !is_array($t[$slug])) { $t[$slug] = []; }
+
+if (array_key_exists('txt_bajada', $_POST)) {
+    $t[$slug]['bajada'] = limpiar_texto((string) $_POST['txt_bajada'], 220);
+}
+if (array_key_exists('txt_perfil', $_POST)) {
+    $t[$slug]['perfil'] = limpiar_texto((string) $_POST['txt_perfil'], 1200);
+}
+if (array_key_exists('txt_campo', $_POST)) {
+    $campo = [];
+    foreach (preg_split('/\r\n|\r|\n/', (string) $_POST['txt_campo']) as $ln) {
+        $ln = limpiar_texto($ln, 300);
+        if ($ln !== '') $campo[] = $ln;
+    }
+    $t[$slug]['campo'] = $campo;
+}
+
+if (!textos_guardar($t)) {
+    volver($slug, 'No se pudieron guardar los textos (permisos de escritura).');
 }
 volver($slug);

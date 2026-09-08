@@ -19,6 +19,7 @@ img-carreras/
 /medios.json
 /medios/*
 !/medios/.htaccess
+/textos.json
 
 # Sistema
 .DS_Store

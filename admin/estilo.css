@@ -103,7 +103,12 @@ fieldset.doc legend {
   font: inherit; background: #fff;
 }
 .campo input[type=file] { padding: .5rem; background: var(--crema); cursor: pointer; }
-.campo input:focus { outline: 2px solid var(--dorado); border-color: var(--dorado); }
+.campo textarea {
+  display: block; width: 100%; margin-top: .35rem;
+  padding: .6rem .7rem; border: 1px solid var(--linea); border-radius: 9px;
+  font: inherit; background: #fff; resize: vertical; min-height: 4.5rem;
+}
+.campo input:focus, .campo textarea:focus { outline: 2px solid var(--dorado); border-color: var(--dorado); }
 
 /* ── Botón guardar (fijo abajo) ───────────────────────────────── */
 .acciones {
