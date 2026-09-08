@@ -35,6 +35,8 @@
           var k = el.getAttribute('data-portada-num');
           if (d.portada[k] !== undefined && d.portada[k] !== '') {
             el.setAttribute('data-cuenta', String(d.portada[k]).replace(/[^\d]/g, '') || '0');
+            // Re-lanzar el contador: puede que ya se haya animado con el valor viejo.
+            if (typeof window.animarContador === 'function') window.animarContador(el);
           }
         });
       }
