@@ -2,7 +2,9 @@
    datos-admision.json (lo edita el panel /admin). Si el JSON no existe o el
    JavaScript está apagado, la página conserva los valores originales del HTML. */
 (function () {
-  fetch('datos-admision.json', { cache: 'no-store' })
+  // Las páginas de carrera están en /carreras/, así que el JSON queda un nivel arriba.
+  var pre = location.pathname.indexOf('/carreras/') !== -1 ? '../' : '';
+  fetch(pre + 'datos-admision.json', { cache: 'no-store' })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (d) {
       if (!d) return;
