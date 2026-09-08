@@ -333,6 +333,25 @@ Se llega por `https://uncpadmision.edu.pe/admin/`.
   `php -r 'echo password_hash("CLAVE", PASSWORD_DEFAULT), "\n";'` y pegar el hash en
   `admin/config.php` → `return ['password_hash' => '$2y$...'];`.
 
+### Imágenes de carreras (Fase A)
+
+Sección «Carreras · Imágenes» del panel (`admin/carreras.php`, `carrera-editar.php`,
+`carrera-guardar.php`). El usuario sube banner / tarjeta / galería de cada programa y el
+servidor las **re-procesa con GD** al tamaño exacto (banner 1600×900, tarjeta 600×400,
+galería 800×600, recorte *cover*, corrige EXIF).
+
+- Las fotos subidas **NO pisan** `imagenes/` (que sigue en git y alimenta github.io): caen en
+  **`medios/`** (fuera de git, con nombre con marca de tiempo → sin caché) y se registran en
+  `medios.json`. Así el `git pull` nunca choca.
+- `medios-web.js` (en `index.html` y en las 39 páginas de carrera) lee `medios.json` y
+  reemplaza banner, tarjeta y galería **deduciendo el slug de la propia URL** de la imagen
+  (`imagenes/banner/<slug>.jpg`, `tarjetas/<slug>.jpg`, `galeria/<slug>-N.jpg`); por eso no hubo
+  que tocar el HTML de las carreras salvo añadir ese `<script>`. Si no hay `medios.json`, quedan
+  las fotos originales de `imagenes/`.
+- La lista de carreras (slug → nombre) está en `admin/carreras-lista.json`, generada de la
+  portada. La galería detecta cuántas fotos tiene cada carrera con `glob` de `imagenes/galeria/`.
+- Pendiente **Fase B**: editar los textos de cada carrera (perfil, campo ocupacional, plan).
+
 ## Git y publicación
 
 - Rama principal: `main`. Repo: `https://github.com/Rol331/uncp.git`.

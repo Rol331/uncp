@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/_guard.php';
+require_once __DIR__ . '/_layout.php';
 $secciones = require __DIR__ . '/campos.php';
 $datos     = leer_datos();
 
@@ -16,31 +17,9 @@ $csrf = token_csrf();
 function valor(array $datos, string $seccion, string $k): string {
     return isset($datos[$seccion][$k]) ? (string) $datos[$seccion][$k] : '';
 }
-?><!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Panel · Datos de Admisión</title>
-  <link rel="stylesheet" href="estilo.css?v=3">
-</head>
-<body>
-  <header class="barra">
-    <div><strong>Panel de administración</strong></div>
-    <nav><a href="../" target="_blank" rel="noopener">Ver sitio</a> · <a href="logout.php">Salir</a></nav>
-  </header>
 
-  <div class="disposicion">
-    <!-- Menú por página -->
-    <aside class="menu">
-      <?php foreach ($secciones as $clave => $s): ?>
-        <a href="?seccion=<?= urlencode($clave) ?>" class="<?= $clave === $sel ? 'activo' : '' ?>">
-          <?= htmlspecialchars($s['menu']) ?>
-        </a>
-      <?php endforeach; ?>
-    </aside>
-
-    <main class="contenido">
+cabecera($sel);
+?>
       <?php if ($ok): ?><div class="aviso ok">✓ Cambios guardados. Ya se ven en la página.</div><?php endif; ?>
       <?php if ($err): ?><div class="aviso error"><?= htmlspecialchars($err) ?></div><?php endif; ?>
 
@@ -82,7 +61,4 @@ function valor(array $datos, string $seccion, string $k): string {
         <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
         <div class="acciones"><button type="submit">Guardar cambios</button></div>
       </form>
-    </main>
-  </div>
-</body>
-</html>
+<?php pie(); ?>

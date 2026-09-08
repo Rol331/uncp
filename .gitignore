@@ -15,6 +15,10 @@ img-carreras/
 /datos-admision.json
 /documentos/*
 !/documentos/.htaccess
+# Imágenes de carreras subidas desde el panel (se quedan en el servidor).
+/medios.json
+/medios/*
+!/medios/.htaccess
 
 # Sistema
 .DS_Store
