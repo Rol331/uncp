@@ -12,5 +12,15 @@
     "baremos-efisica": "https://drive.google.com/file/d/1XCDk-eyWCIE9-wspei5M5vFnIhvlkw6V/view?usp=sharing",
     "voucher": "https://drive.google.com/file/d/1qruXmt3I9vmXYbbFSmUflfCImK8yeC8N/view?usp=sharing",
     "prospecto": "prospecto.html"
+  },
+  "posgrado_cronograma": {
+    "inscripciones": "Del 13 de julio al 22 de agosto de 2026.",
+    "evaluacion": "Domingo 23 de agosto de 2026.",
+    "resultados": "Fecha por confirmar.",
+    "constancias": "Viernes 28 de agosto de 2026."
+  },
+  "posgrado_costos": {
+    "maestria": "S/ 211.00",
+    "doctorado": "S/ 231.00"
   }
 }

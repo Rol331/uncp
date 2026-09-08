@@ -7,19 +7,28 @@
     .then(function (d) {
       if (!d) return;
 
-      // Documentos: cada <a data-doc="clave"> toma su enlace del JSON.
-      var docs = d.documentos || {};
-      document.querySelectorAll('[data-doc]').forEach(function (a) {
-        var k = a.getAttribute('data-doc');
-        if (docs[k]) a.setAttribute('href', docs[k]);
+      // Documentos de admisión: <a data-doc="clave"> toma su enlace del JSON.
+      aplicar(d.documentos, 'data-doc', function (el, valor) {
+        el.setAttribute('href', valor);
       });
 
-      // Fechas de posgrado (Fase 2): cada elemento con data-fecha="clave".
-      var fechas = d.posgrado_cronograma || {};
-      document.querySelectorAll('[data-fecha]').forEach(function (el) {
-        var k = el.getAttribute('data-fecha');
-        if (fechas[k]) el.textContent = fechas[k];
+      // Fechas de posgrado: <span data-fecha="clave"> toma su texto.
+      aplicar(d.posgrado_cronograma, 'data-fecha', function (el, valor) {
+        el.textContent = valor;
+      });
+
+      // Costos de posgrado: <span data-costo="clave"> toma su texto.
+      aplicar(d.posgrado_costos, 'data-costo', function (el, valor) {
+        el.textContent = valor;
       });
     })
     .catch(function () { /* silencio: se quedan los valores del HTML */ });
+
+  function aplicar(mapa, attr, fn) {
+    if (!mapa) return;
+    document.querySelectorAll('[' + attr + ']').forEach(function (el) {
+      var k = el.getAttribute(attr);
+      if (mapa[k] !== undefined && mapa[k] !== '') fn(el, mapa[k]);
+    });
+  }
 })();

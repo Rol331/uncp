@@ -304,6 +304,35 @@ Archivos internos, ignorados por git (`.docx`, `.pdf` en `.gitignore`):
   botones de las páginas de programa. Las dos son imágenes anotadas, no texto: para leerlas hay que
   convertirlas con LibreOffice (`soffice --headless --convert-to pdf`) y mirar las páginas.
 
+## Panel de administración (`admin/`) — PHP puro
+
+Panel para que el personal (no técnico) edite, sin tocar código, lo que cambia cada
+proceso de admisión. Sin dependencias, corre en el hosting cPanel (que sí tiene PHP).
+Se llega por `https://uncpadmision.edu.pe/admin/`.
+
+- **Cómo funciona:** el panel escribe `datos-admision.json` y las páginas lo leen con
+  `datos-web.js` (un `fetch`). Cada valor editable lleva un atributo en el HTML:
+  - `admision.html` → 12 enlaces con `data-doc="clave"` (el JS les cambia el `href`).
+  - `posgrado-cronograma.html` → 4 fechas en `<span data-fecha="clave">` (cambia el texto).
+  - `posgrado-costos.html` → 2 montos en `<span data-costo="clave">` (cambia el texto).
+  - **Si falta el JSON o el JS está apagado, quedan los valores originales del HTML**
+    (por eso el `<span>` envuelve solo la parte editable, no el «Virtual/Hora/Lugar»).
+- **OJO al regenerar:** `paginas.py` / `portada.py` / `paginas_extra.py` **no** conocen estos
+  `data-doc` / `data-fecha` / `data-costo` ni el `<script src="datos-web.js">`. Si se
+  regeneran esas páginas, hay que **volver a ponerlos** (o enseñárselos a los scripts), o el
+  panel deja de tener efecto.
+- **Secciones del panel** (menú por página): se definen en `admin/campos.php`. Para agregar
+  un campo, se edita ese arreglo y se pone el `data-*` correspondiente en la página.
+- **Seguridad:** login con contraseña **hasheada** (sesión + CSRF); subida solo de `.pdf`
+  (valida extensión y MIME, máx 25 MB, nombre generado por el servidor); los PDFs caen en
+  `documentos/`, que tiene un `.htaccess` que **impide ejecutar scripts** ahí.
+- **Fuera de git (se crean en el servidor, el repo es público):** `admin/config.php` (el hash
+  de la contraseña; plantilla en `config.sample.php`), `datos-admision.json` (datos vivos;
+  semilla en `datos-admision.sample.json`) y los PDFs de `documentos/`. Están en `.gitignore`.
+- **Alta de la contraseña (una vez, en el servidor):**
+  `php -r 'echo password_hash("CLAVE", PASSWORD_DEFAULT), "\n";'` y pegar el hash en
+  `admin/config.php` → `return ['password_hash' => '$2y$...'];`.
+
 ## Git y publicación
 
 - Rama principal: `main`. Repo: `https://github.com/Rol331/uncp.git`.

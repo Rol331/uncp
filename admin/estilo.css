@@ -28,8 +28,32 @@ body {
 .barra a { color: var(--dorado); text-decoration: none; font-weight: 600; }
 .barra a:hover { text-decoration: underline; }
 
+/* Disposición: menú lateral + contenido */
+.disposicion { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; }
+
+.menu {
+  flex: 0 0 240px; align-self: stretch;
+  background: #fff; border-right: 1px solid var(--linea);
+  padding: 1rem .6rem; display: flex; flex-direction: column; gap: .25rem;
+}
+.menu a {
+  display: block; padding: .65rem .8rem; border-radius: 8px;
+  color: var(--texto); text-decoration: none; font-weight: 600; font-size: .92rem;
+}
+.menu a:hover { background: var(--crema); }
+.menu a.activo { background: var(--verde); color: #fff; }
+
 /* Contenido */
-.contenido { max-width: 780px; margin: 1.5rem auto; padding: 0 1rem 3rem; }
+.contenido { flex: 1 1 auto; max-width: 780px; margin: 1.5rem auto; padding: 0 1.25rem 3rem; }
+
+@media (max-width: 720px) {
+  .disposicion { flex-direction: column; }
+  .menu {
+    flex-basis: auto; width: 100%; flex-direction: row; flex-wrap: wrap;
+    border-right: 0; border-bottom: 1px solid var(--linea);
+  }
+  .contenido { margin-top: 1rem; }
+}
 h2 { color: var(--verde); margin: .5rem 0 .25rem; }
 .ayuda { color: var(--gris); margin: 0 0 1.25rem; }
 
