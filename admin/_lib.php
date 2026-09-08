@@ -47,13 +47,27 @@ function csrf_valido(?string $t): bool {
 }
 
 function leer_datos(): array {
-    foreach ([RUTA_DATOS, RUTA_EJEMPLO] as $ruta) {
-        if (is_file($ruta)) {
-            $d = json_decode((string) file_get_contents($ruta), true);
-            if (is_array($d)) return $d;
+    // Base: los valores de ejemplo (semilla). Sobre ellos se superponen los
+    // datos vivos, así una sección/campo aún no guardado muestra su valor base
+    // en vez de salir vacío.
+    $base = [];
+    if (is_file(RUTA_EJEMPLO)) {
+        $d = json_decode((string) file_get_contents(RUTA_EJEMPLO), true);
+        if (is_array($d)) $base = $d;
+    }
+    if (is_file(RUTA_DATOS)) {
+        $d = json_decode((string) file_get_contents(RUTA_DATOS), true);
+        if (is_array($d)) {
+            foreach ($d as $sec => $vals) {
+                if (is_array($vals) && isset($base[$sec]) && is_array($base[$sec])) {
+                    $base[$sec] = array_merge($base[$sec], $vals);
+                } else {
+                    $base[$sec] = $vals;
+                }
+            }
         }
     }
-    return ['documentos' => []];
+    return $base ?: ['documentos' => []];
 }
 
 function guardar_datos(array $datos): bool {
