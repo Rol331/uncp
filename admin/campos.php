@@ -7,6 +7,47 @@
 //   tipo 'textos'     -> por cada item: un texto corto (fecha, monto, etc.).
 return [
 
+    'portada' => [
+        'menu'   => 'Inicio · Portada',
+        'titulo' => 'Página de inicio',
+        'ayuda'  => 'Edita los textos de la portada. Deja un campo igual si no vas a cambiarlo.',
+        'tipo'   => 'textos',
+        'grupos' => [
+            'Slide 1 del banner' => [
+                'hero1_etiqueta' => 'Etiqueta',
+                'hero1_titulo'   => 'Título',
+                'hero1_texto'    => 'Texto',
+            ],
+            'Slide 2 del banner' => [
+                'hero2_etiqueta' => 'Etiqueta',
+                'hero2_titulo'   => 'Título',
+                'hero2_texto'    => 'Texto',
+            ],
+            'Slide 3 del banner' => [
+                'hero3_etiqueta' => 'Etiqueta',
+                'hero3_titulo'   => 'Título',
+                'hero3_texto'    => 'Texto',
+            ],
+            'Estadísticas' => [
+                'stat1_num' => 'N.º 1 · número',   'stat1_lbl' => 'N.º 1 · etiqueta',
+                'stat2_num' => 'N.º 2 · número',   'stat2_lbl' => 'N.º 2 · etiqueta',
+                'stat3_num' => 'N.º 3 · número',   'stat3_lbl' => 'N.º 3 · etiqueta',
+                'stat4_num' => 'N.º 4 · número',   'stat4_lbl' => 'N.º 4 · etiqueta',
+            ],
+            '¿Por qué UNCP?' => [
+                'ben1_titulo' => 'Beneficio 1 · título', 'ben1_texto' => 'Beneficio 1 · texto',
+                'ben2_titulo' => 'Beneficio 2 · título', 'ben2_texto' => 'Beneficio 2 · texto',
+                'ben3_titulo' => 'Beneficio 3 · título', 'ben3_texto' => 'Beneficio 3 · texto',
+                'ben4_titulo' => 'Beneficio 4 · título', 'ben4_texto' => 'Beneficio 4 · texto',
+            ],
+            'Contacto (pie de página)' => [
+                'contacto_direccion' => 'Dirección',
+                'contacto_telefono'  => 'Teléfono',
+                'contacto_correo'    => 'Correo',
+            ],
+        ],
+    ],
+
     'documentos' => [
         'menu'   => 'Admisión · Documentos',
         'titulo' => 'Documentos del proceso de admisión',

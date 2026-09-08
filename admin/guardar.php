@@ -65,8 +65,13 @@ if ($sec['tipo'] === 'documentos') {
     }
     if ($finfo) finfo_close($finfo);
 
-} else { // tipo 'textos'
-    foreach ($sec['items'] as $k => $label) {
+} else { // tipo 'textos' (simple o agrupado)
+    $items = $sec['items'] ?? [];
+    if (isset($sec['grupos'])) {
+        $items = [];
+        foreach ($sec['grupos'] as $g) { $items += $g; }
+    }
+    foreach ($items as $k => $label) {
         if (array_key_exists('txt_' . $k, $_POST)) {
             $txt = trim((string) $_POST['txt_' . $k]);
             // Texto plano (se muestra con textContent): sin etiquetas HTML.

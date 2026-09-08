@@ -333,6 +333,22 @@ Se llega por `https://uncpadmision.edu.pe/admin/`.
   `php -r 'echo password_hash("CLAVE", PASSWORD_DEFAULT), "\n";'` y pegar el hash en
   `admin/config.php` → `return ['password_hash' => '$2y$...'];`.
 
+### Portada (Inicio)
+
+Sección «Inicio · Portada» del panel (tipo `textos` con `grupos`): edita los 3 slides del hero
+(etiqueta, título, texto), las 4 estadísticas (número + etiqueta), los 4 beneficios de «¿Por qué
+UNCP?» y el contacto del pie (dirección, teléfono, correo). Se guardan en `datos-admision.json`
+bajo la clave `portada` y `datos-web.js` (cargado también en `index.html`) los aplica por
+`data-portada` (texto) y `data-portada-num` (cambia el `data-cuenta` del contador). Ojo: al
+editar un título del hero se pierde el `<em>` dorado (se aplica como texto plano); mientras no se
+edite, queda el HTML original.
+
+### Resultados de posgrado
+
+Las tarjetas «Doctorados/Maestrías» de la sección Resultados en `posgrado.html` son `<a>` con
+`data-doc="res-doctorado|res-maestria"`. `datos-web.js` junta `documentos` + `posgrado_resultados`
+para aplicarlas. Se editan en la sección «Posgrado · Resultados» del panel.
+
 ### Imágenes de carreras (Fase A)
 
 Sección «Carreras · Imágenes» del panel (`admin/carreras.php`, `carrera-editar.php`,

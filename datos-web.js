@@ -25,6 +25,19 @@
       aplicar(d.posgrado_costos, 'data-costo', function (el, valor) {
         el.textContent = valor;
       });
+
+      // Portada (index.html): textos y números de las estadísticas.
+      if (d.portada) {
+        aplicar(d.portada, 'data-portada', function (el, valor) {
+          el.textContent = valor;
+        });
+        document.querySelectorAll('[data-portada-num]').forEach(function (el) {
+          var k = el.getAttribute('data-portada-num');
+          if (d.portada[k] !== undefined && d.portada[k] !== '') {
+            el.setAttribute('data-cuenta', String(d.portada[k]).replace(/[^\d]/g, '') || '0');
+          }
+        });
+      }
     })
     .catch(function () { /* silencio: se quedan los valores del HTML */ });
 

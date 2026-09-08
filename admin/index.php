@@ -47,7 +47,20 @@ cabecera($sel);
             </fieldset>
           <?php endforeach; ?>
 
-        <?php else: /* tipo textos */ ?>
+        <?php elseif (isset($sec['grupos'])): /* textos agrupados */ ?>
+          <?php foreach ($sec['grupos'] as $grupo => $items): ?>
+            <h3 class="sub-galeria"><?= htmlspecialchars($grupo) ?></h3>
+            <?php foreach ($items as $k => $label): $actual = valor($datos, $sel, $k); ?>
+              <fieldset class="doc">
+                <legend><?= htmlspecialchars($label) ?></legend>
+                <label class="campo">Texto
+                  <input type="text" name="txt_<?= htmlspecialchars($k) ?>" value="<?= htmlspecialchars($actual) ?>">
+                </label>
+              </fieldset>
+            <?php endforeach; ?>
+          <?php endforeach; ?>
+
+        <?php else: /* tipo textos simple */ ?>
           <?php foreach ($sec['items'] as $k => $label): $actual = valor($datos, $sel, $k); ?>
             <fieldset class="doc">
               <legend><?= htmlspecialchars($label) ?></legend>

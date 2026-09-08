@@ -1,4 +1,26 @@
 {
+  "portada": {
+    "hero1_etiqueta": "Admisión 2026 · Inscripciones abiertas",
+    "hero1_titulo": "Construye tu futuro en la UNCP",
+    "hero1_texto": "66 años formando profesionales líderes con excelencia académica y compromiso con el desarrollo del país.",
+    "hero2_etiqueta": "Educación de calidad",
+    "hero2_titulo": "Programas acreditados y con visión global",
+    "hero2_texto": "Planes de estudio actualizados, laboratorios modernos y convenios internacionales para tu desarrollo profesional.",
+    "hero3_etiqueta": "Vida universitaria",
+    "hero3_titulo": "Vive la experiencia UNCP",
+    "hero3_texto": "Deporte, cultura, investigación y una comunidad que te acompaña en cada paso de tu formación.",
+    "stat1_num": "66", "stat1_lbl": "Años de trayectoria",
+    "stat2_num": "39", "stat2_lbl": "Programas de estudio",
+    "stat3_num": "25000", "stat3_lbl": "Estudiantes",
+    "stat4_num": "95", "stat4_lbl": "% de empleabilidad",
+    "ben1_titulo": "Docentes de excelencia", "ben1_texto": "Aprende de profesionales con amplia experiencia académica y profesional.",
+    "ben2_titulo": "Investigación e innovación", "ben2_texto": "Centros de investigación y laboratorios equipados con tecnología de punta.",
+    "ben3_titulo": "Convenios internacionales", "ben3_texto": "Intercambios y alianzas con universidades de prestigio en todo el mundo.",
+    "ben4_titulo": "Alta empleabilidad", "ben4_texto": "Bolsa de trabajo y vínculo directo con empresas líderes del país.",
+    "contacto_direccion": "Av. Mariscal Castilla N° 3909, El Tambo - Huancayo",
+    "contacto_telefono": "(064) 481-062",
+    "contacto_correo": "informesadmision@uncp.edu.pe"
+  },
   "documentos": {
     "cronograma": "https://drive.google.com/file/d/1cveQpPqhZVk_ut2s3gnpPiXq-Hn9nKkG/view?usp=sharing",
     "reglamento": "https://drive.google.com/file/d/1N7KTipN3p8KrinE__d3q87oZfDASEbfl/view?usp=sharing",
