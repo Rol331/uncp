@@ -22,7 +22,7 @@ function valor(array $datos, string $seccion, string $k): string {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel · Datos de Admisión</title>
-  <link rel="stylesheet" href="estilo.css">
+  <link rel="stylesheet" href="estilo.css?v=3">
 </head>
 <body>
   <header class="barra">

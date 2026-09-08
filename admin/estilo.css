@@ -1,105 +1,133 @@
-/* Panel de administración — estilos propios, con los colores institucionales. */
+/* Panel de administración — colores institucionales UNCP. */
 :root {
   --verde: #00301C;
+  --verde-2: #06442a;
   --dorado: #c9a24b;
   --crema: #f6f4ee;
+  --fondo: #eef0ec;
   --linea: #e2e0d8;
   --texto: #23241f;
   --gris: #6b6b63;
   --rojo: #b4231f;
   --verde-ok: #1f7a4d;
+  --sombra: 0 1px 3px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.05);
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: "Segoe UI", system-ui, sans-serif;
   color: var(--texto);
-  background: var(--crema);
+  background: var(--fondo);
   line-height: 1.5;
 }
 
-/* Barra superior */
+/* ── Barra superior ───────────────────────────────────────────── */
 .barra {
   display: flex; justify-content: space-between; align-items: center; gap: 1rem;
   flex-wrap: wrap;
-  background: var(--verde); color: #fff;
-  padding: .85rem 1.25rem;
+  background: linear-gradient(90deg, var(--verde), var(--verde-2));
+  color: #fff; padding: .9rem 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,.12);
+  position: sticky; top: 0; z-index: 10;
 }
-.barra a { color: var(--dorado); text-decoration: none; font-weight: 600; }
-.barra a:hover { text-decoration: underline; }
+.barra strong { font-size: 1.05rem; letter-spacing: .2px; }
+.barra nav a { color: var(--dorado); text-decoration: none; font-weight: 600; }
+.barra nav a:hover { text-decoration: underline; }
 
-/* Disposición: menú lateral + contenido */
-.disposicion { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; }
+/* ── Disposición: menú lateral + contenido ────────────────────── */
+.disposicion {
+  display: flex; align-items: flex-start; gap: 1.5rem;
+  max-width: 1080px; margin: 1.5rem auto; padding: 0 1.25rem;
+}
 
 .menu {
-  flex: 0 0 240px; align-self: stretch;
-  background: #fff; border-right: 1px solid var(--linea);
-  padding: 1rem .6rem; display: flex; flex-direction: column; gap: .25rem;
+  flex: 0 0 250px; position: sticky; top: 84px;
+  background: #fff; border: 1px solid var(--linea); border-radius: 14px;
+  padding: .6rem; display: flex; flex-direction: column; gap: .2rem;
+  box-shadow: var(--sombra);
 }
 .menu a {
-  display: block; padding: .65rem .8rem; border-radius: 8px;
+  display: block; padding: .7rem .85rem; border-radius: 10px;
   color: var(--texto); text-decoration: none; font-weight: 600; font-size: .92rem;
+  transition: background .15s, color .15s;
 }
 .menu a:hover { background: var(--crema); }
-.menu a.activo { background: var(--verde); color: #fff; }
-
-/* Contenido */
-.contenido { flex: 1 1 auto; max-width: 780px; margin: 1.5rem auto; padding: 0 1.25rem 3rem; }
-
-@media (max-width: 720px) {
-  .disposicion { flex-direction: column; }
-  .menu {
-    flex-basis: auto; width: 100%; flex-direction: row; flex-wrap: wrap;
-    border-right: 0; border-bottom: 1px solid var(--linea);
-  }
-  .contenido { margin-top: 1rem; }
+.menu a.activo {
+  background: var(--verde); color: #fff;
+  box-shadow: inset 3px 0 0 var(--dorado);
 }
-h2 { color: var(--verde); margin: .5rem 0 .25rem; }
-.ayuda { color: var(--gris); margin: 0 0 1.25rem; }
 
-/* Avisos */
-.aviso { padding: .8rem 1rem; border-radius: 10px; margin: 0 0 1.25rem; font-weight: 600; }
+/* ── Contenido ────────────────────────────────────────────────── */
+.contenido { flex: 1 1 auto; min-width: 0; max-width: 760px; }
+.contenido > h2 { color: var(--verde); margin: .1rem 0 .3rem; font-size: 1.5rem; }
+.ayuda { color: var(--gris); margin: 0 0 1.5rem; }
+
+/* ── Avisos ───────────────────────────────────────────────────── */
+.aviso { padding: .85rem 1.1rem; border-radius: 12px; margin: 0 0 1.4rem; font-weight: 600; }
 .aviso.ok { background: #e5f4ec; color: var(--verde-ok); border: 1px solid #b8e0cb; }
 .aviso.error { background: #fdeceb; color: var(--rojo); border: 1px solid #f3c6c4; }
 
-/* Tarjeta de cada documento */
+/* ── Tarjeta de cada campo ────────────────────────────────────── */
 fieldset.doc {
-  border: 1px solid var(--linea); border-radius: 12px;
-  background: #fff; padding: 1rem 1.1rem 1.15rem; margin: 0 0 1rem;
+  border: 1px solid var(--linea); border-radius: 14px;
+  background: #fff; padding: 1.1rem 1.2rem 1.25rem; margin: 0 0 1.1rem;
+  box-shadow: var(--sombra);
 }
-fieldset.doc legend { font-weight: 700; color: var(--verde); padding: 0 .4rem; }
-.actual { font-size: .85rem; margin: .1rem 0 .8rem; word-break: break-all; }
+fieldset.doc legend {
+  font-weight: 700; color: var(--verde); padding: 0 .5rem; font-size: 1.02rem;
+}
+.actual { font-size: .82rem; margin: .1rem 0 .9rem; word-break: break-all; color: var(--gris); }
 .actual a { color: var(--gris); }
-.campo { display: block; font-size: .9rem; font-weight: 600; color: #444; margin: .55rem 0 0; }
+.campo { display: block; font-size: .88rem; font-weight: 600; color: #444; margin: .7rem 0 0; }
 .campo .opc { font-weight: 400; color: var(--gris); }
 .campo input {
-  display: block; width: 100%; margin-top: .3rem;
-  padding: .55rem .65rem; border: 1px solid var(--linea); border-radius: 8px;
+  display: block; width: 100%; margin-top: .35rem;
+  padding: .6rem .7rem; border: 1px solid var(--linea); border-radius: 9px;
   font: inherit; background: #fff;
 }
+.campo input[type=file] { padding: .5rem; background: var(--crema); cursor: pointer; }
 .campo input:focus { outline: 2px solid var(--dorado); border-color: var(--dorado); }
 
-/* Botón guardar */
-.acciones { position: sticky; bottom: 0; padding: 1rem 0; background: linear-gradient(transparent, var(--crema) 40%); }
+/* ── Botón guardar (fijo abajo) ───────────────────────────────── */
+.acciones {
+  position: sticky; bottom: 0; margin-top: 1rem;
+  padding: 1rem 0 1.25rem;
+  background: linear-gradient(transparent, var(--fondo) 45%);
+}
 button {
-  background: var(--verde); color: #fff; border: 0; border-radius: 10px;
-  padding: .8rem 1.6rem; font: inherit; font-weight: 700; cursor: pointer;
+  background: var(--verde); color: #fff; border: 0; border-radius: 11px;
+  padding: .85rem 1.8rem; font: inherit; font-weight: 700; cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,48,28,.25); transition: background .15s;
 }
-button:hover { background: #06442a; }
+button:hover { background: var(--verde-2); }
 
-/* Pantalla de login */
-body.login { display: grid; place-items: center; min-height: 100vh; padding: 1rem; }
-.tarjeta {
-  background: #fff; border: 1px solid var(--linea); border-radius: 16px;
-  padding: 2rem 1.75rem; width: 100%; max-width: 360px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+/* ── Pantalla de login ────────────────────────────────────────── */
+body.login {
+  display: grid; place-items: center; min-height: 100vh; padding: 1rem;
+  background: linear-gradient(135deg, var(--verde), #012614);
 }
-.tarjeta h1 { color: var(--verde); font-size: 1.35rem; margin: 0 0 .1rem; }
-.tarjeta .sub { color: var(--gris); font-size: .85rem; margin: 0 0 1.25rem; }
-.tarjeta label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 1rem; }
+.tarjeta {
+  background: #fff; border-radius: 18px;
+  padding: 2.25rem 2rem; width: 100%; max-width: 370px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.28);
+}
+.tarjeta h1 { color: var(--verde); font-size: 1.4rem; margin: 0 0 .15rem; }
+.tarjeta .sub { color: var(--gris); font-size: .85rem; margin: 0 0 1.4rem; }
+.tarjeta label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 1.1rem; }
 .tarjeta input {
-  display: block; width: 100%; margin-top: .35rem;
-  padding: .6rem .7rem; border: 1px solid var(--linea); border-radius: 8px; font: inherit;
+  display: block; width: 100%; margin-top: .4rem;
+  padding: .65rem .75rem; border: 1px solid var(--linea); border-radius: 9px; font: inherit;
 }
 .tarjeta input:focus { outline: 2px solid var(--dorado); border-color: var(--dorado); }
 .tarjeta button { width: 100%; }
+
+/* ── Móvil ────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .disposicion { flex-direction: column; gap: 1rem; }
+  .menu {
+    position: static; flex-basis: auto; width: 100%;
+    flex-direction: row; flex-wrap: wrap;
+  }
+  .menu a { flex: 1 1 auto; text-align: center; }
+  .contenido { max-width: 100%; }
+}
