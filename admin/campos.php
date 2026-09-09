@@ -9,6 +9,7 @@ return [
 
     'portada' => [
         'menu'   => 'Inicio · Portada',
+        'icono'  => '🏠',
         'titulo' => 'Página de inicio',
         'ayuda'  => 'Edita los textos de la portada. Deja un campo igual si no vas a cambiarlo.',
         'tipo'   => 'textos',
@@ -59,6 +60,7 @@ return [
 
     'documentos' => [
         'menu'   => 'Admisión · Documentos',
+        'icono'  => '📄',
         'titulo' => 'Documentos del proceso de admisión',
         'ayuda'  => 'Para cada documento puedes subir un PDF nuevo o pegar un enlace '
                   . '(por ejemplo de Google Drive). Si subes un PDF, se usa ese.',
@@ -81,6 +83,7 @@ return [
 
     'posgrado_cronograma' => [
         'menu'   => 'Posgrado · Cronograma',
+        'icono'  => '📅',
         'titulo' => 'Cronograma de Posgrado 2026-II',
         'ayuda'  => 'Escribe solo la fecha de cada etapa. El resto del texto '
                   . '(Virtual, Hora, Lugar) se queda fijo en la página.',
@@ -95,6 +98,7 @@ return [
 
     'posgrado_costos' => [
         'menu'   => 'Posgrado · Costos',
+        'icono'  => '💰',
         'titulo' => 'Costos de inscripción de Posgrado',
         'ayuda'  => 'Edita los montos de inscripción (por ejemplo: S/ 211.00).',
         'tipo'   => 'textos',
@@ -106,6 +110,7 @@ return [
 
     'inscripcion_pagina' => [
         'menu'       => 'Inscripción · Página',
+        'icono'  => '📝',
         'titulo'     => 'Página de inscripción',
         'ayuda'      => 'Banner, los 4 pasos y los requisitos de inscripcion.html.',
         'tipo'       => 'textos',
@@ -131,6 +136,7 @@ return [
 
     'inscripcion_costos' => [
         'menu'   => 'Inscripción · Costos',
+        'icono'  => '💳',
         'titulo' => 'Costos de inscripción (pregrado)',
         'ayuda'  => 'Montos y códigos de pago del recuadro en inscripcion.html.',
         'tipo'   => 'textos',
@@ -152,6 +158,7 @@ return [
 
     'posgrado_resultados' => [
         'menu'   => 'Posgrado · Resultados',
+        'icono'  => '🏆',
         'titulo' => 'Resultados de Posgrado',
         'ayuda'  => 'Sube el PDF con la relación de ingresantes, o pega el enlace. '
                   . 'Las dos tarjetas aparecen en la página de Posgrado.',

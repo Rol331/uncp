@@ -28,7 +28,7 @@ $csrf = token_csrf();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel · Ingresar</title>
-  <link rel="stylesheet" href="estilo.css?v=6">
+  <link rel="stylesheet" href="estilo.css?v=7">
 </head>
 <body class="login">
   <form method="post" class="tarjeta" autocomplete="on">

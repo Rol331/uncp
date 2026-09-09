@@ -26,13 +26,29 @@ body {
   display: flex; justify-content: space-between; align-items: center; gap: 1rem;
   flex-wrap: wrap;
   background: linear-gradient(90deg, var(--verde), var(--verde-2));
-  color: #fff; padding: .9rem 1.5rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,.12);
+  color: #fff; padding: .8rem 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,.15);
   position: sticky; top: 0; z-index: 10;
 }
-.barra strong { font-size: 1.05rem; letter-spacing: .2px; }
-.barra nav a { color: var(--dorado); text-decoration: none; font-weight: 600; }
-.barra nav a:hover { text-decoration: underline; }
+.marca { display: flex; align-items: center; gap: .7rem; }
+.marca-ic {
+  font-size: 1.4rem; line-height: 1;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(201,162,75,.5);
+  width: 42px; height: 42px; border-radius: 12px;
+  display: grid; place-items: center;
+}
+.marca-tx { display: flex; flex-direction: column; line-height: 1.15; }
+.marca-tx strong { font-size: 1.02rem; letter-spacing: .2px; }
+.marca-tx small { color: var(--dorado); font-size: .72rem; letter-spacing: .5px; text-transform: uppercase; }
+.barra nav { display: flex; gap: .5rem; align-items: center; }
+.barra nav a {
+  color: #fff; text-decoration: none; font-weight: 600; font-size: .88rem;
+  padding: .45rem .8rem; border-radius: 9px; border: 1px solid rgba(255,255,255,.25);
+  transition: background .15s;
+}
+.barra nav a:hover { background: rgba(255,255,255,.14); }
+.barra nav a.salir { background: var(--dorado); color: var(--verde); border-color: var(--dorado); }
+.barra nav a.salir:hover { background: #dcb15e; }
 
 /* ── Disposición: menú lateral + contenido ────────────────────── */
 .disposicion {
@@ -41,21 +57,34 @@ body {
 }
 
 .menu {
-  flex: 0 0 250px; position: sticky; top: 84px;
-  background: #fff; border: 1px solid var(--linea); border-radius: 14px;
-  padding: .6rem; display: flex; flex-direction: column; gap: .2rem;
+  flex: 0 0 260px; position: sticky; top: 84px;
+  background: #fff; border: 1px solid var(--linea); border-radius: 16px;
+  padding: .7rem; display: flex; flex-direction: column; gap: .18rem;
   box-shadow: var(--sombra);
 }
-.menu a {
-  display: block; padding: .7rem .85rem; border-radius: 10px;
+.menu-titulo {
+  margin: .2rem .6rem .5rem; font-size: .72rem; font-weight: 700;
+  letter-spacing: .6px; text-transform: uppercase; color: var(--gris);
+}
+.menu > a {
+  display: flex; align-items: center; gap: .7rem;
+  padding: .65rem .7rem; border-radius: 11px;
   color: var(--texto); text-decoration: none; font-weight: 600; font-size: .92rem;
-  transition: background .15s, color .15s;
+  transition: background .15s, color .15s, transform .1s;
 }
-.menu a:hover { background: var(--crema); }
-.menu a.activo {
+.menu > a:hover { background: var(--crema); transform: translateX(2px); }
+.menu > a.activo {
   background: var(--verde); color: #fff;
-  box-shadow: inset 3px 0 0 var(--dorado);
+  box-shadow: 0 4px 12px rgba(0,48,28,.22);
 }
+.menu > a .mi-ic {
+  font-size: 1.05rem; line-height: 1; flex: 0 0 auto;
+  width: 30px; height: 30px; border-radius: 8px;
+  display: grid; place-items: center; background: var(--crema);
+  transition: background .15s;
+}
+.menu > a.activo .mi-ic { background: rgba(255,255,255,.18); }
+.menu > a .mi-tx { flex: 1 1 auto; }
 
 /* Submenú de carreras (se despliega bajo "Carreras · Imágenes") */
 .menu .submenu {
