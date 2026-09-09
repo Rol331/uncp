@@ -104,6 +104,27 @@ return [
         ],
     ],
 
+    'inscripcion_costos' => [
+        'menu'   => 'Inscripción · Costos',
+        'titulo' => 'Costos de inscripción (pregrado)',
+        'ayuda'  => 'Montos y códigos de pago del recuadro en inscripcion.html.',
+        'tipo'   => 'textos',
+        'grupos' => [
+            'Egresado de colegio estatal' => [
+                'insc_estatal_monto'  => 'Monto',
+                'insc_estatal_codigo' => 'Código de pago',
+            ],
+            'Egresado de colegio particular' => [
+                'insc_particular_monto'  => 'Monto',
+                'insc_particular_codigo' => 'Código de pago',
+            ],
+            'Participante libre' => [
+                'insc_libre_monto'  => 'Monto',
+                'insc_libre_codigo' => 'Código de pago',
+            ],
+        ],
+    ],
+
     'posgrado_resultados' => [
         'menu'   => 'Posgrado · Resultados',
         'titulo' => 'Resultados de Posgrado',

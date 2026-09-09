@@ -52,6 +52,14 @@
     "maestria": "S/ 211.00",
     "doctorado": "S/ 231.00"
   },
+  "inscripcion_costos": {
+    "insc_estatal_monto": "S/ 271.00",
+    "insc_estatal_codigo": "1654",
+    "insc_particular_monto": "S/ 331.00",
+    "insc_particular_codigo": "1655",
+    "insc_libre_monto": "S/ 251.00",
+    "insc_libre_codigo": "1675"
+  },
   "posgrado_resultados": {
     "res-doctorado": "https://drive.google.com/file/d/1CNYwP8uSObubEEnnefPG2BwMRoazM_I-/view?usp=sharing",
     "res-maestria": "https://drive.google.com/file/d/1j8SU2S3Oz37iAdkM3bp-z26E1ZKmhg-i/view?usp=sharing"

@@ -28,6 +28,11 @@
         el.textContent = valor;
       });
 
+      // Costos de inscripción (pregrado): <span data-insc="clave">.
+      aplicar(d.inscripcion_costos, 'data-insc', function (el, valor) {
+        el.textContent = valor;
+      });
+
       // Portada y footer: textos por data-portada, enlaces por data-portada-href.
       if (d.portada) {
         aplicar(d.portada, 'data-portada', function (el, valor) {
