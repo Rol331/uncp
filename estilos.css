@@ -1882,3 +1882,38 @@
        al imprimir hay que forzarlos o la hoja sale en blanco */
     .pagina-qr .revelar{opacity:1;transform:none}
   }
+
+/* ===== Recuadro de costos de inscripcion (inscripcion.html) ===== */
+.recuadro-costos{
+  background:#fff;
+  border:1px solid rgba(0,48,28,.08);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra);
+  padding:28px;
+  margin:40px auto 0;
+  max-width:760px;
+}
+.recuadro-costos h3{
+  color:var(--verde-900);
+  margin:0 0 18px;
+  font-size:1.3rem;
+  text-align:center;
+}
+.rc-lista{display:flex;flex-direction:column;gap:14px}
+.rc-item{
+  background:var(--crema);
+  border:1px solid rgba(0,48,28,.06);
+  border-left:4px solid var(--dorado);
+  border-radius:12px;
+  padding:14px 18px;
+}
+.rc-cab{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.rc-tipo{font-weight:700;color:var(--verde-900)}
+.rc-monto{font-weight:800;color:var(--verde-700);font-size:1.15rem;white-space:nowrap}
+.rc-detalle{margin:.4rem 0 0;color:#555;font-size:.9rem}
