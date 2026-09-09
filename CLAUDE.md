@@ -343,6 +343,16 @@ bajo la clave `portada` y `datos-web.js` (cargado también en `index.html`) los 
 editar un título del hero se pierde el `<em>` dorado (se aplica como texto plano); mientras no se
 edite, queda el HTML original.
 
+### Footer (todo el sitio)
+
+El pie es igual en las 48 páginas y se edita desde «Inicio · Portada» (grupos «Contacto (pie)»
+y «Pie de página (footer)»). Campos: contacto (dirección/teléfono/correo), texto de presentación,
+las 4 redes (enlaces), WhatsApp y copyright. `datos-web.js` (cargado en las 48 páginas, busca el
+JSON con `../` dentro de `/carreras/`) aplica: `data-portada` → texto, `data-portada-href` →
+`href` (redes), y el WhatsApp reescribe **todos** los `a[href*="wa.me/"]` del sitio (footer y
+botón flotante); si el número tiene 9 dígitos le antepone `51`. El número visible del footer va en
+`<span data-portada="footer_whatsapp">`.
+
 ### Resultados de posgrado
 
 Las tarjetas «Doctorados/Maestrías» de la sección Resultados en `posgrado.html` son `<a>` con

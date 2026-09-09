@@ -28,11 +28,16 @@
         el.textContent = valor;
       });
 
-      // Portada (index.html): textos y números de las estadísticas.
+      // Portada y footer: textos por data-portada, enlaces por data-portada-href.
       if (d.portada) {
         aplicar(d.portada, 'data-portada', function (el, valor) {
           el.textContent = valor;
         });
+        // Enlaces (redes sociales del footer, etc.).
+        aplicar(d.portada, 'data-portada-href', function (el, valor) {
+          el.setAttribute('href', valor);
+        });
+        // Números de las estadísticas.
         document.querySelectorAll('[data-portada-num]').forEach(function (el) {
           var k = el.getAttribute('data-portada-num');
           if (d.portada[k] !== undefined && d.portada[k] !== '') {
@@ -41,6 +46,17 @@
             if (typeof window.animarContador === 'function') window.animarContador(el);
           }
         });
+        // WhatsApp: reescribe el número en TODOS los enlaces wa.me del sitio
+        // (footer y botón flotante). Si son 9 dígitos, se les antepone 51 (Perú).
+        if (d.portada.footer_whatsapp) {
+          var raw = String(d.portada.footer_whatsapp).replace(/\D/g, '');
+          var num = raw.length === 9 ? '51' + raw : raw;
+          if (num) {
+            document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
+              a.href = a.getAttribute('href').replace(/wa\.me\/\d+/, 'wa.me/' + num);
+            });
+          }
+        }
       }
     })
     .catch(function () { /* silencio: se quedan los valores del HTML */ });

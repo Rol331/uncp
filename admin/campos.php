@@ -45,6 +45,15 @@ return [
                 'contacto_telefono'  => 'Teléfono',
                 'contacto_correo'    => 'Correo',
             ],
+            'Pie de página (footer)' => [
+                'footer_texto'     => 'Texto de presentación',
+                'footer_facebook'  => 'Facebook (enlace)',
+                'footer_instagram' => 'Instagram (enlace)',
+                'footer_youtube'   => 'YouTube (enlace)',
+                'footer_tiktok'    => 'TikTok (enlace)',
+                'footer_whatsapp'  => 'WhatsApp (número)',
+                'footer_copyright' => 'Texto de copyright',
+            ],
         ],
     ],
 
