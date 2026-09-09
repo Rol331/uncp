@@ -88,20 +88,32 @@ body {
 
 /* Submenú de carreras (se despliega bajo "Carreras · Imágenes") */
 .menu .submenu {
-  display: flex; flex-direction: column; gap: 1px;
-  margin: .15rem 0 .2rem .4rem; padding-left: .5rem;
+  display: flex; flex-direction: column; gap: 2px;
+  margin: .35rem 0 .3rem .95rem; padding: .25rem .3rem .25rem .55rem;
   border-left: 2px solid var(--linea);
-  max-height: 320px; overflow-y: auto;
+  max-height: 340px; overflow-y: auto;
 }
+.menu .submenu::-webkit-scrollbar { width: 8px; }
+.menu .submenu::-webkit-scrollbar-thumb { background: var(--linea); border-radius: 8px; }
+.menu .submenu::-webkit-scrollbar-thumb:hover { background: #cfccc2; }
 .menu .submenu a.sub {
-  padding: .45rem .7rem; border-radius: 8px;
-  font-size: .82rem; font-weight: 500; color: var(--gris);
+  display: flex; align-items: center; gap: .55rem;
+  padding: .5rem .6rem; border-radius: 9px;
+  font-size: .84rem; font-weight: 500; color: var(--gris);
+  text-decoration: none; transition: background .15s, color .15s, transform .1s;
 }
-.menu .submenu a.sub:hover { background: var(--crema); color: var(--texto); }
+.menu .submenu a.sub::before {
+  content: ""; flex: 0 0 auto;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--linea); transition: background .15s, transform .15s;
+}
+.menu .submenu a.sub:hover { background: var(--crema); color: var(--texto); transform: translateX(2px); }
+.menu .submenu a.sub:hover::before { background: var(--dorado); }
 .menu .submenu a.sub.activo {
-  background: var(--crema); color: var(--verde); font-weight: 700;
-  box-shadow: inset 3px 0 0 var(--dorado);
+  background: var(--verde); color: #fff; font-weight: 700;
+  box-shadow: 0 3px 10px rgba(0,48,28,.2);
 }
+.menu .submenu a.sub.activo::before { background: var(--dorado); transform: scale(1.25); }
 
 /* ── Contenido ────────────────────────────────────────────────── */
 .contenido { flex: 1 1 auto; min-width: 0; max-width: 760px; }
