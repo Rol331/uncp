@@ -91,6 +91,32 @@ if ($sec['tipo'] === 'documentos') {
     }
 }
 
+// Imágenes de la portada (carrusel + tarjetas de acceso) -> medios.json
+if ($sel === 'portada') {
+    require_once __DIR__ . '/_carreras.php';
+    require_once __DIR__ . '/_imagen.php';
+    if (imagen_soportada()) {
+        $m  = medios_leer();
+        $ts = date('YmdHis');
+        $subir = [];
+        for ($n = 1; $n <= 3; $n++) $subir['slide' . $n]  = ['file_slide' . $n,  TAM_BANNER];
+        for ($n = 1; $n <= 4; $n++) $subir['acceso' . $n] = ['file_acceso' . $n, [800, 600]];
+        foreach ($subir as $key => $cfg) {
+            [$campo, $tam] = $cfg;
+            $file = $_FILES[$campo] ?? null;
+            if (!$file || ($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK || ($file['size'] ?? 0) <= 0) continue;
+            if ($file['size'] > 30 * 1024 * 1024) volver($sel, 'Una imagen supera el máximo de 30 MB.');
+            $rel  = URL_MEDIOS . "/portada/$key-$ts.jpg";
+            $dest = __DIR__ . '/../' . $rel;
+            [$okImg, $msg] = procesar_imagen($file['tmp_name'], $dest, $tam[0], $tam[1]);
+            if (!$okImg) volver($sel, $msg);
+            borrar_override($m['portada'][$key] ?? null);
+            $m['portada'][$key] = $rel;
+        }
+        medios_guardar($m);
+    }
+}
+
 if (!guardar_datos($datos)) {
     volver($sel, 'No se pudieron guardar los cambios (revisa permisos de escritura).');
 }

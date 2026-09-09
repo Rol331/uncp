@@ -27,13 +27,18 @@
         });
       }
 
-      // Carrusel del inicio: los 3 .slide-bg del banner (por orden).
+      // Portada: carrusel (3 .slide-bg) y tarjetas de acceso (4 .acceso), por orden.
       if (m.portada) {
         var bgs = document.querySelectorAll('.banner .slide .slide-bg');
         for (var s = 1; s <= 3; s++) {
-          var el = bgs[s - 1];
-          if (el && m.portada['slide' + s]) {
-            el.style.backgroundImage = "url('" + pre + m.portada['slide' + s] + "')";
+          if (bgs[s - 1] && m.portada['slide' + s]) {
+            bgs[s - 1].style.backgroundImage = "url('" + pre + m.portada['slide' + s] + "')";
+          }
+        }
+        var acc = document.querySelectorAll('.accesos-grid .acceso');
+        for (var a = 1; a <= 4; a++) {
+          if (acc[a - 1] && m.portada['acceso' + a]) {
+            acc[a - 1].style.backgroundImage = "url('" + pre + m.portada['acceso' + a] + "')";
           }
         }
       }

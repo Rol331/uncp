@@ -78,6 +78,43 @@ cabecera($sel);
           <?php endforeach; ?>
         <?php endif; ?>
 
+        <?php if ($sel === 'portada'):
+            $m = medios_leer();
+            $accesoOrig = [
+                1 => 'imagenes/portada/slide-1.jpg',
+                2 => 'imagenes/portada/slide-2.jpg',
+                3 => 'imagenes/portada/slide-3.jpg',
+                4 => 'imagenes/tarjetas/ingenieria-de-sistemas.jpg',
+            ];
+            $accesoLbl = [1 => 'Información 2026-II', 2 => 'Prospecto de admisión', 3 => 'Inscripción en línea', 4 => 'Resultados'];
+            $urlSlide  = function ($m, $n) { return isset($m['portada']['slide' . $n]) ? '../' . $m['portada']['slide' . $n] : '../imagenes/portada/slide-' . $n . '.jpg'; };
+            $urlAcceso = function ($m, $n, $orig) { return isset($m['portada']['acceso' . $n]) ? '../' . $m['portada']['acceso' . $n] : '../' . $orig; };
+        ?>
+          <h3 class="sub-galeria">Imágenes del carrusel</h3>
+          <?php for ($n = 1; $n <= 3; $n++): $u = $urlSlide($m, $n); ?>
+            <fieldset class="doc">
+              <legend>Slide <?= $n ?></legend>
+              <p class="actual">1600 × 900 · se ajusta sola al subirla.</p>
+              <div class="preview" style="background-image:url('<?= htmlspecialchars($u) ?>')"></div>
+              <label class="campo">Subir imagen nueva <span class="opc">(JPG o PNG, opcional)</span>
+                <input type="file" name="file_slide<?= $n ?>" accept="image/jpeg,image/png">
+              </label>
+            </fieldset>
+          <?php endfor; ?>
+
+          <h3 class="sub-galeria">Tarjetas de acceso</h3>
+          <?php for ($n = 1; $n <= 4; $n++): $u = $urlAcceso($m, $n, $accesoOrig[$n]); ?>
+            <fieldset class="doc">
+              <legend><?= htmlspecialchars($accesoLbl[$n]) ?></legend>
+              <p class="actual">Se ajusta sola al subirla.</p>
+              <div class="preview" style="background-image:url('<?= htmlspecialchars($u) ?>')"></div>
+              <label class="campo">Subir imagen nueva <span class="opc">(JPG o PNG, opcional)</span>
+                <input type="file" name="file_acceso<?= $n ?>" accept="image/jpeg,image/png">
+              </label>
+            </fieldset>
+          <?php endfor; ?>
+        <?php endif; ?>
+
         <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
         <div class="acciones"><button type="submit">Guardar cambios</button></div>
       </form>
