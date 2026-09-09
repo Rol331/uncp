@@ -104,6 +104,31 @@ return [
         ],
     ],
 
+    'inscripcion_pagina' => [
+        'menu'       => 'Inscripción · Página',
+        'titulo'     => 'Página de inscripción',
+        'ayuda'      => 'Banner, los 4 pasos y los requisitos de inscripcion.html.',
+        'tipo'       => 'textos',
+        'multilinea' => true,
+        'listas'     => ['insc_req_lista'],
+        'grupos'     => [
+            'Banner' => [
+                'insc_titulo' => 'Título',
+                'insc_bajada' => 'Subtítulo',
+            ],
+            'Pasos' => [
+                'insc_paso1_tit' => 'Paso 1 · título', 'insc_paso1_txt' => 'Paso 1 · texto',
+                'insc_paso2_tit' => 'Paso 2 · título', 'insc_paso2_txt' => 'Paso 2 · texto',
+                'insc_paso3_tit' => 'Paso 3 · título', 'insc_paso3_txt' => 'Paso 3 · texto',
+                'insc_paso4_tit' => 'Paso 4 · título', 'insc_paso4_txt' => 'Paso 4 · texto',
+            ],
+            'Requisitos' => [
+                'insc_req_intro' => 'Texto de introducción',
+                'insc_req_lista' => 'Lista de documentos (uno por línea)',
+            ],
+        ],
+    ],
+
     'inscripcion_costos' => [
         'menu'   => 'Inscripción · Costos',
         'titulo' => 'Costos de inscripción (pregrado)',

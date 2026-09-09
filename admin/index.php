@@ -48,13 +48,20 @@ cabecera($sel);
           <?php endforeach; ?>
 
         <?php elseif (isset($sec['grupos'])): /* textos agrupados */ ?>
+          <?php $multi = !empty($sec['multilinea']); ?>
           <?php foreach ($sec['grupos'] as $grupo => $items): ?>
             <h3 class="sub-galeria"><?= htmlspecialchars($grupo) ?></h3>
-            <?php foreach ($items as $k => $label): $actual = valor($datos, $sel, $k); ?>
+            <?php foreach ($items as $k => $label):
+                $raw = $datos[$sel][$k] ?? '';
+                $display = is_array($raw) ? implode("\n", $raw) : (string) $raw; ?>
               <fieldset class="doc">
                 <legend><?= htmlspecialchars($label) ?></legend>
                 <label class="campo">Texto
-                  <input type="text" name="txt_<?= htmlspecialchars($k) ?>" value="<?= htmlspecialchars($actual) ?>">
+                  <?php if ($multi): ?>
+                    <textarea name="txt_<?= htmlspecialchars($k) ?>" rows="3"><?= htmlspecialchars($display) ?></textarea>
+                  <?php else: ?>
+                    <input type="text" name="txt_<?= htmlspecialchars($k) ?>" value="<?= htmlspecialchars($display) ?>">
+                  <?php endif; ?>
                 </label>
               </fieldset>
             <?php endforeach; ?>

@@ -33,6 +33,26 @@
         el.textContent = valor;
       });
 
+      // Página de inscripción: textos por data-inscp y la lista de requisitos.
+      if (d.inscripcion_pagina) {
+        aplicar(d.inscripcion_pagina, 'data-inscp', function (el, valor) {
+          el.textContent = valor;
+        });
+        document.querySelectorAll('[data-inscp-lista]').forEach(function (ul) {
+          var arr = d.inscripcion_pagina[ul.getAttribute('data-inscp-lista')];
+          if (Array.isArray(arr) && arr.length) {
+            ul.innerHTML = '';
+            arr.forEach(function (item) {
+              var li = document.createElement('li');
+              var m = document.createElement('span'); m.className = 'marca-li'; m.innerHTML = '&#10003;';
+              var s = document.createElement('span'); s.textContent = item;
+              li.appendChild(m); li.appendChild(s);
+              ul.appendChild(li);
+            });
+          }
+        });
+      }
+
       // Portada y footer: textos por data-portada, enlaces por data-portada-href.
       if (d.portada) {
         aplicar(d.portada, 'data-portada', function (el, valor) {

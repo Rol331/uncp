@@ -71,12 +71,21 @@ if ($sec['tipo'] === 'documentos') {
         $items = [];
         foreach ($sec['grupos'] as $g) { $items += $g; }
     }
+    $listas = $sec['listas'] ?? [];
     foreach ($items as $k => $label) {
-        if (array_key_exists('txt_' . $k, $_POST)) {
-            $txt = trim((string) $_POST['txt_' . $k]);
-            // Texto plano (se muestra con textContent): sin etiquetas HTML.
-            $txt = strip_tags($txt);
-            if (mb_strlen($txt) > 300) { $txt = mb_substr($txt, 0, 300); }
+        if (!array_key_exists('txt_' . $k, $_POST)) continue;
+        if (in_array($k, $listas, true)) {
+            // Lista: una línea por ítem.
+            $arr = [];
+            foreach (preg_split('/\r\n|\r|\n/', (string) $_POST['txt_' . $k]) as $ln) {
+                $ln = trim(strip_tags($ln));
+                if (mb_strlen($ln) > 400) $ln = mb_substr($ln, 0, 400);
+                if ($ln !== '') $arr[] = $ln;
+            }
+            $datos[$sel][$k] = $arr;
+        } else {
+            $txt = trim(strip_tags((string) $_POST['txt_' . $k]));
+            if (mb_strlen($txt) > 600) { $txt = mb_substr($txt, 0, 600); }
             $datos[$sel][$k] = $txt;
         }
     }
