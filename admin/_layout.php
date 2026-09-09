@@ -37,6 +37,10 @@ function cabecera(string $activo, string $titulo = 'Datos de Admisión', string 
           <span class="mi-tx"><?= htmlspecialchars($s['menu']) ?></span>
         </a>
       <?php endforeach; ?>
+      <a href="imagenes-inicio.php" class="<?= $activo === 'inicio_img' ? 'activo' : '' ?>">
+        <span class="mi-ic">🖼️</span>
+        <span class="mi-tx">Inicio · Imágenes</span>
+      </a>
       <a href="carreras.php" class="<?= $activo === 'carreras' ? 'activo' : '' ?>">
         <span class="mi-ic">🎓</span>
         <span class="mi-tx">Carreras · Imágenes</span>

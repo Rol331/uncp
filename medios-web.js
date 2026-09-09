@@ -27,6 +27,17 @@
         });
       }
 
+      // Carrusel del inicio: los 3 .slide-bg del banner (por orden).
+      if (m.portada) {
+        var bgs = document.querySelectorAll('.banner .slide .slide-bg');
+        for (var s = 1; s <= 3; s++) {
+          var el = bgs[s - 1];
+          if (el && m.portada['slide' + s]) {
+            el.style.backgroundImage = "url('" + pre + m.portada['slide' + s] + "')";
+          }
+        }
+      }
+
       // Galería: <img src="../imagenes/galeria/SLUG-N.jpg">
       if (m.galeria) {
         document.querySelectorAll('.galeria img').forEach(function (img) {
