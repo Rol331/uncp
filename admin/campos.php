@@ -42,8 +42,12 @@ return [
                 'ben4_titulo' => 'Beneficio 4 · título', 'ben4_texto' => 'Beneficio 4 · texto',
             ],
             'Bloque final (¡Tu futuro comienza aquí!)' => [
-                'cta_titulo' => 'Título',
-                'cta_texto'  => 'Texto',
+                'cta_titulo'    => 'Título',
+                'cta_texto'     => 'Texto',
+                'cta_btn1_txt'  => 'Botón 1 · texto',
+                'cta_btn1_link' => 'Botón 1 · enlace',
+                'cta_btn2_txt'  => 'Botón 2 · texto',
+                'cta_btn2_link' => 'Botón 2 · enlace',
             ],
             'Contacto (pie de página)' => [
                 'contacto_direccion' => 'Dirección',
