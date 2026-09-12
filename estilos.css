@@ -1917,3 +1917,10 @@
 .rc-tipo{font-weight:700;color:var(--verde-900)}
 .rc-monto{font-weight:800;color:var(--verde-700);font-size:1.15rem;white-space:nowrap}
 .rc-detalle{margin:.4rem 0 0;color:#555;font-size:.9rem}
+/* Lista de modalidades de inscripción (inscripcion.html) */
+.modalidades{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.modalidades li{display:flex;justify-content:space-between;gap:14px;align-items:baseline;padding:.6rem .2rem;border-bottom:1px dashed rgba(0,48,28,.14)}
+.modalidades li:last-child{border-bottom:0}
+.modalidades li>span:first-child{color:var(--verde-900);font-weight:600}
+.mod-monto{color:var(--verde-700);font-weight:700;white-space:nowrap;text-align:right}
+.mod-monto small{color:#6b6b63;font-weight:400}

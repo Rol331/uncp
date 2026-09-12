@@ -38,6 +38,9 @@
         aplicar(d.inscripcion_pagina, 'data-inscp', function (el, valor) {
           el.textContent = valor;
         });
+        aplicar(d.inscripcion_pagina, 'data-inscp-href', function (el, valor) {
+          el.setAttribute('href', valor);
+        });
         document.querySelectorAll('[data-inscp-lista]').forEach(function (ul) {
           var arr = d.inscripcion_pagina[ul.getAttribute('data-inscp-lista')];
           if (Array.isArray(arr) && arr.length) {

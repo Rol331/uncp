@@ -50,16 +50,10 @@ function img_actual(array $m, string $tipo, string $slug, ?int $n = null): ?stri
     return is_file(__DIR__ . '/../' . $orig) ? '../' . $orig : null;
 }
 
-/** Número de fotos de galería de una carrera (máximo entre originales y overrides). */
+/** Número de slots de galería a mostrar en el panel: siempre 4 (todas las carreras
+ *  deben poder poner o cambiar hasta 4 fotos). */
 function galeria_slots(array $m, string $slug): int {
-    $n = 0;
-    foreach (glob(RUTA_IMG . "/galeria/$slug-*.jpg") ?: [] as $f) {
-        if (preg_match('/-(\d+)\.jpg$/', $f, $mt)) $n = max($n, (int) $mt[1]);
-    }
-    if (isset($m['galeria'][$slug])) {
-        foreach (array_keys($m['galeria'][$slug]) as $k) $n = max($n, (int) $k);
-    }
-    return $n;
+    return 4;
 }
 
 /** Borra un archivo de override anterior (dentro de medios/) si existe. */

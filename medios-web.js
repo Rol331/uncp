@@ -43,14 +43,33 @@
         }
       }
 
-      // Galería: <img src="../imagenes/galeria/SLUG-N.jpg">
-      if (m.galeria) {
-        document.querySelectorAll('.galeria img').forEach(function (img) {
-          var mt = (img.getAttribute('src') || '').match(/galeria\/(.+)-(\d+)\.(?:jpg|jpeg|png)/i);
-          if (mt && m.galeria[mt[1]] && m.galeria[mt[1]][mt[2]]) {
-            img.setAttribute('src', pre + m.galeria[mt[1]][mt[2]]);
-          }
-        });
+      // Galería de la carrera: hasta 4 fotos (override de medios o la original).
+      var gal = document.querySelector('.galeria');
+      if (gal) {
+        var slugG = (location.pathname.match(/carreras\/(.+?)\.html/) || [])[1] || '';
+        var existentes = [];
+        gal.querySelectorAll('img').forEach(function (i) { existentes.push(i.getAttribute('src')); });
+        var ov = (m.galeria && m.galeria[slugG]) || {};
+        var urls = [];
+        for (var g = 1; g <= 4; g++) {
+          if (ov[g]) urls.push(pre + ov[g]);
+          else if (existentes[g - 1]) urls.push(existentes[g - 1]);
+        }
+        var bloque = gal.closest ? gal.closest('.bloque') : null;
+        if (urls.length === 0) {
+          if (bloque) bloque.hidden = true;
+        } else {
+          if (bloque) bloque.hidden = false;
+          gal.innerHTML = '';
+          var altG = (document.title.split('|')[0] || '').trim();
+          urls.forEach(function (u) {
+            var fig = document.createElement('figure');
+            var img = document.createElement('img');
+            img.src = u; img.loading = 'lazy'; img.width = 800; img.height = 600; img.alt = altG;
+            fig.appendChild(img);
+            gal.appendChild(fig);
+          });
+        }
       }
     })
     .catch(function () { /* silencio: se quedan las imágenes del HTML */ });

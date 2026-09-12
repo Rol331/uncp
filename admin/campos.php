@@ -41,6 +41,10 @@ return [
                 'ben3_titulo' => 'Beneficio 3 · título', 'ben3_texto' => 'Beneficio 3 · texto',
                 'ben4_titulo' => 'Beneficio 4 · título', 'ben4_texto' => 'Beneficio 4 · texto',
             ],
+            'Bloque final (¡Tu futuro comienza aquí!)' => [
+                'cta_titulo' => 'Título',
+                'cta_texto'  => 'Texto',
+            ],
             'Contacto (pie de página)' => [
                 'contacto_direccion' => 'Dirección',
                 'contacto_telefono'  => 'Teléfono',
@@ -78,6 +82,7 @@ return [
             'baremos-efisica'     => 'Baremos · Educación Física',
             'voucher'             => 'Modelo de voucher de pago',
             'prospecto'           => 'Prospecto de admisión',
+            'prospecto2'          => 'Prospecto de admisión 2',
         ],
     ],
 
@@ -126,6 +131,7 @@ return [
                 'insc_paso2_tit' => 'Paso 2 · título', 'insc_paso2_txt' => 'Paso 2 · texto',
                 'insc_paso3_tit' => 'Paso 3 · título', 'insc_paso3_txt' => 'Paso 3 · texto',
                 'insc_paso4_tit' => 'Paso 4 · título', 'insc_paso4_txt' => 'Paso 4 · texto',
+                'insc_paso5_tit' => 'Paso 5 · título', 'insc_paso5_link' => 'Paso 5 · enlace de descarga',
             ],
             'Requisitos' => [
                 'insc_req_intro' => 'Texto de introducción',

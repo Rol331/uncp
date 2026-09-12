@@ -114,8 +114,10 @@ if(visor){
     setTimeout(()=>{ if(!visor.classList.contains('abierto')) visorImg.src = ''; }, 300);
   }
 
-  document.querySelectorAll('.galeria img').forEach(img=>{
-    img.addEventListener('click', ()=> abrirVisor(img));
+  // Delegación: sirve para las fotos actuales y para las que agrega el panel.
+  document.addEventListener('click', (e)=>{
+    const img = e.target.closest && e.target.closest('.galeria img');
+    if(img) abrirVisor(img);
   });
   cerrarBtn.addEventListener('click', cerrarVisor);
   visor.addEventListener('click', (e)=>{ if(e.target !== visorImg) cerrarVisor(); });

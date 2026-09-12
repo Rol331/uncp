@@ -397,6 +397,26 @@ tres textos: **bajada del banner, perfil del egresado y campo ocupacional** (un 
   `.lab` reconstruidos van sin `revelar` (si no, quedarían invisibles: el IntersectionObserver
   de `scripts.js` ya corrió y no los observaría).
 
+## Correcciones del cliente (12/09/2026) — `CORRECCIONES UNCP.pdf`
+
+- **Header (48 páginas):** *Posgrado* ya **no es desplegable**, es enlace directo a `posgrado.html`
+  (se quitó el submenú con su cabecera blanca). La pestaña *Admisión 2026-II* pasó a **Pregrado**
+  (en menú y footer).
+- **`admision.html`:** el `h1` y la miga dicen **Primera Selección** (antes «Admisión 2026 - II»).
+  La tarjeta **Costos** ahora enlaza a `inscripcion.html` (default `costos` en el JSON cambiado).
+  Nueva tarjeta **Prospecto de admisión 2** (`data-doc="prospecto2"`, link `#` pendiente, editable).
+- **`prospecto.html`:** «Tres formas…» → **Dos formas** (se quitó la tarjeta «Recójelo en la Oficina»).
+- **`inscripcion.html`:** ahora **Cinco pasos** (paso 5 *Declaración Jurada* con enlace de descarga
+  pendiente `#`, editable vía `data-inscp` / `data-inscp-href`). Debajo del recuadro de costos se
+  agregó la lista **Costos de inscripción · Modalidades** (14 tarifas, estática, `.modalidades`).
+- **Home:** texto del CTA final corregido y **editable** (`cta_titulo`/`cta_texto`, grupo en
+  «Inicio · Portada»); el botón del slider *Admisión 2026-II* → **Pregrado**.
+- **Panel — carreras:** `galeria_slots()` ahora devuelve **siempre 4** (toda carrera puede poner o
+  cambiar 4 fotos). `medios-web.js` reconstruye la galería a hasta 4 (override o original) y **crea
+  las fotos que falten**; el visor de `scripts.js` pasó a **delegación** para que las fotos nuevas
+  sean clicables. Las 2 carreras sin galería (`agronomia-tropical`, `ingenieria-ambiental`) llevan
+  un `.galeria` **oculto** que se muestra al subir fotos.
+
 ## Git y publicación
 
 - Rama principal: `main`. Repo: `https://github.com/Rol331/uncp.git`.
