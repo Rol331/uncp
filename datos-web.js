@@ -33,6 +33,21 @@
         el.textContent = valor;
       });
 
+      // Modalidades de inscripción: <span data-mod="clave">. La parte entre
+      // paréntesis (Caja UNCP) se muestra en <small>.
+      aplicar(d.inscripcion_modalidades, 'data-mod', function (el, valor) {
+        var mt = String(valor).match(/^(.*?)\s*(\(.*\))\s*$/);
+        el.textContent = '';
+        if (mt) {
+          el.appendChild(document.createTextNode(mt[1] + ' '));
+          var s = document.createElement('small');
+          s.textContent = mt[2];
+          el.appendChild(s);
+        } else {
+          el.textContent = valor;
+        }
+      });
+
       // Página de inscripción: textos por data-inscp y la lista de requisitos.
       if (d.inscripcion_pagina) {
         aplicar(d.inscripcion_pagina, 'data-inscp', function (el, valor) {

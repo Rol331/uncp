@@ -85,6 +85,22 @@
     "insc_libre_monto": "S/ 251.00",
     "insc_libre_codigo": "1675"
   },
+  "inscripcion_modalidades": {
+    "mod_primeros": "S/ 310.00 (Caja UNCP)",
+    "mod_comuneros": "S/ 230.00 (Caja UNCP)",
+    "mod_violencia": "Sin costo",
+    "mod_discapacidad": "S/ 210.00 (Caja UNCP)",
+    "mod_tras_interno": "S/ 310.00 (Caja UNCP)",
+    "mod_tras_nacional": "S/ 360.00 (Caja UNCP)",
+    "mod_tras_particular": "S/ 410.00 (Caja UNCP)",
+    "mod_tras_internacional": "S/ 420.00 (Caja UNCP)",
+    "mod_segunda": "S/ 430.00 (Caja UNCP)",
+    "mod_terrorismo": "S/ 235.00 (Caja UNCP)",
+    "mod_dc": "S/ 310.00 (Caja UNCP)",
+    "mod_nativas": "S/ 100.00 (Caja UNCP)",
+    "mod_simulacro": "S/ 25.00 (Caja UNCP)",
+    "mod_medico": "S/ 25.00 (Caja UNCP)"
+  },
   "posgrado_resultados": {
     "res-doctorado": "https://drive.google.com/file/d/1CNYwP8uSObubEEnnefPG2BwMRoazM_I-/view?usp=sharing",
     "res-maestria": "https://drive.google.com/file/d/1j8SU2S3Oz37iAdkM3bp-z26E1ZKmhg-i/view?usp=sharing"

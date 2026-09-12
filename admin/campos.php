@@ -162,6 +162,31 @@ return [
         ],
     ],
 
+    'inscripcion_modalidades' => [
+        'menu'   => 'Inscripción · Modalidades',
+        'icono'  => '💵',
+        'titulo' => 'Costos por modalidad (pregrado)',
+        'ayuda'  => 'El monto de cada modalidad (ej.: S/ 310.00 (Caja UNCP) o Sin costo). '
+                  . 'Aparecen en inscripcion.html.',
+        'tipo'   => 'textos',
+        'items'  => [
+            'mod_primeros'           => 'Primeros puestos',
+            'mod_comuneros'          => 'Hijos de comuneros región Junín',
+            'mod_violencia'          => 'Afectados de la violencia social',
+            'mod_discapacidad'       => 'Personas con discapacidad',
+            'mod_tras_interno'       => 'Traslado interno',
+            'mod_tras_nacional'      => 'Traslado externo nacional',
+            'mod_tras_particular'    => 'Traslado externo particular',
+            'mod_tras_internacional' => 'Traslado externo internacional',
+            'mod_segunda'            => 'Segunda carrera',
+            'mod_terrorismo'         => 'Víctimas del terrorismo',
+            'mod_dc'                 => 'Deportistas calificados (DC)',
+            'mod_nativas'            => 'Estudiantes comunidades nativas',
+            'mod_simulacro'          => 'Simulacro examen admisión',
+            'mod_medico'             => 'Examen médico',
+        ],
+    ],
+
     'posgrado_resultados' => [
         'menu'   => 'Posgrado · Resultados',
         'icono'  => '🏆',
