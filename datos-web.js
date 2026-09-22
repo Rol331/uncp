@@ -48,6 +48,11 @@
         }
       });
 
+      // Textos de las tarjetas de admisión: <h3/p data-doctxt="clave">.
+      aplicar(d.admision_textos, 'data-doctxt', function (el, valor) {
+        el.textContent = valor;
+      });
+
       // Página de inscripción: textos por data-inscp y la lista de requisitos.
       if (d.inscripcion_pagina) {
         aplicar(d.inscripcion_pagina, 'data-inscp', function (el, valor) {

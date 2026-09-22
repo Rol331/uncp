@@ -90,6 +90,31 @@ return [
         ],
     ],
 
+    'admision_textos' => [
+        'menu'       => 'Admisión · Textos tarjetas',
+        'icono'      => '🗂️',
+        'titulo'     => 'Textos de las tarjetas de documentos',
+        'ayuda'      => 'Título y descripción de cada tarjeta de admision.html (el enlace/PDF se '
+                      . 'edita en «Admisión · Documentos»).',
+        'tipo'       => 'textos',
+        'multilinea' => true,
+        'grupos'     => [
+            'Cronograma de inscripciones'      => ['cronograma_tit' => 'Título', 'cronograma_desc' => 'Descripción'],
+            'Reglamento'                       => ['reglamento_tit' => 'Título', 'reglamento_desc' => 'Descripción'],
+            'Vacantes'                         => ['vacantes_tit' => 'Título', 'vacantes_desc' => 'Descripción'],
+            'Temario'                          => ['temario_tit' => 'Título', 'temario_desc' => 'Descripción'],
+            'Ponderaciones'                    => ['ponderaciones_tit' => 'Título', 'ponderaciones_desc' => 'Descripción'],
+            'Costos'                           => ['costos_tit' => 'Título', 'costos_desc' => 'Descripción'],
+            'Guía del postulante'              => ['guia-postulante_tit' => 'Título', 'guia-postulante_desc' => 'Descripción'],
+            'Guía de inscripción en línea'     => ['guia-inscripcion_tit' => 'Título', 'guia-inscripcion_desc' => 'Descripción'],
+            'Baremos · Deportistas calificados'=> ['baremos-deportistas_tit' => 'Título', 'baremos-deportistas_desc' => 'Descripción'],
+            'Baremos · Educación Física'       => ['baremos-efisica_tit' => 'Título', 'baremos-efisica_desc' => 'Descripción'],
+            'Modelo de voucher de pago'        => ['voucher_tit' => 'Título', 'voucher_desc' => 'Descripción'],
+            'Prospecto de admisión'            => ['prospecto_tit' => 'Título', 'prospecto_desc' => 'Descripción'],
+            'Prospecto de admisión 2'          => ['prospecto2_tit' => 'Título', 'prospecto2_desc' => 'Descripción'],
+        ],
+    ],
+
     'posgrado_cronograma' => [
         'menu'   => 'Posgrado · Cronograma',
         'icono'  => '📅',
