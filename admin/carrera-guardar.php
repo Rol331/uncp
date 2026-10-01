@@ -67,6 +67,13 @@ if (!medios_guardar($m)) {
 $t = textos_leer();
 if (!isset($t[$slug]) || !is_array($t[$slug])) { $t[$slug] = []; }
 
+// Banner de la carrera (nombre, área, título profesional, grado).
+foreach (['nombre' => 120, 'area' => 120, 'titulo_prof' => 140, 'grado' => 160] as $k => $max) {
+    if (array_key_exists('txt_' . $k, $_POST)) {
+        $t[$slug][$k] = limpiar_texto((string) $_POST['txt_' . $k], $max);
+    }
+}
+
 if (array_key_exists('txt_bajada', $_POST)) {
     $t[$slug]['bajada'] = limpiar_texto((string) $_POST['txt_bajada'], 220);
 }

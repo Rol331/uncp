@@ -13,6 +13,14 @@
       if (!t || !t[slug]) return;
       var d = t[slug];
 
+      // Banner: nombre, área, título profesional y grado (por data-cb).
+      ['nombre', 'area', 'titulo_prof', 'grado'].forEach(function (k) {
+        if (d[k]) {
+          var el = document.querySelector('[data-cb="' + k + '"]');
+          if (el) el.textContent = d[k];
+        }
+      });
+
       // Bajada del banner
       if (d.bajada) {
         var b = document.querySelector('.banner-interior .bajada');

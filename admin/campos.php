@@ -41,6 +41,12 @@ return [
                 'ben3_titulo' => 'Beneficio 3 · título', 'ben3_texto' => 'Beneficio 3 · texto',
                 'ben4_titulo' => 'Beneficio 4 · título', 'ben4_texto' => 'Beneficio 4 · texto',
             ],
+            'Tarjetas de acceso (portada)' => [
+                'acc1_tit' => 'Tarjeta 1 · título', 'acc1_desc' => 'Tarjeta 1 · descripción',
+                'acc2_tit' => 'Tarjeta 2 · título', 'acc2_desc' => 'Tarjeta 2 · descripción',
+                'acc3_tit' => 'Tarjeta 3 · título', 'acc3_desc' => 'Tarjeta 3 · descripción',
+                'acc4_tit' => 'Tarjeta 4 · título', 'acc4_desc' => 'Tarjeta 4 · descripción',
+            ],
             'Bloque final (¡Tu futuro comienza aquí!)' => [
                 'cta_titulo'    => 'Título',
                 'cta_texto'     => 'Texto',

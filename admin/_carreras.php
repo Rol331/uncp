@@ -148,6 +148,26 @@ function parse_labs(?string $h): array {
 }
 
 /** Texto actual: override de textos.json si existe, si no lo del HTML. */
+function parse_nombre(?string $h): string {
+    if ($h && preg_match('/<h1[^>]*>(.*?)<\/h1>/s', $h, $m)) return _limpiar_html_a_texto($m[1]);
+    return '';
+}
+
+function parse_area(?string $h): string {
+    if ($h && preg_match('/<span class="etiqueta"[^>]*>(.*?)<\/span>/s', $h, $m)) return _limpiar_html_a_texto($m[1]);
+    return '';
+}
+
+function parse_titprof(?string $h): string {
+    if ($h && preg_match('/<b>Título profesional<\/b>(?:<span[^>]*>)?(.*?)(?:<\/span>)?<\/div>/s', $h, $m)) return _limpiar_html_a_texto($m[1]);
+    return '';
+}
+
+function parse_grado(?string $h): string {
+    if ($h && preg_match('/<b>Grado académico<\/b>(?:<span[^>]*>)?(.*?)(?:<\/span>)?<\/div>/s', $h, $m)) return _limpiar_html_a_texto($m[1]);
+    return '';
+}
+
 function texto_actual(array $t, string $slug, string $campo, ?string $html) {
     if (isset($t[$slug][$campo])) return $t[$slug][$campo];
     if ($campo === 'bajada') return parse_bajada($html);
@@ -155,5 +175,9 @@ function texto_actual(array $t, string $slug, string $campo, ?string $html) {
     if ($campo === 'campo')  return parse_campo($html);
     if ($campo === 'plan')   return parse_plan($html);
     if ($campo === 'labs')   return parse_labs($html);
+    if ($campo === 'nombre')      return parse_nombre($html);
+    if ($campo === 'area')        return parse_area($html);
+    if ($campo === 'titulo_prof') return parse_titprof($html);
+    if ($campo === 'grado')       return parse_grado($html);
     return '';
 }

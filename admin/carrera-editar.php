@@ -17,6 +17,10 @@ $err    = $_GET['err'] ?? '';
 // Textos actuales (override o los del HTML).
 $t       = textos_leer();
 $html    = carrera_html($slug);
+$b_nombre  = texto_actual($t, $slug, 'nombre', $html);
+$b_area    = texto_actual($t, $slug, 'area', $html);
+$b_titprof = texto_actual($t, $slug, 'titulo_prof', $html);
+$b_grado   = texto_actual($t, $slug, 'grado', $html);
 $bajada  = texto_actual($t, $slug, 'bajada', $html);
 $perfil  = texto_actual($t, $slug, 'perfil', $html);
 $campo   = texto_actual($t, $slug, 'campo',  $html);
@@ -68,6 +72,32 @@ cabecera('carreras', $nombre, $slug);
         <?php else: ?>
           <p class="ayuda">Esta carrera no tiene galería.</p>
         <?php endif; ?>
+
+        <h3 class="sub-galeria">Banner</h3>
+        <fieldset class="doc">
+          <legend>Nombre de la carrera</legend>
+          <label class="campo">Título principal
+            <input type="text" name="txt_nombre" value="<?= htmlspecialchars((string) $b_nombre) ?>">
+          </label>
+        </fieldset>
+        <fieldset class="doc">
+          <legend>Área</legend>
+          <label class="campo">Etiqueta de área
+            <input type="text" name="txt_area" value="<?= htmlspecialchars((string) $b_area) ?>">
+          </label>
+        </fieldset>
+        <fieldset class="doc">
+          <legend>Título profesional</legend>
+          <label class="campo">
+            <input type="text" name="txt_titulo_prof" value="<?= htmlspecialchars((string) $b_titprof) ?>">
+          </label>
+        </fieldset>
+        <fieldset class="doc">
+          <legend>Grado académico</legend>
+          <label class="campo">
+            <input type="text" name="txt_grado" value="<?= htmlspecialchars((string) $b_grado) ?>">
+          </label>
+        </fieldset>
 
         <h3 class="sub-galeria">Textos</h3>
         <fieldset class="doc">
