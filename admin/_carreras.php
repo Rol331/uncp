@@ -22,11 +22,11 @@ function medios_leer(): array {
     if (is_file(RUTA_MEDIOSJSON)) {
         $d = json_decode((string) file_get_contents(RUTA_MEDIOSJSON), true);
         if (is_array($d)) {
-            $d += ['tarjetas' => [], 'banner' => [], 'galeria' => [], 'portada' => []];
+            $d += ['tarjetas' => [], 'banner' => [], 'galeria' => [], 'portada' => [], 'banner_pagina' => []];
             return $d;
         }
     }
-    return ['tarjetas' => [], 'banner' => [], 'galeria' => [], 'portada' => []];
+    return ['tarjetas' => [], 'banner' => [], 'galeria' => [], 'portada' => [], 'banner_pagina' => []];
 }
 
 function medios_guardar(array $m): bool {

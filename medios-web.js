@@ -27,6 +27,16 @@
         });
       }
 
+      // Banner de páginas internas (admisión, posgrado, cronograma, costos, inscripción).
+      var pagKey = {
+        'admision.html': 'adm', 'posgrado.html': 'pos', 'posgrado-cronograma.html': 'cro',
+        'posgrado-costos.html': 'cos', 'inscripcion.html': 'ins'
+      }[location.pathname.split('/').pop()];
+      if (pagKey && m.banner_pagina && m.banner_pagina[pagKey]) {
+        var bsg = document.querySelector('.banner-simple .bs-bg');
+        if (bsg) bsg.style.backgroundImage = "url('" + pre + m.banner_pagina[pagKey] + "')";
+      }
+
       // Portada: carrusel (3 .slide-bg) y tarjetas de acceso (4 .acceso), por orden.
       if (m.portada) {
         var bgs = document.querySelectorAll('.banner .slide .slide-bg');

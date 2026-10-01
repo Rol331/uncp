@@ -42,6 +42,16 @@
     "footer_whatsapp": "939 054 663",
     "footer_copyright": "© 2026 Universidad Nacional del Centro del Perú · Todos los derechos reservados."
   },
+  "banners": {
+    "adm_tit": "Primera Selección",
+    "adm_sub": "Toda la información oficial del proceso de admisión de pregrado: Huancayo y filiales Tarma y Satipo.",
+    "pos_tit": "Posgrado 2026-II",
+    "pos_sub": "Maestrías y doctorados de la Escuela de Posgrado de la UNCP: toda la información oficial del proceso de admisión.",
+    "cro_tit": "Cronograma Posgrado",
+    "cro_sub": "Las fechas oficiales del proceso de admisión 2026-II a maestrías y doctorados.",
+    "cos_tit": "Costos Posgrado",
+    "cos_sub": "El derecho de inscripción al proceso de admisión 2026-II de la Escuela de Posgrado."
+  },
   "documentos": {
     "cronograma": "https://drive.google.com/file/d/1cveQpPqhZVk_ut2s3gnpPiXq-Hn9nKkG/view?usp=sharing",
     "reglamento": "https://drive.google.com/file/d/1N7KTipN3p8KrinE__d3q87oZfDASEbfl/view?usp=sharing",
@@ -140,6 +150,13 @@
     "mod_nativas": "S/ 100.00 (Caja UNCP)",
     "mod_simulacro": "S/ 25.00 (Caja UNCP)",
     "mod_medico": "S/ 25.00 (Caja UNCP)"
+  },
+  "posgrado_documentos": {
+    "pos-prospecto": "https://drive.google.com/file/d/1CazEJW7UAE7crV3TvLICqckq4QVcHqyS/view",
+    "pos-doctorados": "https://drive.google.com/file/d/1d_oUhzM6WzdPWfXQwDvljPC_xmyS5s40/view",
+    "pos-maestrias": "https://drive.google.com/file/d/1DHG-EeGuouNROZ2eP2O6fUyaoA7GfYwi/view",
+    "pos-vacantes": "https://drive.google.com/file/d/1BM3PPinlHoEFJo5JTMcJmHHHEqIHul6A/view",
+    "pos-perfil": "#"
   },
   "posgrado_resultados": {
     "res-doctorado": "https://drive.google.com/file/d/1CNYwP8uSObubEEnnefPG2BwMRoazM_I-/view?usp=sharing",

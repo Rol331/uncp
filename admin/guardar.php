@@ -117,6 +117,28 @@ if ($sel === 'portada') {
     }
 }
 
+// Imágenes de los banners de páginas internas -> medios.json
+if ($sel === 'banners') {
+    require_once __DIR__ . '/_carreras.php';
+    require_once __DIR__ . '/_imagen.php';
+    if (imagen_soportada()) {
+        $m  = medios_leer();
+        $ts = date('YmdHis');
+        foreach (['adm', 'ins', 'pos', 'cro', 'cos'] as $pk) {
+            $file = $_FILES['file_banner_' . $pk] ?? null;
+            if (!$file || ($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK || ($file['size'] ?? 0) <= 0) continue;
+            if ($file['size'] > 30 * 1024 * 1024) volver($sel, 'Una imagen supera el máximo de 30 MB.');
+            $rel  = URL_MEDIOS . "/banner/pagina-$pk-$ts.jpg";
+            $dest = __DIR__ . '/../' . $rel;
+            [$okImg, $msg] = procesar_imagen($file['tmp_name'], $dest, TAM_BANNER[0], TAM_BANNER[1]);
+            if (!$okImg) volver($sel, $msg);
+            borrar_override($m['banner_pagina'][$pk] ?? null);
+            $m['banner_pagina'][$pk] = $rel;
+        }
+        medios_guardar($m);
+    }
+}
+
 if (!guardar_datos($datos)) {
     volver($sel, 'No se pudieron guardar los cambios (revisa permisos de escritura).');
 }

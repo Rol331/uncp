@@ -417,6 +417,24 @@ tres textos: **bajada del banner, perfil del egresado y campo ocupacional** (un 
   sean clicables. Las 2 carreras sin galería (`agronomia-tropical`, `ingenieria-ambiental`) llevan
   un `.galeria` **oculto** que se muestra al subir fotos.
 
+## Más secciones editables (01/10/2026)
+
+- **Tarjetas de acceso (portada):** textos de las 4 tarjetas de `#accesos` → grupo en «Inicio ·
+  Portada» (`acc1_tit`…`acc4_desc`, `data-portada`).
+- **Banner de cada carrera:** nombre, área, título profesional y grado → en `carrera-editar.php`
+  (grupo «Banner»). En el HTML van con `data-cb="nombre|area|titulo_prof|grado"`; `textos-web.js`
+  los aplica desde `textos.json[slug]`.
+- **Banners de páginas internas** (sección «Banners de páginas»): título, subtítulo e **imagen** de
+  los banners de `admision`, `posgrado`, `posgrado-cronograma`, `posgrado-costos` e `inscripcion`
+  (de inscripción solo la imagen; su texto está en «Inscripción · Página»). Textos por
+  `data-banner="adm_tit|adm_sub|pos_…|cro_…|cos_…"` (clave `banners` en el JSON, vía `datos-web.js`).
+  Imágenes en `medios['banner_pagina'][adm|ins|pos|cro|cos]`, aplicadas por `medios-web.js`
+  (cargado también en esas 5 páginas) sobre `.banner-simple .bs-bg`.
+- **Documentos de posgrado** (sección «Posgrado · Documentos»): prospecto, doctorados, maestrías,
+  vacantes y perfil del proyecto, con `data-doc="pos-…"`; `datos-web.js` junta `documentos` +
+  `posgrado_resultados` + `posgrado_documentos` para el `[data-doc]`. El «Perfil del proyecto» pasó
+  de `doc-inactivo` a enlace editable (link `#` pendiente).
+
 ## Git y publicación
 
 - Rama principal: `main`. Repo: `https://github.com/Rol331/uncp.git`.

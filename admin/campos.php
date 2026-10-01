@@ -72,6 +72,21 @@ return [
         ],
     ],
 
+    'banners' => [
+        'menu'   => 'Banners de páginas',
+        'icono'  => '🖼️',
+        'titulo' => 'Banners de las páginas internas',
+        'ayuda'  => 'Título, subtítulo e imagen del banner de cada página. (El texto del banner '
+                  . 'de Inscripción se edita en «Inscripción · Página».)',
+        'tipo'   => 'textos',
+        'grupos' => [
+            'Pregrado (admisión)'   => ['adm_tit' => 'Título', 'adm_sub' => 'Subtítulo'],
+            'Posgrado'              => ['pos_tit' => 'Título', 'pos_sub' => 'Subtítulo'],
+            'Posgrado · Cronograma' => ['cro_tit' => 'Título', 'cro_sub' => 'Subtítulo'],
+            'Posgrado · Costos'     => ['cos_tit' => 'Título', 'cos_sub' => 'Subtítulo'],
+        ],
+    ],
+
     'documentos' => [
         'menu'   => 'Admisión · Documentos',
         'icono'  => '📄',
@@ -219,6 +234,21 @@ return [
             'mod_nativas'            => 'Estudiantes comunidades nativas',
             'mod_simulacro'          => 'Simulacro examen admisión',
             'mod_medico'             => 'Examen médico',
+        ],
+    ],
+
+    'posgrado_documentos' => [
+        'menu'   => 'Posgrado · Documentos',
+        'icono'  => '📚',
+        'titulo' => 'Documentos de Posgrado',
+        'ayuda'  => 'Sube el PDF o pega el enlace de cada documento de posgrado.html.',
+        'tipo'   => 'documentos',
+        'items'  => [
+            'pos-prospecto'  => 'Prospecto posgrado',
+            'pos-doctorados' => 'Doctorados',
+            'pos-maestrias'  => 'Maestrías',
+            'pos-vacantes'   => 'Vacantes',
+            'pos-perfil'     => 'Perfil del proyecto de investigación',
         ],
     ],
 

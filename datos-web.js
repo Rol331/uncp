@@ -9,11 +9,15 @@
     .then(function (d) {
       if (!d) return;
 
+      // Banners de páginas internas: <h1/p data-banner="clave">.
+      aplicar(d.banners, 'data-banner', function (el, valor) { el.textContent = valor; });
+
       // Documentos: <a data-doc="clave"> toma su enlace del JSON. Se juntan los de
       // admisión y los de resultados de posgrado (sus claves no se repiten).
       var docs = {};
       if (d.documentos) for (var a in d.documentos) docs[a] = d.documentos[a];
       if (d.posgrado_resultados) for (var b in d.posgrado_resultados) docs[b] = d.posgrado_resultados[b];
+      if (d.posgrado_documentos) for (var pd in d.posgrado_documentos) docs[pd] = d.posgrado_documentos[pd];
       aplicar(docs, 'data-doc', function (el, valor) {
         el.setAttribute('href', valor);
       });

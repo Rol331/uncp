@@ -115,6 +115,30 @@ cabecera($sel);
           <?php endfor; ?>
         <?php endif; ?>
 
+        <?php if ($sel === 'banners'):
+            $m = medios_leer();
+            $bOrig = [
+                'adm' => ['Pregrado (admisión)', 'imagenes/portada/slide-1.jpg'],
+                'ins' => ['Inscripción', 'imagenes/portada/slide-3.jpg'],
+                'pos' => ['Posgrado', 'imagenes/banner/derecho-y-ciencias-politicas.jpg'],
+                'cro' => ['Posgrado · Cronograma', 'imagenes/banner/derecho-y-ciencias-politicas.jpg'],
+                'cos' => ['Posgrado · Costos', 'imagenes/banner/derecho-y-ciencias-politicas.jpg'],
+            ];
+        ?>
+          <h3 class="sub-galeria">Imágenes de los banners</h3>
+          <?php foreach ($bOrig as $pk => $info):
+              $u = isset($m['banner_pagina'][$pk]) ? '../' . $m['banner_pagina'][$pk] : '../' . $info[1]; ?>
+            <fieldset class="doc">
+              <legend><?= htmlspecialchars($info[0]) ?></legend>
+              <p class="actual">1600 × 900 · se ajusta sola al subirla.</p>
+              <div class="preview" style="background-image:url('<?= htmlspecialchars($u) ?>')"></div>
+              <label class="campo">Subir imagen nueva <span class="opc">(JPG o PNG, opcional)</span>
+                <input type="file" name="file_banner_<?= htmlspecialchars($pk) ?>" accept="image/jpeg,image/png">
+              </label>
+            </fieldset>
+          <?php endforeach; ?>
+        <?php endif; ?>
+
         <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
         <div class="acciones"><button type="submit">Guardar cambios</button></div>
       </form>
