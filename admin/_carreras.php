@@ -168,8 +168,24 @@ function parse_grado(?string $h): string {
     return '';
 }
 
+// Lee la tarjeta de un programa en la portada (index.html): fac + descripción.
+function _portada_card(string $slug): array {
+    static $html = null;
+    if ($html === null) $html = @file_get_contents(__DIR__ . '/../index.html') ?: '';
+    $sq = preg_quote($slug, '/');
+    if (preg_match('/<article class="carrera[^"]*">(.*?carreras\/' . $sq . '\.html.*?)<\/article>/s', $html, $m)) {
+        $blk = $m[1];
+        $fac  = preg_match('/<span class="fac">(.*?)<\/span>/s', $blk, $mf) ? _limpiar_html_a_texto($mf[1]) : '';
+        $desc = preg_match('/<p>(.*?)<\/p>/s', $blk, $md) ? _limpiar_html_a_texto($md[1]) : '';
+        return ['fac' => $fac, 'desc' => $desc];
+    }
+    return ['fac' => '', 'desc' => ''];
+}
+
 function texto_actual(array $t, string $slug, string $campo, ?string $html) {
     if (isset($t[$slug][$campo])) return $t[$slug][$campo];
+    if ($campo === 'portada_fac')  return _portada_card($slug)['fac'];
+    if ($campo === 'portada_desc') return _portada_card($slug)['desc'];
     if ($campo === 'bajada') return parse_bajada($html);
     if ($campo === 'perfil') return parse_perfil($html);
     if ($campo === 'campo')  return parse_campo($html);

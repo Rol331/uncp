@@ -21,6 +21,8 @@ $b_nombre  = texto_actual($t, $slug, 'nombre', $html);
 $b_area    = texto_actual($t, $slug, 'area', $html);
 $b_titprof = texto_actual($t, $slug, 'titulo_prof', $html);
 $b_grado   = texto_actual($t, $slug, 'grado', $html);
+$p_fac     = texto_actual($t, $slug, 'portada_fac', $html);
+$p_desc    = texto_actual($t, $slug, 'portada_desc', $html);
 $bajada  = texto_actual($t, $slug, 'bajada', $html);
 $perfil  = texto_actual($t, $slug, 'perfil', $html);
 $campo   = texto_actual($t, $slug, 'campo',  $html);
@@ -96,6 +98,20 @@ cabecera('carreras', $nombre, $slug);
           <legend>Grado académico</legend>
           <label class="campo">
             <input type="text" name="txt_grado" value="<?= htmlspecialchars((string) $b_grado) ?>">
+          </label>
+        </fieldset>
+
+        <h3 class="sub-galeria">Tarjeta en la portada</h3>
+        <fieldset class="doc">
+          <legend>Título corto (fac)</legend>
+          <label class="campo">Ej.: Ingeniero Agrónomo
+            <input type="text" name="txt_portada_fac" value="<?= htmlspecialchars((string) $p_fac) ?>">
+          </label>
+        </fieldset>
+        <fieldset class="doc">
+          <legend>Descripción breve</legend>
+          <label class="campo">Texto corto de la tarjeta de la portada
+            <textarea name="txt_portada_desc" rows="3"><?= htmlspecialchars((string) $p_desc) ?></textarea>
           </label>
         </fieldset>
 

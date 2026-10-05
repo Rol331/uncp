@@ -435,6 +435,20 @@ tres textos: **bajada del banner, perfil del egresado y campo ocupacional** (un 
   `posgrado_resultados` + `posgrado_documentos` para el `[data-doc]`. El «Perfil del proyecto» pasó
   de `doc-inactivo` a enlace editable (link `#` pendiente).
 
+## Más editable (05/10/2026)
+
+Todo en el grupo «Inicio · Portada» salvo lo de carreras:
+- **Botones de los 3 slides del hero** (texto + enlace): `s1b1…s3b2` (`data-portada` /
+  `data-portada-href`).
+- **Títulos de sección de la portada** (programas, accesos, ¿por qué?, video): rótulo + título +
+  subtítulo (`sec_*`).
+- **Video institucional**: campo `video_id` (acepta enlace o ID de Drive); `datos-web.js` saca el
+  ID y arma `…/file/d/ID/preview` sobre el iframe con `data-portada-video`.
+- **39 tarjetas de programas de la portada**: nombre (reusa `nombre`), título corto (`portada_fac`)
+  y descripción (`portada_desc`), editables en `carrera-editar.php`. `portada-carreras.js` (solo en
+  `index.html`) las aplica leyendo `textos.json` y deduciendo el slug del enlace de cada tarjeta.
+  Los defaults para el formulario se leen de `index.html` con `_portada_card()`.
+
 ## Git y publicación
 
 - Rama principal: `main`. Repo: `https://github.com/Rol331/uncp.git`.
