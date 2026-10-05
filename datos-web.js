@@ -85,10 +85,17 @@
         aplicar(d.portada, 'data-portada', function (el, valor) {
           el.textContent = valor;
         });
-        // Enlaces (redes sociales del footer, etc.).
+        // Enlaces (redes sociales del footer, botones, etc.).
         aplicar(d.portada, 'data-portada-href', function (el, valor) {
           el.setAttribute('href', valor);
         });
+        // Video institucional: del enlace/ID de Drive se arma la URL /preview.
+        if (d.portada.video_id) {
+          var vm = String(d.portada.video_id).match(/[-\w]{25,}/);
+          var vid = vm ? vm[0] : '';
+          var ifr = document.querySelector('[data-portada-video]');
+          if (ifr && vid) ifr.src = 'https://drive.google.com/file/d/' + vid + '/preview';
+        }
         // Números de las estadísticas.
         document.querySelectorAll('[data-portada-num]').forEach(function (el) {
           var k = el.getAttribute('data-portada-num');

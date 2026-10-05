@@ -47,6 +47,23 @@ return [
                 'acc3_tit' => 'Tarjeta 3 · título', 'acc3_desc' => 'Tarjeta 3 · descripción',
                 'acc4_tit' => 'Tarjeta 4 · título', 'acc4_desc' => 'Tarjeta 4 · descripción',
             ],
+            'Botones del carrusel (hero)' => [
+                's1b1_txt' => 'Slide 1 · botón 1 · texto', 's1b1_link' => 'Slide 1 · botón 1 · enlace',
+                's1b2_txt' => 'Slide 1 · botón 2 · texto', 's1b2_link' => 'Slide 1 · botón 2 · enlace',
+                's2b1_txt' => 'Slide 2 · botón 1 · texto', 's2b1_link' => 'Slide 2 · botón 1 · enlace',
+                's2b2_txt' => 'Slide 2 · botón 2 · texto', 's2b2_link' => 'Slide 2 · botón 2 · enlace',
+                's3b1_txt' => 'Slide 3 · botón 1 · texto', 's3b1_link' => 'Slide 3 · botón 1 · enlace',
+                's3b2_txt' => 'Slide 3 · botón 2 · texto', 's3b2_link' => 'Slide 3 · botón 2 · enlace',
+            ],
+            'Títulos de sección (portada)' => [
+                'sec_carreras_tit' => 'Programas · título', 'sec_carreras_sub' => 'Programas · subtítulo',
+                'sec_accesos_rotulo' => 'Accesos · rótulo', 'sec_accesos_tit' => 'Accesos · título', 'sec_accesos_sub' => 'Accesos · subtítulo',
+                'sec_porque_rotulo' => '¿Por qué? · rótulo', 'sec_porque_tit' => '¿Por qué? · título', 'sec_porque_sub' => '¿Por qué? · subtítulo',
+                'sec_video_rotulo' => 'Video · rótulo', 'sec_video_tit' => 'Video · título', 'sec_video_sub' => 'Video · subtítulo',
+            ],
+            'Video institucional' => [
+                'video_id' => 'Enlace o ID del video de Google Drive',
+            ],
             'Bloque final (¡Tu futuro comienza aquí!)' => [
                 'cta_titulo'    => 'Título',
                 'cta_texto'     => 'Texto',
