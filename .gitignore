@@ -20,6 +20,8 @@ img-carreras/
 /medios/*
 !/medios/.htaccess
 /textos.json
+/leads/*
+!/leads/.htaccess
 
 # Sistema
 .DS_Store

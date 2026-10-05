@@ -163,6 +163,8 @@
   <div class="banner-form-wrap">
     <div class="contenedor">
       <form class="banner-form" id="formInfo">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+               style="position:absolute;left:-9999px;opacity:0;height:0;width:0;pointer-events:none">
         <div class="form-campos">
           <h3>Déjanos tu información</h3>
           <p class="sub">Un asesor te contactará con todos los detalles de admisión.</p>
@@ -943,9 +945,24 @@
   const formInfo = document.getElementById('formInfo');
   formInfo.addEventListener('submit', (e)=>{
     e.preventDefault();
-    // Aquí luego puedes enviar los datos a tu servidor / correo.
-    formInfo.querySelector('.form-campos').style.display = 'none';
-    document.getElementById('formOk').classList.add('visible');
+    const btn = formInfo.querySelector('button[type=submit]');
+    const orig = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    fetch('lead.php', { method:'POST', body:new FormData(formInfo) })
+      .then(r => r.json())
+      .then(res => {
+        if (res && res.ok) {
+          formInfo.querySelector('.form-campos').style.display = 'none';
+          document.getElementById('formOk').classList.add('visible');
+        } else {
+          btn.disabled = false; btn.textContent = orig;
+          alert('No se pudo enviar. Revisa tus datos e inténtalo de nuevo.');
+        }
+      })
+      .catch(() => {
+        btn.disabled = false; btn.textContent = orig;
+        alert('No se pudo enviar. Inténtalo más tarde.');
+      });
   });
 </script>
 

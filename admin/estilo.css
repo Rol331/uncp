@@ -223,3 +223,12 @@ body.login {
   .menu a { flex: 1 1 auto; text-align: center; }
   .contenido { max-width: 100%; }
 }
+
+/* Solicitudes (leads) */
+.btn-descarga{display:inline-block;background:var(--verde);color:#fff;text-decoration:none;font-weight:700;padding:.6rem 1.1rem;border-radius:10px}
+.btn-descarga:hover{background:var(--verde-2)}
+.tabla-scroll{overflow-x:auto;border:1px solid var(--linea);border-radius:12px;background:#fff;box-shadow:var(--sombra)}
+.tabla-leads{border-collapse:collapse;width:100%;font-size:.85rem}
+.tabla-leads th,.tabla-leads td{padding:.55rem .7rem;text-align:left;border-bottom:1px solid var(--linea);white-space:nowrap}
+.tabla-leads th{background:var(--verde);color:#fff;position:sticky;top:0}
+.tabla-leads tr:nth-child(even) td{background:var(--crema)}

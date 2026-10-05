@@ -11,7 +11,7 @@ function cabecera(string $activo, string $titulo = 'Datos de Admisión', string 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel · <?= htmlspecialchars($titulo) ?></title>
-  <link rel="stylesheet" href="estilo.css?v=8">
+  <link rel="stylesheet" href="estilo.css?v=9">
 </head>
 <body>
   <header class="barra">
@@ -51,6 +51,14 @@ function cabecera(string $activo, string $titulo = 'Datos de Admisión', string 
           <?php endforeach; ?>
         </div>
       <?php endif; ?>
+      <a href="leads.php" class="<?= $activo === 'leads' ? 'activo' : '' ?>">
+        <span class="mi-ic">📨</span>
+        <span class="mi-tx">Solicitudes</span>
+      </a>
+      <a href="respaldo.php" class="<?= $activo === 'respaldo' ? 'activo' : '' ?>">
+        <span class="mi-ic">💾</span>
+        <span class="mi-tx">Respaldo</span>
+      </a>
     </aside>
 
     <main class="contenido">
