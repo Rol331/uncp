@@ -150,6 +150,10 @@ return [
             'Botones · Posgrado'            => ['pos_b1_txt' => 'Botón 1 · texto', 'pos_b1_link' => 'Botón 1 · enlace'],
             'Botones · Posgrado Cronograma' => ['cro_b1_txt' => 'Botón 1 · texto', 'cro_b1_link' => 'Botón 1 · enlace', 'cro_b2_txt' => 'Botón 2 · texto', 'cro_b2_link' => 'Botón 2 · enlace'],
             'Botones · Posgrado Costos'     => ['cos_b1_txt' => 'Botón 1 · texto', 'cos_b1_link' => 'Botón 1 · enlace', 'cos_b2_txt' => 'Botón 2 · texto', 'cos_b2_link' => 'Botón 2 · enlace'],
+            'Prospecto'             => ['pro_tit' => 'Título', 'pro_sub' => 'Subtítulo'],
+            'Resultados'            => ['res_tit' => 'Título', 'res_sub' => 'Subtítulo'],
+            'Botones · Prospecto'   => ['pro_b1_txt' => 'Botón 1 · texto', 'pro_b1_link' => 'Botón 1 · enlace', 'pro_b2_txt' => 'Botón 2 · texto', 'pro_b2_link' => 'Botón 2 · enlace'],
+            'Botones · Resultados'  => ['res_b1_txt' => 'Botón 1 · texto', 'res_b1_link' => 'Botón 1 · enlace', 'res_b2_txt' => 'Botón 2 · texto', 'res_b2_link' => 'Botón 2 · enlace'],
         ],
     ],
 

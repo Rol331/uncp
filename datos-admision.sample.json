@@ -150,7 +150,19 @@
     "cos_b1_txt": "Ver el cronograma",
     "cos_b1_link": "posgrado-cronograma.html",
     "cos_b2_txt": "Volver a Posgrado",
-    "cos_b2_link": "posgrado.html"
+    "cos_b2_link": "posgrado.html",
+    "pro_tit": "Prospecto de Admisión 2026-II",
+    "pro_sub": "Modalidades, vacantes, temario, cronograma y costos del proceso, en un solo documento.",
+    "pro_b1_txt": "Descargar el prospecto (PDF)",
+    "pro_b1_link": "https://drive.google.com/file/d/1tqgMdpMqXMnMaxNtdWzaMPL4I5DOa6M0/view",
+    "pro_b2_txt": "Ver qué contiene",
+    "pro_b2_link": "#contenido",
+    "res_tit": "Resultados de admisión",
+    "res_sub": "Consulta el resultado del examen de admisión y los pasos que siguen si ingresaste.",
+    "res_b1_txt": "Consultar resultado",
+    "res_b1_link": "#consulta",
+    "res_b2_txt": "Ver cronograma",
+    "res_b2_link": "admision.html#documentos"
   },
   "documentos": {
     "cronograma": "https://drive.google.com/file/d/1cveQpPqhZVk_ut2s3gnpPiXq-Hn9nKkG/view?usp=sharing",

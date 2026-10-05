@@ -124,7 +124,7 @@ if ($sel === 'banners') {
     if (imagen_soportada()) {
         $m  = medios_leer();
         $ts = date('YmdHis');
-        foreach (['adm', 'ins', 'pos', 'cro', 'cos'] as $pk) {
+        foreach (['adm', 'ins', 'pos', 'cro', 'cos', 'pro', 'res'] as $pk) {
             $file = $_FILES['file_banner_' . $pk] ?? null;
             if (!$file || ($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK || ($file['size'] ?? 0) <= 0) continue;
             if ($file['size'] > 30 * 1024 * 1024) volver($sel, 'Una imagen supera el máximo de 30 MB.');

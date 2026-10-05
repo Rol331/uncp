@@ -30,7 +30,8 @@
       // Banner de páginas internas (admisión, posgrado, cronograma, costos, inscripción).
       var pagKey = {
         'admision.html': 'adm', 'posgrado.html': 'pos', 'posgrado-cronograma.html': 'cro',
-        'posgrado-costos.html': 'cos', 'inscripcion.html': 'ins'
+        'posgrado-costos.html': 'cos', 'inscripcion.html': 'ins',
+        'prospecto.html': 'pro', 'resultados.html': 'res'
       }[location.pathname.split('/').pop()];
       if (pagKey && m.banner_pagina && m.banner_pagina[pagKey]) {
         var bsg = document.querySelector('.banner-simple .bs-bg');

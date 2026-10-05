@@ -123,6 +123,8 @@ cabecera($sel);
                 'pos' => ['Posgrado', 'imagenes/banner/derecho-y-ciencias-politicas.jpg'],
                 'cro' => ['Posgrado · Cronograma', 'imagenes/banner/derecho-y-ciencias-politicas.jpg'],
                 'cos' => ['Posgrado · Costos', 'imagenes/banner/derecho-y-ciencias-politicas.jpg'],
+                'pro' => ['Prospecto', 'imagenes/portada/slide-2.jpg'],
+                'res' => ['Resultados', 'imagenes/tarjetas/ingenieria-de-sistemas.jpg'],
             ];
         ?>
           <h3 class="sub-galeria">Imágenes de los banners</h3>
