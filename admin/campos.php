@@ -202,6 +202,20 @@ return [
         ],
     ],
 
+    'carreras_botones' => [
+        'menu'   => 'Carreras · Botones',
+        'icono'  => '🔘',
+        'titulo' => 'Botones de las páginas de carrera',
+        'ayuda'  => 'Aplican a las 39 carreras a la vez. Para enlaces internos usa ../pagina.html '
+                  . '(ej. ../inscripcion.html). Para enlaces externos, la URL completa (https://…).',
+        'tipo'   => 'textos',
+        'grupos' => [
+            'Cómo postular (banner)'        => ['postular_txt' => 'Texto', 'postular_link' => 'Enlace'],
+            'Solicitar información (banner)' => ['info_txt' => 'Texto', 'info_link' => 'Enlace'],
+            'Inscríbete en línea (ficha)'    => ['inscribir_txt' => 'Texto', 'inscribir_link' => 'Enlace'],
+        ],
+    ],
+
     'posgrado_cronograma' => [
         'menu'   => 'Posgrado · Cronograma',
         'icono'  => '📅',

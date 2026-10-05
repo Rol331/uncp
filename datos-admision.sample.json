@@ -195,6 +195,14 @@
     "prospecto2_tit": "Prospecto de admisión 2",
     "prospecto2_desc": "Descarga el segundo prospecto del proceso."
   },
+  "carreras_botones": {
+    "postular_txt": "Cómo postular",
+    "postular_link": "../inscripcion.html#pasos",
+    "info_txt": "Solicitar información",
+    "info_link": "../index.html#inicio",
+    "inscribir_txt": "Inscríbete en línea",
+    "inscribir_link": "https://erpadmision.uncp.edu.pe/inscripcion"
+  },
   "posgrado_cronograma": {
     "inscripciones": "Del 13 de julio al 22 de agosto de 2026.",
     "evaluacion": "Domingo 23 de agosto de 2026.",

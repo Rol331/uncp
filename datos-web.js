@@ -16,6 +16,10 @@
       // Títulos de sección de páginas internas: <span/h2/p data-sec="clave">.
       aplicar(d.secciones, 'data-sec', function (el, valor) { el.textContent = valor; });
 
+      // Botones de las páginas de carrera (iguales en las 39): data-cbtn / data-cbtn-href.
+      aplicar(d.carreras_botones, 'data-cbtn', function (el, valor) { el.textContent = valor; });
+      aplicar(d.carreras_botones, 'data-cbtn-href', function (el, valor) { el.setAttribute('href', valor); });
+
       // SEO: título de pestaña y meta descripción según la página.
       if (d.seo) {
         var pg = {

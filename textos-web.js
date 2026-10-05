@@ -13,6 +13,13 @@
       if (!t || !t[slug]) return;
       var d = t[slug];
 
+      // SEO de la carrera: título de pestaña y meta descripción.
+      if (d.seo_title) document.title = d.seo_title;
+      if (d.seo_desc) {
+        var mdc = document.querySelector('meta[name="description"]');
+        if (mdc) mdc.setAttribute('content', d.seo_desc);
+      }
+
       // Banner: nombre, área, título profesional y grado (por data-cb).
       ['nombre', 'area', 'titulo_prof', 'grado'].forEach(function (k) {
         if (d[k]) {

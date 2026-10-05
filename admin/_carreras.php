@@ -182,10 +182,21 @@ function _portada_card(string $slug): array {
     return ['fac' => '', 'desc' => ''];
 }
 
+function parse_seo_title(?string $h): string {
+    if ($h && preg_match('/<title>(.*?)<\/title>/s', $h, $m)) return _limpiar_html_a_texto($m[1]);
+    return '';
+}
+function parse_seo_desc(?string $h): string {
+    if ($h && preg_match('/<meta name="description" content="(.*?)"/s', $h, $m)) return _limpiar_html_a_texto($m[1]);
+    return '';
+}
+
 function texto_actual(array $t, string $slug, string $campo, ?string $html) {
     if (isset($t[$slug][$campo])) return $t[$slug][$campo];
     if ($campo === 'portada_fac')  return _portada_card($slug)['fac'];
     if ($campo === 'portada_desc') return _portada_card($slug)['desc'];
+    if ($campo === 'seo_title') return parse_seo_title($html);
+    if ($campo === 'seo_desc')  return parse_seo_desc($html);
     if ($campo === 'bajada') return parse_bajada($html);
     if ($campo === 'perfil') return parse_perfil($html);
     if ($campo === 'campo')  return parse_campo($html);

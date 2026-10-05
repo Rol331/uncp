@@ -23,6 +23,8 @@ $b_titprof = texto_actual($t, $slug, 'titulo_prof', $html);
 $b_grado   = texto_actual($t, $slug, 'grado', $html);
 $p_fac     = texto_actual($t, $slug, 'portada_fac', $html);
 $p_desc    = texto_actual($t, $slug, 'portada_desc', $html);
+$seo_title = texto_actual($t, $slug, 'seo_title', $html);
+$seo_desc  = texto_actual($t, $slug, 'seo_desc', $html);
 $bajada  = texto_actual($t, $slug, 'bajada', $html);
 $perfil  = texto_actual($t, $slug, 'perfil', $html);
 $campo   = texto_actual($t, $slug, 'campo',  $html);
@@ -156,6 +158,20 @@ cabecera('carreras', $nombre, $slug);
           <legend>Laboratorios de enseñanza</legend>
           <label class="campo">Uno por línea
             <textarea name="txt_labs" rows="5"><?= htmlspecialchars($labsTxt) ?></textarea>
+          </label>
+        </fieldset>
+
+        <h3 class="sub-galeria">SEO</h3>
+        <fieldset class="doc">
+          <legend>Título de pestaña</legend>
+          <label class="campo">
+            <input type="text" name="txt_seo_title" value="<?= htmlspecialchars((string) $seo_title) ?>">
+          </label>
+        </fieldset>
+        <fieldset class="doc">
+          <legend>Descripción (meta)</legend>
+          <label class="campo">Para buscadores
+            <textarea name="txt_seo_desc" rows="3"><?= htmlspecialchars((string) $seo_desc) ?></textarea>
           </label>
         </fieldset>
 

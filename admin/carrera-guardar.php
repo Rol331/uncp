@@ -69,7 +69,8 @@ if (!isset($t[$slug]) || !is_array($t[$slug])) { $t[$slug] = []; }
 
 // Banner de la carrera + tarjeta en la portada.
 foreach (['nombre' => 120, 'area' => 120, 'titulo_prof' => 140, 'grado' => 160,
-          'portada_fac' => 120, 'portada_desc' => 300] as $k => $max) {
+          'portada_fac' => 120, 'portada_desc' => 300,
+          'seo_title' => 160, 'seo_desc' => 300] as $k => $max) {
     if (array_key_exists('txt_' . $k, $_POST)) {
         $t[$slug][$k] = limpiar_texto((string) $_POST['txt_' . $k], $max);
     }
