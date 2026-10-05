@@ -115,6 +115,24 @@ return [
         ],
     ],
 
+    'seo' => [
+        'menu'       => 'SEO (título y descripción)',
+        'icono'      => '🔎',
+        'titulo'     => 'SEO por página',
+        'ayuda'      => 'Título de pestaña y descripción (para buscadores) de cada página.',
+        'tipo'       => 'textos',
+        'multilinea' => true,
+        'grupos'     => [
+            'Portada' => ['home_title' => 'Título de pestaña', 'home_desc' => 'Descripción (meta)'],
+            'Admisión' => ['adm_title' => 'Título de pestaña', 'adm_desc' => 'Descripción (meta)'],
+            'Inscripción' => ['ins_title' => 'Título de pestaña', 'ins_desc' => 'Descripción (meta)'],
+            'Posgrado' => ['pos_title' => 'Título de pestaña', 'pos_desc' => 'Descripción (meta)'],
+            'Posgrado · Cronograma' => ['cro_title' => 'Título de pestaña', 'cro_desc' => 'Descripción (meta)'],
+            'Posgrado · Costos' => ['cos_title' => 'Título de pestaña', 'cos_desc' => 'Descripción (meta)'],
+            'Prospecto' => ['pro_title' => 'Título de pestaña', 'pro_desc' => 'Descripción (meta)'],
+            'Resultados' => ['res_title' => 'Título de pestaña', 'res_desc' => 'Descripción (meta)'],
+        ],
+    ],
     'banners' => [
         'menu'   => 'Banners de páginas',
         'icono'  => '🖼️',
@@ -127,6 +145,11 @@ return [
             'Posgrado'              => ['pos_tit' => 'Título', 'pos_sub' => 'Subtítulo'],
             'Posgrado · Cronograma' => ['cro_tit' => 'Título', 'cro_sub' => 'Subtítulo'],
             'Posgrado · Costos'     => ['cos_tit' => 'Título', 'cos_sub' => 'Subtítulo'],
+            'Botones · Pregrado'            => ['adm_b1_txt' => 'Botón 1 · texto', 'adm_b1_link' => 'Botón 1 · enlace', 'adm_b2_txt' => 'Botón 2 · texto', 'adm_b2_link' => 'Botón 2 · enlace'],
+            'Botones · Inscripción'         => ['ins_b1_txt' => 'Botón 1 · texto', 'ins_b1_link' => 'Botón 1 · enlace', 'ins_b2_txt' => 'Botón 2 · texto', 'ins_b2_link' => 'Botón 2 · enlace'],
+            'Botones · Posgrado'            => ['pos_b1_txt' => 'Botón 1 · texto', 'pos_b1_link' => 'Botón 1 · enlace'],
+            'Botones · Posgrado Cronograma' => ['cro_b1_txt' => 'Botón 1 · texto', 'cro_b1_link' => 'Botón 1 · enlace', 'cro_b2_txt' => 'Botón 2 · texto', 'cro_b2_link' => 'Botón 2 · enlace'],
+            'Botones · Posgrado Costos'     => ['cos_b1_txt' => 'Botón 1 · texto', 'cos_b1_link' => 'Botón 1 · enlace', 'cos_b2_txt' => 'Botón 2 · texto', 'cos_b2_link' => 'Botón 2 · enlace'],
         ],
     ],
 

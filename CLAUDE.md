@@ -449,6 +449,20 @@ Todo en el grupo «Inicio · Portada» salvo lo de carreras:
   `index.html`) las aplica leyendo `textos.json` y deduciendo el slug del enlace de cada tarjeta.
   Los defaults para el formulario se leen de `index.html` con `_portada_card()`.
 
+## Formulario, respaldo, botones de banner y SEO (05/10/2026)
+
+- **Formulario de la portada → leads:** `lead.php` guarda cada solicitud en `leads/leads.csv`
+  (carpeta con `.htaccess` deny) y avisa por correo (best-effort, `mail()`), con honeypot anti-spam.
+  El `<form id="formInfo">` de `index.html` hace `fetch('lead.php')`. Se ven/descargan en el panel
+  («Solicitudes», `admin/leads.php`). `leads/` está en `.gitignore`.
+- **Respaldo:** `admin/respaldo.php` («Respaldo») descarga un ZIP con `datos-admision.json`,
+  `textos.json`, `medios.json` y las carpetas `medios/`, `documentos/`, `leads/` (ZipArchive).
+- **Botones de banners internos:** texto + enlace, con `data-banner` / `data-banner-href` (grupos
+  «Botones · …» en la sección «Banners de páginas»). `datos-web.js` aplica también `data-banner-href`.
+- **SEO:** sección «SEO (título y descripción)» (clave `seo`), título de pestaña + meta description
+  de 8 páginas; `datos-web.js` fija `document.title` y el `<meta name=description>` según la página.
+  (Es override por JS; el `<title>` estático del HTML sigue siendo el principal para buscadores.)
+
 ## Git y publicación
 
 - Rama principal: `main`. Repo: `https://github.com/Rol331/uncp.git`.

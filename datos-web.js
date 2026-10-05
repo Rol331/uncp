@@ -9,11 +9,28 @@
     .then(function (d) {
       if (!d) return;
 
-      // Banners de páginas internas: <h1/p data-banner="clave">.
+      // Banners de páginas internas: textos (data-banner) y enlaces de botones (data-banner-href).
       aplicar(d.banners, 'data-banner', function (el, valor) { el.textContent = valor; });
+      aplicar(d.banners, 'data-banner-href', function (el, valor) { el.setAttribute('href', valor); });
 
       // Títulos de sección de páginas internas: <span/h2/p data-sec="clave">.
       aplicar(d.secciones, 'data-sec', function (el, valor) { el.textContent = valor; });
+
+      // SEO: título de pestaña y meta descripción según la página.
+      if (d.seo) {
+        var pg = {
+          '': 'home', 'index.html': 'home', 'admision.html': 'adm', 'inscripcion.html': 'ins',
+          'posgrado.html': 'pos', 'posgrado-cronograma.html': 'cro', 'posgrado-costos.html': 'cos',
+          'prospecto.html': 'pro', 'resultados.html': 'res'
+        }[location.pathname.split('/').pop()];
+        if (pg) {
+          if (d.seo[pg + '_title']) document.title = d.seo[pg + '_title'];
+          if (d.seo[pg + '_desc']) {
+            var md = document.querySelector('meta[name="description"]');
+            if (md) md.setAttribute('content', d.seo[pg + '_desc']);
+          }
+        }
+      }
 
       // Documentos: <a data-doc="clave"> toma su enlace del JSON. Se juntan los de
       // admisión y los de resultados de posgrado (sus claves no se repiten).
