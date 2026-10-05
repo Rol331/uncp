@@ -89,6 +89,32 @@ return [
         ],
     ],
 
+    'secciones' => [
+        'menu'       => 'Títulos de sección (internas)',
+        'icono'      => '🏷️',
+        'titulo'     => 'Títulos de sección de las páginas internas',
+        'ayuda'      => 'Rótulo, título y subtítulo de cada sección de las páginas internas.',
+        'tipo'       => 'textos',
+        'multilinea' => true,
+        'grupos'     => [
+            'Admisión · Descarga la información del proceso' => ['adm_s1_rot' => 'Rótulo', 'adm_s1_tit' => 'Título', 'adm_s1_sub' => 'Subtítulo'],
+            'Inscripción · Cinco pasos para inscribirte' => ['ins_s1_rot' => 'Rótulo', 'ins_s1_tit' => 'Título', 'ins_s1_sub' => 'Subtítulo'],
+            'Inscripción · Qué necesitas tener listo' => ['ins_s2_rot' => 'Rótulo', 'ins_s2_tit' => 'Título'],
+            'Posgrado · Los documentos del proceso' => ['pos_s1_rot' => 'Rótulo', 'pos_s1_tit' => 'Título', 'pos_s1_sub' => 'Subtítulo'],
+            'Posgrado · Vacantes, cronograma y perfil del proyecto' => ['pos_s2_rot' => 'Rótulo', 'pos_s2_tit' => 'Título', 'pos_s2_sub' => 'Subtítulo'],
+            'Posgrado · Cuánto cuesta inscribirse' => ['pos_s3_rot' => 'Rótulo', 'pos_s3_tit' => 'Título', 'pos_s3_sub' => 'Subtítulo'],
+            'Posgrado · Resultados del proceso' => ['pos_s4_rot' => 'Rótulo', 'pos_s4_tit' => 'Título', 'pos_s4_sub' => 'Subtítulo'],
+            'Posgrado · Cronograma · Cronograma Posgrado 2026 - II' => ['cro_s1_rot' => 'Rótulo', 'cro_s1_tit' => 'Título', 'cro_s1_sub' => 'Subtítulo'],
+            'Posgrado · Costos · Costos de inscripción' => ['cos_s1_rot' => 'Rótulo', 'cos_s1_tit' => 'Título', 'cos_s1_sub' => 'Subtítulo'],
+            'Prospecto · Qué encontrarás en el prospecto' => ['pro_s1_rot' => 'Rótulo', 'pro_s1_tit' => 'Título', 'pro_s1_sub' => 'Subtítulo'],
+            'Prospecto · El prospecto capítulo por capítulo' => ['pro_s2_rot' => 'Rótulo', 'pro_s2_tit' => 'Título', 'pro_s2_sub' => 'Subtítulo'],
+            'Prospecto · Dos formas de conseguir el prospecto' => ['pro_s3_rot' => 'Rótulo', 'pro_s3_tit' => 'Título', 'pro_s3_sub' => 'Subtítulo'],
+            'Resultados · Consulta tu resultado' => ['res_s1_rot' => 'Rótulo', 'res_s1_tit' => 'Título', 'res_s1_sub' => 'Subtítulo'],
+            'Resultados · Resultados por programa' => ['res_s2_rot' => 'Rótulo', 'res_s2_tit' => 'Título', 'res_s2_sub' => 'Subtítulo'],
+            'Resultados · Los pasos después del resultado' => ['res_s3_rot' => 'Rótulo', 'res_s3_tit' => 'Título', 'res_s3_sub' => 'Subtítulo'],
+        ],
+    ],
+
     'banners' => [
         'menu'   => 'Banners de páginas',
         'icono'  => '🖼️',

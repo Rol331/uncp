@@ -12,6 +12,9 @@
       // Banners de páginas internas: <h1/p data-banner="clave">.
       aplicar(d.banners, 'data-banner', function (el, valor) { el.textContent = valor; });
 
+      // Títulos de sección de páginas internas: <span/h2/p data-sec="clave">.
+      aplicar(d.secciones, 'data-sec', function (el, valor) { el.textContent = valor; });
+
       // Documentos: <a data-doc="clave"> toma su enlace del JSON. Se juntan los de
       // admisión y los de resultados de posgrado (sus claves no se repiten).
       var docs = {};
