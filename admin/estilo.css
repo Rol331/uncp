@@ -50,73 +50,68 @@ body {
 .barra nav a.salir { background: var(--dorado); color: var(--verde); border-color: var(--dorado); }
 .barra nav a.salir:hover { background: #dcb15e; }
 
-/* ── Disposición: menú lateral + contenido ────────────────────── */
-.disposicion {
-  display: flex; align-items: flex-start; gap: 1.5rem;
-  max-width: 1080px; margin: 1.5rem auto; padding: 0 1.25rem;
+/* ── Pestañas principales (grupos) ────────────────────────────── */
+.pestanas {
+  background: #fff; border-bottom: 1px solid var(--linea);
+  box-shadow: 0 1px 6px rgba(0,0,0,.04);
+  position: sticky; top: 66px; z-index: 9;
 }
-
-.menu {
-  flex: 0 0 260px; position: sticky; top: 84px;
-  background: #fff; border: 1px solid var(--linea); border-radius: 16px;
-  padding: .7rem; display: flex; flex-direction: column; gap: .18rem;
-  box-shadow: var(--sombra);
+.pestanas-in {
+  max-width: 1080px; margin: 0 auto; padding: .55rem 1.25rem 0;
+  display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: none;
 }
-.menu-titulo {
-  margin: .2rem .6rem .5rem; font-size: .72rem; font-weight: 700;
-  letter-spacing: .6px; text-transform: uppercase; color: var(--gris);
+.pestanas-in::-webkit-scrollbar { display: none; }
+.pest {
+  display: inline-flex; align-items: center; gap: .5rem; white-space: nowrap;
+  padding: .6rem .95rem; border-radius: 12px 12px 0 0;
+  color: var(--gris); text-decoration: none; font-weight: 600; font-size: .92rem;
+  border: 1px solid transparent; border-bottom: 0;
+  transition: background .15s, color .15s;
 }
-.menu > a {
-  display: flex; align-items: center; gap: .7rem;
-  padding: .65rem .7rem; border-radius: 11px;
-  color: var(--texto); text-decoration: none; font-weight: 600; font-size: .92rem;
-  transition: background .15s, color .15s, transform .1s;
-}
-.menu > a:hover { background: var(--crema); transform: translateX(2px); }
-.menu > a.activo {
+.pest .pest-ic { font-size: 1.05rem; line-height: 1; }
+.pest:hover { background: var(--crema); color: var(--texto); }
+.pest.activa {
   background: var(--verde); color: #fff;
-  box-shadow: 0 4px 12px rgba(0,48,28,.22);
 }
-.menu > a .mi-ic {
-  font-size: 1.05rem; line-height: 1; flex: 0 0 auto;
-  width: 30px; height: 30px; border-radius: 8px;
-  display: grid; place-items: center; background: var(--crema);
-  transition: background .15s;
-}
-.menu > a.activo .mi-ic { background: rgba(255,255,255,.18); }
-.menu > a .mi-tx { flex: 1 1 auto; }
+.pest.activa .pest-ic { filter: none; }
 
-/* Submenú de carreras (se despliega bajo "Carreras · Imágenes") */
-.menu .submenu {
-  display: flex; flex-direction: column; gap: 2px;
-  margin: .35rem 0 .3rem .95rem; padding: .25rem .3rem .25rem .55rem;
-  border-left: 2px solid var(--linea);
-  max-height: 340px; overflow-y: auto;
+/* ── Sub-pestañas (secciones del grupo) ───────────────────────── */
+.subpestanas {
+  background: var(--crema); border-bottom: 1px solid var(--linea);
+  position: sticky; top: 112px; z-index: 8;
 }
-.menu .submenu::-webkit-scrollbar { width: 8px; }
-.menu .submenu::-webkit-scrollbar-thumb { background: var(--linea); border-radius: 8px; }
-.menu .submenu::-webkit-scrollbar-thumb:hover { background: #cfccc2; }
-.menu .submenu a.sub {
-  display: flex; align-items: center; gap: .55rem;
-  padding: .5rem .6rem; border-radius: 9px;
-  font-size: .84rem; font-weight: 500; color: var(--gris);
-  text-decoration: none; transition: background .15s, color .15s, transform .1s;
+.subpestanas-in {
+  max-width: 1080px; margin: 0 auto; padding: .55rem 1.25rem;
+  display: flex; flex-wrap: wrap; gap: .4rem; align-items: center;
 }
-.menu .submenu a.sub::before {
-  content: ""; flex: 0 0 auto;
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--linea); transition: background .15s, transform .15s;
+.subpest {
+  display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap;
+  padding: .45rem .8rem; border-radius: 999px;
+  background: #fff; border: 1px solid var(--linea);
+  color: var(--gris); text-decoration: none; font-weight: 600; font-size: .84rem;
+  transition: background .15s, color .15s, border-color .15s, transform .1s;
 }
-.menu .submenu a.sub:hover { background: var(--crema); color: var(--texto); transform: translateX(2px); }
-.menu .submenu a.sub:hover::before { background: var(--dorado); }
-.menu .submenu a.sub.activo {
-  background: var(--verde); color: #fff; font-weight: 700;
+.subpest .subpest-ic { font-size: .95rem; line-height: 1; }
+.subpest:hover { border-color: var(--dorado); color: var(--texto); transform: translateY(-1px); }
+.subpest.activa {
+  background: var(--verde); color: #fff; border-color: var(--verde);
   box-shadow: 0 3px 10px rgba(0,48,28,.2);
 }
-.menu .submenu a.sub.activo::before { background: var(--dorado); transform: scale(1.25); }
+.selector-carrera {
+  display: inline-flex; align-items: center; gap: .45rem; margin-left: auto;
+  font-size: .82rem; font-weight: 600; color: var(--gris);
+}
+.selector-carrera select {
+  font: inherit; font-weight: 600; padding: .4rem .6rem;
+  border: 1px solid var(--linea); border-radius: 9px; background: #fff; color: var(--texto);
+  max-width: 230px;
+}
+.selector-carrera select:focus { outline: 2px solid var(--dorado); border-color: var(--dorado); }
 
 /* ── Contenido ────────────────────────────────────────────────── */
-.contenido { flex: 1 1 auto; min-width: 0; max-width: 760px; }
+.contenido {
+  max-width: 820px; margin: 1.6rem auto; padding: 0 1.25rem;
+}
 .contenido > h2 { color: var(--verde); margin: .1rem 0 .3rem; font-size: 1.5rem; }
 .ayuda { color: var(--gris); margin: 0 0 1.5rem; }
 
@@ -215,12 +210,12 @@ body.login {
 
 /* ── Móvil ────────────────────────────────────────────────────── */
 @media (max-width: 760px) {
-  .disposicion { flex-direction: column; gap: 1rem; }
-  .menu {
-    position: static; flex-basis: auto; width: 100%;
-    flex-direction: row; flex-wrap: wrap;
-  }
-  .menu a { flex: 1 1 auto; text-align: center; }
+  .pest .pest-tx { display: none; }
+  .pest { padding: .6rem .8rem; }
+  .pest.activa .pest-tx { display: inline; }
+  .pest .pest-ic { font-size: 1.25rem; }
+  .selector-carrera { margin-left: 0; width: 100%; }
+  .selector-carrera select { flex: 1 1 auto; max-width: none; }
   .contenido { max-width: 100%; }
 }
 

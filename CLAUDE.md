@@ -321,8 +321,14 @@ Se llega por `https://uncpadmision.edu.pe/admin/`.
   `data-doc` / `data-fecha` / `data-costo` ni el `<script src="datos-web.js">`. Si se
   regeneran esas páginas, hay que **volver a ponerlos** (o enseñárselos a los scripts), o el
   panel deja de tener efecto.
-- **Secciones del panel** (menú por página): se definen en `admin/campos.php`. Para agregar
-  un campo, se edita ese arreglo y se pone el `data-*` correspondiente en la página.
+- **Secciones del panel** (navegación por **pestañas**, no menú lateral): se definen en
+  `admin/campos.php`. Cada sección lleva una clave `'grupo'` (inicio · admision · inscripcion ·
+  posgrado · paginas · carreras) que la agrupa bajo una **pestaña superior**; dentro del grupo
+  cada sección es una **sub-pestaña**. `admin/_layout.php` arma las dos filas de pestañas a partir
+  de ese `'grupo'` (más las páginas especiales Carreras, Solicitudes y Respaldo). En el grupo
+  Carreras, las 39 carreras salen en un `<select>` de la fila de sub-pestañas. Para agregar un
+  campo, se edita ese arreglo (incluido su `'grupo'`) y se pone el `data-*` correspondiente en la
+  página.
 - **Seguridad:** login con contraseña **hasheada** (sesión + CSRF); subida solo de `.pdf`
   (valida extensión y MIME, máx 25 MB, nombre generado por el servidor); los PDFs caen en
   `documentos/`, que tiene un `.htaccess` que **impide ejecutar scripts** ahí.
@@ -376,7 +382,8 @@ galería 800×600, recorte *cover*, corrige EXIF).
   las fotos originales de `imagenes/`.
 - La lista de carreras (slug → nombre) está en `admin/carreras-lista.json`, generada de la
   portada. La galería detecta cuántas fotos tiene cada carrera con `glob` de `imagenes/galeria/`.
-- El menú lateral despliega las 39 carreras como submenú (`_layout.php`).
+- Las 39 carreras salen en el `<select>` de la fila de sub-pestañas del grupo Carreras
+  (`_layout.php`).
 
 ### Textos de carreras (Fase B)
 

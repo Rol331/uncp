@@ -8,6 +8,7 @@
 return [
 
     'portada' => [
+        'grupo'  => 'inicio',
         'menu'   => 'Inicio · Portada',
         'icono'  => '🏠',
         'titulo' => 'Página de inicio',
@@ -90,6 +91,7 @@ return [
     ],
 
     'secciones' => [
+        'grupo'      => 'paginas',
         'menu'       => 'Títulos de sección (internas)',
         'icono'      => '🏷️',
         'titulo'     => 'Títulos de sección de las páginas internas',
@@ -116,6 +118,7 @@ return [
     ],
 
     'seo' => [
+        'grupo'      => 'paginas',
         'menu'       => 'SEO (título y descripción)',
         'icono'      => '🔎',
         'titulo'     => 'SEO por página',
@@ -134,6 +137,7 @@ return [
         ],
     ],
     'banners' => [
+        'grupo'  => 'paginas',
         'menu'   => 'Banners de páginas',
         'icono'  => '🖼️',
         'titulo' => 'Banners de las páginas internas',
@@ -158,6 +162,7 @@ return [
     ],
 
     'documentos' => [
+        'grupo'  => 'admision',
         'menu'   => 'Admisión · Documentos',
         'icono'  => '📄',
         'titulo' => 'Documentos del proceso de admisión',
@@ -182,6 +187,7 @@ return [
     ],
 
     'admision_textos' => [
+        'grupo'      => 'admision',
         'menu'       => 'Admisión · Textos tarjetas',
         'icono'      => '🗂️',
         'titulo'     => 'Textos de las tarjetas de documentos',
@@ -207,6 +213,7 @@ return [
     ],
 
     'carreras_botones' => [
+        'grupo'  => 'carreras',
         'menu'   => 'Carreras · Botones',
         'icono'  => '🔘',
         'titulo' => 'Botones de las páginas de carrera',
@@ -221,6 +228,7 @@ return [
     ],
 
     'posgrado_cronograma' => [
+        'grupo'  => 'posgrado',
         'menu'   => 'Posgrado · Cronograma',
         'icono'  => '📅',
         'titulo' => 'Cronograma de Posgrado 2026-II',
@@ -236,6 +244,7 @@ return [
     ],
 
     'posgrado_costos' => [
+        'grupo'  => 'posgrado',
         'menu'   => 'Posgrado · Costos',
         'icono'  => '💰',
         'titulo' => 'Costos de inscripción de Posgrado',
@@ -248,6 +257,7 @@ return [
     ],
 
     'inscripcion_pagina' => [
+        'grupo'      => 'inscripcion',
         'menu'       => 'Inscripción · Página',
         'icono'  => '📝',
         'titulo'     => 'Página de inscripción',
@@ -275,6 +285,7 @@ return [
     ],
 
     'inscripcion_costos' => [
+        'grupo'  => 'inscripcion',
         'menu'   => 'Inscripción · Costos',
         'icono'  => '💳',
         'titulo' => 'Costos de inscripción (pregrado)',
@@ -297,6 +308,7 @@ return [
     ],
 
     'inscripcion_modalidades' => [
+        'grupo'  => 'inscripcion',
         'menu'   => 'Inscripción · Modalidades',
         'icono'  => '💵',
         'titulo' => 'Costos por modalidad (pregrado)',
@@ -322,6 +334,7 @@ return [
     ],
 
     'posgrado_documentos' => [
+        'grupo'  => 'posgrado',
         'menu'   => 'Posgrado · Documentos',
         'icono'  => '📚',
         'titulo' => 'Documentos de Posgrado',
@@ -337,6 +350,7 @@ return [
     ],
 
     'posgrado_resultados' => [
+        'grupo'  => 'posgrado',
         'menu'   => 'Posgrado · Resultados',
         'icono'  => '🏆',
         'titulo' => 'Resultados de Posgrado',
