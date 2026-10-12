@@ -470,6 +470,49 @@ Todo en el grupo «Inicio · Portada» salvo lo de carreras:
   de 8 páginas; `datos-web.js` fija `document.title` y el `<meta name=description>` según la página.
   (Es override por JS; el `<title>` estático del HTML sigue siendo el principal para buscadores.)
 
+## Panel por pestañas (09/10/2026)
+
+El panel ya **no usa menú lateral**: la navegación es por **pestañas** (dos filas). Cada sección de
+`admin/campos.php` lleva una clave `'grupo'` (inicio · admision · inscripcion · posgrado · paginas ·
+carreras) que la agrupa bajo una pestaña superior; dentro del grupo cada sección es una sub-pestaña.
+`admin/_layout.php` arma las dos filas (más las páginas especiales Carreras, Solicitudes, Respaldo);
+en el grupo Carreras las 39 salen en un `<select>`. Al agregar una sección nueva hay que ponerle
+su `'grupo'`.
+
+## Correcciones del cliente (12/10/2026) — `Documento sin título (1).pdf`
+
+Segunda ronda de correcciones (PDF distinto al de 12/09). Lo hecho:
+- **Botón flotante «Primera Selección»** (portada, `index.html`): ahora editable (texto + enlace),
+  `flot_txt` / `flot_link` con `data-portada` / `data-portada-href` (grupo «Inicio · Portada»).
+- **Footer (48 páginas):** se **quitó el teléfono fijo** `(064) 481-062` (línea `<li>` borrada en
+  todas). El campo «Teléfono» se quitó del panel. El WhatsApp sigue (número nuevo lo pasará el
+  cliente, editable en «footer_whatsapp»).
+- **`prospecto.html`:** se quitó el aviso `.maqueta` («el botón de descarga sí funciona…»); en
+  «formas de conseguir» se quitó «Pídelo por WhatsApp» y quedó solo «Descárgalo en PDF» (título →
+  «Cómo conseguir el prospecto»). El **checklist** («qué encontrarás») y los **4 capítulos** (título
+  + temas) son editables: sección «Prospecto · Contenido» (clave `prospecto_pagina`), aplicados por
+  `datos-web.js` con `data-pro-check` y `data-pro-cap="N"` / `data-pro-cap-tit` / `data-pro-cap-items`.
+- **`resultados.html`:** dos accesos nuevos **Examen de admisión** y **CEPRE** con enlaces editables
+  (`res_examen_*` / `res_cepre_*`, `data-banner`, grupo «Resultados · Accesos» en «Banners de
+  páginas», link `#` pendiente). Los botones del banner ya eran editables. **La franja `.maqueta` y
+  los campos `disabled` de la consulta por DNI se mantienen** (sigue sin backend; ver Pendientes).
+- **`inscripcion.html`:** nueva sección **«Modalidades de postulación»** (`id="modalidades"`, 14
+  tarjetas nombre + «a quién aplica»). Editable: sección «Inscripción · Modalidades (texto)» (clave
+  `modalidades_postulacion`), aplicada por `datos-web.js` con `data-modp`. **Los textos «a quién
+  aplica» son un borrador**: el cliente debe revisarlos/ajustarlos con la información oficial. El
+  enlace «Modalidades» del footer (48 páginas) pasó del sitio oficial externo a `inscripcion.html#modalidades`.
+- **Ventana emergente (popup)** en la portada: aparece una vez por visita si está activada. Sección
+  «Inicio · Ventana emergente» (clave `popup`): `pop_activo` (si/no), `pop_titulo`, `pop_texto`,
+  `pop_btn_txt`, `pop_btn_link` + **imagen** (subida, `medios['popup']`, procesada **sin recortar**
+  con `procesar_imagen_max` de `_imagen.php`). Markup `#modalPromo` en `index.html`; lógica en
+  `datos-web.js` (muestra/oculta, `sessionStorage 'promoVista'`); imagen aplicada por `medios-web.js`
+  (`#mpImg`); estilos `.modal-promo/.mp-*` en `estilos.css`. **Por defecto `pop_activo="no"`** (no se
+  muestra hasta que el cliente lo active y suba la imagen).
+
+**Pendiente del cliente en esta ronda:** el **WhatsApp nuevo** del footer, los **links de Examen y
+CEPRE** (Resultados), el **contenido del popup** (imagen/textos) y revisar los textos de
+**Modalidades de postulación**. Todo se carga desde el panel, sin tocar código.
+
 ## Git y publicación
 
 - Rama principal: `main`. Repo: `https://github.com/Rol331/uncp.git`.
