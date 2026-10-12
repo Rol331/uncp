@@ -54,6 +54,12 @@
         }
       }
 
+      // Imagen de la ventana emergente (popup) de la portada.
+      if (m.popup) {
+        var mpi = document.getElementById('mpImg');
+        if (mpi) { mpi.src = pre + m.popup; mpi.hidden = false; }
+      }
+
       // Galería de la carrera: hasta 4 fotos (override de medios o la original).
       var gal = document.querySelector('.galeria');
       if (gal) {

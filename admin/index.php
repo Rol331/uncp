@@ -141,6 +141,21 @@ cabecera($sel);
           <?php endforeach; ?>
         <?php endif; ?>
 
+        <?php if ($sel === 'popup'):
+            $m = medios_leer();
+            $u = isset($m['popup']) ? '../' . $m['popup'] : '';
+        ?>
+          <h3 class="sub-galeria">Imagen de la ventana</h3>
+          <fieldset class="doc">
+            <legend>Imagen del popup</legend>
+            <p class="actual">Se muestra completa (no se recorta). Máx. 1000 × 1300, se ajusta sola.</p>
+            <?php if ($u): ?><div class="preview" style="background-image:url('<?= htmlspecialchars($u) ?>')"></div><?php endif; ?>
+            <label class="campo">Subir imagen nueva <span class="opc">(JPG o PNG, opcional)</span>
+              <input type="file" name="file_popup" accept="image/jpeg,image/png">
+            </label>
+          </fieldset>
+        <?php endif; ?>
+
         <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
         <div class="acciones"><button type="submit">Guardar cambios</button></div>
       </form>

@@ -61,6 +61,13 @@
     "footer_whatsapp": "939 054 663",
     "footer_copyright": "© 2026 Universidad Nacional del Centro del Perú · Todos los derechos reservados."
   },
+  "popup": {
+    "pop_activo": "no",
+    "pop_titulo": "Admisión Primera Selección 2027",
+    "pop_texto": "Inscríbete en línea y da el primer paso hacia tu programa de estudio en la UNCP.",
+    "pop_btn_txt": "Inscríbete aquí",
+    "pop_btn_link": "inscripcion.html"
+  },
   "secciones": {
     "adm_s1_rot": "Documentos oficiales",
     "adm_s1_tit": "Descarga la información del proceso",

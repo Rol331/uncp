@@ -57,3 +57,53 @@ function procesar_imagen(string $tmp, string $dest, int $w, int $h): array {
     @chmod($dest, 0644);
     return [true, ''];
 }
+
+/**
+ * Como procesar_imagen pero "contener": escala para CABER dentro de maxW×maxH
+ * sin recortar (conserva la imagen completa, ideal para arte de un popup).
+ * Devuelve [true, ''] o [false, 'mensaje'].
+ */
+function procesar_imagen_max(string $tmp, string $dest, int $maxW, int $maxH): array {
+    if (!imagen_soportada()) {
+        return [false, 'El servidor no tiene la librería de imágenes (GD).'];
+    }
+    $info = @getimagesize($tmp);
+    if (!$info) return [false, 'El archivo no es una imagen válida.'];
+
+    switch ($info[2]) {
+        case IMAGETYPE_JPEG: $src = @imagecreatefromjpeg($tmp); break;
+        case IMAGETYPE_PNG:  $src = @imagecreatefrompng($tmp);  break;
+        case IMAGETYPE_WEBP: $src = function_exists('imagecreatefromwebp') ? @imagecreatefromwebp($tmp) : false; break;
+        default: return [false, 'Formato no soportado. Usa JPG o PNG.'];
+    }
+    if (!$src) return [false, 'No se pudo leer la imagen.'];
+
+    if ($info[2] === IMAGETYPE_JPEG && function_exists('exif_read_data')) {
+        $exif = @exif_read_data($tmp);
+        if (!empty($exif['Orientation'])) {
+            if ($exif['Orientation'] == 3) $src = imagerotate($src, 180, 0);
+            elseif ($exif['Orientation'] == 6) $src = imagerotate($src, -90, 0);
+            elseif ($exif['Orientation'] == 8) $src = imagerotate($src, 90, 0);
+        }
+    }
+
+    $sw = imagesx($src); $sh = imagesy($src);
+    $escala = min($maxW / $sw, $maxH / $sh, 1); // nunca agrandar
+    $nw = max(1, (int) round($sw * $escala));
+    $nh = max(1, (int) round($sh * $escala));
+
+    $out = imagecreatetruecolor($nw, $nh);
+    $blanco = imagecolorallocate($out, 255, 255, 255);
+    imagefilledrectangle($out, 0, 0, $nw, $nh, $blanco); // fondo por si el PNG es transparente
+    imagecopyresampled($out, $src, 0, 0, 0, 0, $nw, $nh, $sw, $sh);
+    imagedestroy($src);
+
+    $dir = dirname($dest);
+    if (!is_dir($dir)) @mkdir($dir, 0755, true);
+    $ok = imagejpeg($out, $dest, 85);
+    imagedestroy($out);
+
+    if (!$ok) return [false, 'No se pudo guardar la imagen procesada.'];
+    @chmod($dest, 0644);
+    return [true, ''];
+}

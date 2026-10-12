@@ -879,6 +879,22 @@
   </div>
 </footer>
 
+<!-- ================= VENTANA EMERGENTE (POPUP) =================
+     Aparece una vez por visita si está activada en el panel (Inicio ·
+     Ventana emergente). Imagen, textos y botón son editables. -->
+<div class="modal-promo" id="modalPromo" hidden>
+  <div class="mp-fondo" data-pop-cerrar></div>
+  <div class="mp-caja" role="dialog" aria-modal="true" aria-label="Aviso">
+    <button class="mp-cerrar" type="button" aria-label="Cerrar" data-pop-cerrar>&times;</button>
+    <img class="mp-img" id="mpImg" src="" alt="" hidden>
+    <div class="mp-cuerpo">
+      <h3 class="mp-tit" data-pop="titulo"></h3>
+      <p class="mp-txt" data-pop="texto"></p>
+      <a class="btn btn-primario mp-btn" data-pop="btn" data-pop-href="btn_link" href="inscripcion.html">Inscríbete aquí</a>
+    </div>
+  </div>
+</div>
+
 <!-- ================= BOTÓN FLOTANTE DE WHATSAPP ================= -->
 <a class="wsp" href="https://wa.me/51939054663?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Admisi%C3%B3n%202026%20de%20la%20UNCP" target="_blank" rel="noopener"
    aria-label="Escríbenos por WhatsApp">

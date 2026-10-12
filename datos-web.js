@@ -138,6 +138,34 @@
         }
       }
 
+      // Ventana emergente (popup) de la portada.
+      if (d.popup) {
+        var modal = document.getElementById('modalPromo');
+        if (modal) {
+          var pTit = modal.querySelector('[data-pop="titulo"]');
+          var pTxt = modal.querySelector('[data-pop="texto"]');
+          var pBtn = modal.querySelector('[data-pop="btn"]');
+          if (pTit) { if (d.popup.pop_titulo) pTit.textContent = d.popup.pop_titulo; else pTit.hidden = true; }
+          if (pTxt) { if (d.popup.pop_texto) pTxt.textContent = d.popup.pop_texto; else pTxt.hidden = true; }
+          if (pBtn) {
+            if (d.popup.pop_btn_txt) pBtn.textContent = d.popup.pop_btn_txt; else pBtn.hidden = true;
+            if (d.popup.pop_btn_link) pBtn.setAttribute('href', d.popup.pop_btn_link);
+          }
+          var cerrarPop = function () { modal.hidden = true; document.body.style.overflow = ''; };
+          modal.querySelectorAll('[data-pop-cerrar]').forEach(function (b) { b.addEventListener('click', cerrarPop); });
+          document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrarPop(); });
+          if (String(d.popup.pop_activo || '').trim().toLowerCase() === 'si') {
+            var vista = false;
+            try { vista = sessionStorage.getItem('promoVista') === '1'; } catch (e) {}
+            if (!vista) {
+              modal.hidden = false;
+              document.body.style.overflow = 'hidden';
+              try { sessionStorage.setItem('promoVista', '1'); } catch (e) {}
+            }
+          }
+        }
+      }
+
       // Portada y footer: textos por data-portada, enlaces por data-portada-href.
       if (d.portada) {
         aplicar(d.portada, 'data-portada', function (el, valor) {

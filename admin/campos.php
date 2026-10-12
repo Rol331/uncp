@@ -93,6 +93,26 @@ return [
         ],
     ],
 
+    'popup' => [
+        'grupo'      => 'inicio',
+        'menu'       => 'Ventana emergente',
+        'icono'      => '🪧',
+        'titulo'     => 'Ventana emergente (popup de la portada)',
+        'ayuda'      => 'Aparece una vez al entrar a la portada. Para mostrarla, escribe «si» en '
+                      . '«Mostrar la ventana» y sube la imagen. Déjala en «no» para ocultarla.',
+        'tipo'       => 'textos',
+        'multilinea' => true,
+        'grupos'     => [
+            'Activar' => ['pop_activo' => 'Mostrar la ventana (escribe: si / no)'],
+            'Contenido' => [
+                'pop_titulo'   => 'Título (opcional)',
+                'pop_texto'    => 'Texto (opcional)',
+                'pop_btn_txt'  => 'Botón · texto (opcional)',
+                'pop_btn_link' => 'Botón · enlace',
+            ],
+        ],
+    ],
+
     'secciones' => [
         'grupo'      => 'paginas',
         'menu'       => 'Títulos de sección (internas)',
