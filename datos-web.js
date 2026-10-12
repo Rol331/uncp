@@ -104,6 +104,40 @@
         });
       }
 
+      // Página del prospecto: checklist "qué encontrarás" y capítulos (acordeón).
+      if (d.prospecto_pagina) {
+        var pp = d.prospecto_pagina;
+        if (Array.isArray(pp.pro_check) && pp.pro_check.length) {
+          var ulc = document.querySelector('[data-pro-check]');
+          if (ulc) {
+            ulc.innerHTML = '';
+            pp.pro_check.forEach(function (item) {
+              var li = document.createElement('li');
+              var m = document.createElement('span'); m.className = 'marca-li'; m.innerHTML = '&#10003;';
+              var s = document.createElement('span'); s.textContent = item;
+              li.appendChild(m); li.appendChild(s);
+              ulc.appendChild(li);
+            });
+          }
+        }
+        for (var c = 1; c <= 4; c++) {
+          var det = document.querySelector('[data-pro-cap="' + c + '"]');
+          if (!det) continue;
+          var tit = pp['pro_cap' + c + '_tit'];
+          if (tit) { var ts = det.querySelector('[data-pro-cap-tit]'); if (ts) ts.textContent = tit; }
+          var items = pp['pro_cap' + c + '_items'];
+          if (Array.isArray(items) && items.length) {
+            var cul = det.querySelector('[data-pro-cap-items]');
+            if (cul) {
+              cul.innerHTML = '';
+              items.forEach(function (t) { var li = document.createElement('li'); li.textContent = t; cul.appendChild(li); });
+            }
+            var n = det.querySelector('.plan-n');
+            if (n) n.textContent = items.length + (items.length === 1 ? ' tema' : ' temas');
+          }
+        }
+      }
+
       // Portada y footer: textos por data-portada, enlaces por data-portada-href.
       if (d.portada) {
         aplicar(d.portada, 'data-portada', function (el, valor) {

@@ -161,6 +161,25 @@ return [
             'Resultados'            => ['res_tit' => 'Título', 'res_sub' => 'Subtítulo'],
             'Botones · Prospecto'   => ['pro_b1_txt' => 'Botón 1 · texto', 'pro_b1_link' => 'Botón 1 · enlace', 'pro_b2_txt' => 'Botón 2 · texto', 'pro_b2_link' => 'Botón 2 · enlace'],
             'Botones · Resultados'  => ['res_b1_txt' => 'Botón 1 · texto', 'res_b1_link' => 'Botón 1 · enlace', 'res_b2_txt' => 'Botón 2 · texto', 'res_b2_link' => 'Botón 2 · enlace'],
+            'Resultados · Accesos (Examen / CEPRE)' => ['res_examen_txt' => 'Examen · texto', 'res_examen_link' => 'Examen · enlace', 'res_cepre_txt' => 'CEPRE · texto', 'res_cepre_link' => 'CEPRE · enlace'],
+        ],
+    ],
+
+    'prospecto_pagina' => [
+        'grupo'      => 'paginas',
+        'menu'       => 'Prospecto · Contenido',
+        'icono'      => '📘',
+        'titulo'     => 'Contenido del prospecto',
+        'ayuda'      => '«Qué encontrarás» (una línea por punto) y los 4 capítulos (título + temas, uno por línea).',
+        'tipo'       => 'textos',
+        'multilinea' => true,
+        'listas'     => ['pro_check', 'pro_cap1_items', 'pro_cap2_items', 'pro_cap3_items', 'pro_cap4_items'],
+        'grupos'     => [
+            'Qué encontrarás en el prospecto' => ['pro_check' => 'Lista de puntos (uno por línea)'],
+            'Capítulo 1' => ['pro_cap1_tit' => 'Título', 'pro_cap1_items' => 'Temas (uno por línea)'],
+            'Capítulo 2' => ['pro_cap2_tit' => 'Título', 'pro_cap2_items' => 'Temas (uno por línea)'],
+            'Capítulo 3' => ['pro_cap3_tit' => 'Título', 'pro_cap3_items' => 'Temas (uno por línea)'],
+            'Capítulo 4' => ['pro_cap4_tit' => 'Título', 'pro_cap4_items' => 'Temas (uno por línea)'],
         ],
     ],
 

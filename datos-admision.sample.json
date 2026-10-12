@@ -163,7 +163,30 @@
     "res_b1_txt": "Consultar resultado",
     "res_b1_link": "#consulta",
     "res_b2_txt": "Ver cronograma",
-    "res_b2_link": "admision.html#documentos"
+    "res_b2_link": "admision.html#documentos",
+    "res_examen_txt": "Resultados · Examen de admisión",
+    "res_examen_link": "#",
+    "res_cepre_txt": "Resultados · CEPRE",
+    "res_cepre_link": "#"
+  },
+  "prospecto_pagina": {
+    "pro_check": [
+      "Presentación de la Universidad y de sus facultades.",
+      "Modalidades de admisión y a quién le corresponde cada una.",
+      "Cuadro de vacantes por programa de estudio.",
+      "Cronograma completo del proceso: inscripción, examen y resultados.",
+      "Temario del examen y ponderación de preguntas por área.",
+      "Requisitos, costos y forma de pago.",
+      "Los 39 programas de estudio, con su perfil y campo ocupacional."
+    ],
+    "pro_cap1_tit": "La Universidad",
+    "pro_cap1_items": ["Reseña y principios", "Facultades y filiales", "Autoridades", "Servicios al estudiante"],
+    "pro_cap2_tit": "El proceso de admisión",
+    "pro_cap2_items": ["Modalidades de ingreso", "Requisitos por modalidad", "Cronograma 2026-II", "Costos y forma de pago"],
+    "pro_cap3_tit": "El examen",
+    "pro_cap3_items": ["Estructura de la prueba", "Temario por área", "Ponderación de las preguntas", "Recomendaciones"],
+    "pro_cap4_tit": "Los programas de estudio",
+    "pro_cap4_items": ["Área I: Ciencias de la Salud", "Área II: Arquitectura e Ingenierías", "Área III: Ciencias Administrativas, Contables y Económicas", "Área IV: Ciencias Sociales y Educación", "Área V: Ciencias Agrarias"]
   },
   "documentos": {
     "cronograma": "https://drive.google.com/file/d/1cveQpPqhZVk_ut2s3gnpPiXq-Hn9nKkG/view?usp=sharing",
