@@ -302,6 +302,25 @@
     "mod_simulacro": "S/ 25.00 (Caja UNCP)",
     "mod_medico": "S/ 25.00 (Caja UNCP)"
   },
+  "modalidades_postulacion": {
+    "modp_rot": "Modalidades",
+    "modp_tit": "Modalidades de postulación",
+    "modp_sub": "Conoce cada modalidad de ingreso y a quién le corresponde.",
+    "mod_primeros": "Para quienes ocuparon uno de los dos primeros puestos del cuadro de méritos de su promoción.",
+    "mod_comuneros": "Para hijos de comuneros de comunidades campesinas de la región Junín.",
+    "mod_violencia": "Para personas afectadas por la violencia social, según la normativa vigente.",
+    "mod_discapacidad": "Para postulantes con discapacidad acreditada.",
+    "mod_tras_interno": "Para estudiantes de la UNCP que desean trasladarse a otro programa.",
+    "mod_tras_nacional": "Para estudiantes de otras universidades del país que desean continuar estudios en la UNCP.",
+    "mod_tras_particular": "Para estudiantes de universidades particulares que desean trasladarse a la UNCP.",
+    "mod_tras_internacional": "Para estudiantes de universidades del extranjero que desean continuar estudios en la UNCP.",
+    "mod_segunda": "Para quienes ya cuentan con un título y desean seguir una segunda carrera.",
+    "mod_terrorismo": "Para víctimas del terrorismo, según la normativa vigente.",
+    "mod_dc": "Para deportistas calificados acreditados.",
+    "mod_nativas": "Para estudiantes provenientes de comunidades nativas.",
+    "mod_simulacro": "Simulacro del examen de admisión.",
+    "mod_medico": "Examen médico requerido en el proceso."
+  },
   "posgrado_documentos": {
     "pos-prospecto": "https://drive.google.com/file/d/1CazEJW7UAE7crV3TvLICqckq4QVcHqyS/view",
     "pos-doctorados": "https://drive.google.com/file/d/1d_oUhzM6WzdPWfXQwDvljPC_xmyS5s40/view",

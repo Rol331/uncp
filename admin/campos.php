@@ -375,6 +375,36 @@ return [
         ],
     ],
 
+    'modalidades_postulacion' => [
+        'grupo'      => 'inscripcion',
+        'menu'       => 'Inscripción · Modalidades (texto)',
+        'icono'      => '📋',
+        'titulo'     => 'Modalidades de postulación',
+        'ayuda'      => 'Encabezado de la sección y la descripción «a quién aplica» de cada modalidad '
+                      . '(aparece en inscripcion.html). Revisa y ajusta los textos según la información oficial.',
+        'tipo'       => 'textos',
+        'multilinea' => true,
+        'grupos'     => [
+            'Encabezado' => ['modp_rot' => 'Rótulo', 'modp_tit' => 'Título', 'modp_sub' => 'Subtítulo'],
+            'A quién aplica (descripción de cada modalidad)' => [
+                'mod_primeros'           => 'Primeros puestos',
+                'mod_comuneros'          => 'Hijos de comuneros región Junín',
+                'mod_violencia'          => 'Afectados de la violencia social',
+                'mod_discapacidad'       => 'Personas con discapacidad',
+                'mod_tras_interno'       => 'Traslado interno',
+                'mod_tras_nacional'      => 'Traslado externo nacional',
+                'mod_tras_particular'    => 'Traslado externo particular',
+                'mod_tras_internacional' => 'Traslado externo internacional',
+                'mod_segunda'            => 'Segunda carrera',
+                'mod_terrorismo'         => 'Víctimas del terrorismo',
+                'mod_dc'                 => 'Deportistas calificados (DC)',
+                'mod_nativas'            => 'Estudiantes comunidades nativas',
+                'mod_simulacro'          => 'Simulacro examen admisión',
+                'mod_medico'             => 'Examen médico',
+            ],
+        ],
+    ],
+
     'posgrado_documentos' => [
         'grupo'  => 'posgrado',
         'menu'   => 'Posgrado · Documentos',

@@ -76,6 +76,11 @@
         }
       });
 
+      // Modalidades de postulación (inscripcion.html): encabezado y descripciones.
+      aplicar(d.modalidades_postulacion, 'data-modp', function (el, valor) {
+        el.textContent = valor;
+      });
+
       // Textos de las tarjetas de admisión: <h3/p data-doctxt="clave">.
       aplicar(d.admision_textos, 'data-doctxt', function (el, valor) {
         el.textContent = valor;
