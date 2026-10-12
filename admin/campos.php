@@ -73,9 +73,12 @@ return [
                 'cta_btn2_txt'  => 'Botón 2 · texto',
                 'cta_btn2_link' => 'Botón 2 · enlace',
             ],
+            'Botón flotante (Primera Selección)' => [
+                'flot_txt'  => 'Texto del botón',
+                'flot_link' => 'Enlace',
+            ],
             'Contacto (pie de página)' => [
                 'contacto_direccion' => 'Dirección',
-                'contacto_telefono'  => 'Teléfono',
                 'contacto_correo'    => 'Correo',
             ],
             'Pie de página (footer)' => [
@@ -110,7 +113,7 @@ return [
             'Posgrado · Costos · Costos de inscripción' => ['cos_s1_rot' => 'Rótulo', 'cos_s1_tit' => 'Título', 'cos_s1_sub' => 'Subtítulo'],
             'Prospecto · Qué encontrarás en el prospecto' => ['pro_s1_rot' => 'Rótulo', 'pro_s1_tit' => 'Título', 'pro_s1_sub' => 'Subtítulo'],
             'Prospecto · El prospecto capítulo por capítulo' => ['pro_s2_rot' => 'Rótulo', 'pro_s2_tit' => 'Título', 'pro_s2_sub' => 'Subtítulo'],
-            'Prospecto · Dos formas de conseguir el prospecto' => ['pro_s3_rot' => 'Rótulo', 'pro_s3_tit' => 'Título', 'pro_s3_sub' => 'Subtítulo'],
+            'Prospecto · Cómo conseguir el prospecto' => ['pro_s3_rot' => 'Rótulo', 'pro_s3_tit' => 'Título', 'pro_s3_sub' => 'Subtítulo'],
             'Resultados · Consulta tu resultado' => ['res_s1_rot' => 'Rótulo', 'res_s1_tit' => 'Título', 'res_s1_sub' => 'Subtítulo'],
             'Resultados · Resultados por programa' => ['res_s2_rot' => 'Rótulo', 'res_s2_tit' => 'Título', 'res_s2_sub' => 'Subtítulo'],
             'Resultados · Los pasos después del resultado' => ['res_s3_rot' => 'Rótulo', 'res_s3_tit' => 'Título', 'res_s3_sub' => 'Subtítulo'],
