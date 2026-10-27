@@ -141,6 +141,21 @@ cabecera($sel);
           <?php endforeach; ?>
         <?php endif; ?>
 
+        <?php if ($sel === 'prospecto_pagina'):
+            $m = medios_leer();
+            $u = isset($m['prospecto_portada']) ? '../' . $m['prospecto_portada'] : '';
+        ?>
+          <h3 class="sub-galeria">Imagen de la portada</h3>
+          <fieldset class="doc">
+            <legend>Portada del prospecto</legend>
+            <p class="actual">La imagen de la tarjeta verde («qué encontrarás»). Se muestra completa (no se recorta).</p>
+            <?php if ($u): ?><div class="preview" style="background-image:url('<?= htmlspecialchars($u) ?>')"></div><?php endif; ?>
+            <label class="campo">Subir imagen nueva <span class="opc">(JPG o PNG, opcional)</span>
+              <input type="file" name="file_prospecto_portada" accept="image/jpeg,image/png">
+            </label>
+          </fieldset>
+        <?php endif; ?>
+
         <?php if ($sel === 'popup'):
             $m = medios_leer();
             $u = isset($m['popup']) ? '../' . $m['popup'] : '';

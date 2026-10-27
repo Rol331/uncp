@@ -139,6 +139,26 @@ if ($sel === 'banners') {
     }
 }
 
+// Imagen de la portada del prospecto -> medios.json (sin recortar).
+if ($sel === 'prospecto_pagina') {
+    require_once __DIR__ . '/_carreras.php';
+    require_once __DIR__ . '/_imagen.php';
+    if (imagen_soportada()) {
+        $file = $_FILES['file_prospecto_portada'] ?? null;
+        if ($file && ($file['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK && ($file['size'] ?? 0) > 0) {
+            if ($file['size'] > 30 * 1024 * 1024) volver($sel, 'La imagen supera el máximo de 30 MB.');
+            $m    = medios_leer();
+            $rel  = URL_MEDIOS . '/prospecto/portada-' . date('YmdHis') . '.jpg';
+            $dest = __DIR__ . '/../' . $rel;
+            [$okImg, $msg] = procesar_imagen_max($file['tmp_name'], $dest, 800, 1100);
+            if (!$okImg) volver($sel, $msg);
+            borrar_override($m['prospecto_portada'] ?? null);
+            $m['prospecto_portada'] = $rel;
+            medios_guardar($m);
+        }
+    }
+}
+
 // Imagen de la ventana emergente (popup) -> medios.json (sin recortar).
 if ($sel === 'popup') {
     require_once __DIR__ . '/_carreras.php';

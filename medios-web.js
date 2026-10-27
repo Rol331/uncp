@@ -60,6 +60,16 @@
         if (mpi) { mpi.src = pre + m.popup; mpi.hidden = false; }
       }
 
+      // Portada del prospecto (sección "Qué encontrarás").
+      if (m.prospecto_portada) {
+        var ppi = document.getElementById('ppImg');
+        if (ppi) {
+          ppi.src = pre + m.prospecto_portada; ppi.hidden = false;
+          var card = ppi.closest('.prospecto-portada');
+          if (card) { card.classList.add('tiene-img'); var dentro = card.querySelector('div'); if (dentro) dentro.style.display = 'none'; }
+        }
+      }
+
       // Galería de la carrera: hasta 4 fotos (override de medios o la original).
       var gal = document.querySelector('.galeria');
       if (gal) {

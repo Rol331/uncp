@@ -1757,6 +1757,8 @@
     text-align:center;
   }
   .prospecto-portada img{width:130px;margin:0 auto 18px}
+  .prospecto-portada.tiene-img{background:none;box-shadow:none;padding:0;aspect-ratio:auto;display:block}
+  .prospecto-portada .pp-img{display:block;width:100%;height:auto;margin:0;border-radius:var(--radio);box-shadow:var(--sombra-fuerte)}
   .prospecto-portada strong{
     display:block;
     color:var(--blanco);
