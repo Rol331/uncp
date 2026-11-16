@@ -54,11 +54,55 @@
         }
       }
 
-      // Imagen de la ventana emergente (popup) de la portada.
-      if (m.popup) {
-        var mpi = document.getElementById('mpImg');
-        if (mpi) { mpi.src = pre + m.popup; mpi.hidden = false; }
-      }
+      // Ventana emergente (popup): carrusel de solo imágenes (hasta 4).
+      (function () {
+        var slider = document.getElementById('mpSlider');
+        if (!slider) return;
+        var defaults = {};
+        slider.querySelectorAll('.mp-slide').forEach(function (img) {
+          defaults[img.getAttribute('data-pop-slot')] = img.getAttribute('src');
+        });
+        var ov = {};
+        if (m.popup) {
+          if (typeof m.popup === 'string') { ov['1'] = pre + m.popup; }
+          else { Object.keys(m.popup).forEach(function (k) { if (m.popup[k]) ov[k] = pre + m.popup[k]; }); }
+        }
+        var urls = [];
+        for (var i = 1; i <= 4; i++) {
+          var k = String(i);
+          if (ov[k]) urls.push(ov[k]);
+          else if (defaults[k]) urls.push(defaults[k]);
+        }
+        if (!urls.length) return;
+        slider.innerHTML = '';
+        urls.forEach(function (u, idx) {
+          var img = document.createElement('img');
+          img.className = 'mp-slide' + (idx ? ' oculto' : '');
+          img.src = u; img.alt = 'Aviso de admisión'; img.loading = 'eager';
+          slider.appendChild(img);
+        });
+        var caja = slider.closest('.mp-caja');
+        var prev = caja.querySelector('.mp-prev'), next = caja.querySelector('.mp-next'), dots = caja.querySelector('.mp-dots');
+        var slides = slider.querySelectorAll('.mp-slide');
+        var cur = 0;
+        function show(n) {
+          slides[cur].classList.add('oculto');
+          cur = (n + slides.length) % slides.length;
+          slides[cur].classList.remove('oculto');
+          if (dots) dots.querySelectorAll('button').forEach(function (d, i) { d.className = i === cur ? 'activo' : ''; });
+        }
+        if (slides.length > 1) {
+          prev.hidden = false; next.hidden = false; dots.hidden = false;
+          prev.addEventListener('click', function (e) { e.stopPropagation(); show(cur - 1); });
+          next.addEventListener('click', function (e) { e.stopPropagation(); show(cur + 1); });
+          slides.forEach(function (_, i) {
+            var b = document.createElement('button'); b.type = 'button'; b.className = i === 0 ? 'activo' : '';
+            b.addEventListener('click', function (e) { e.stopPropagation(); show(i); });
+            dots.appendChild(b);
+          });
+          setInterval(function () { show(cur + 1); }, 4500);
+        }
+      })();
 
       // Portada del prospecto (sección "Qué encontrarás").
       if (m.prospecto_portada) {

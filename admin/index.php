@@ -157,18 +157,23 @@ cabecera($sel);
         <?php endif; ?>
 
         <?php if ($sel === 'popup'):
-            $m = medios_leer();
-            $u = isset($m['popup']) ? '../' . $m['popup'] : '';
+            $m  = medios_leer();
+            $pp = (isset($m['popup']) && is_array($m['popup'])) ? $m['popup']
+                 : ((isset($m['popup']) && is_string($m['popup']) && $m['popup'] !== '') ? ['1' => $m['popup']] : []);
         ?>
-          <h3 class="sub-galeria">Imagen de la ventana</h3>
-          <fieldset class="doc">
-            <legend>Imagen del popup</legend>
-            <p class="actual">Se muestra completa (no se recorta). Máx. 1000 × 1300, se ajusta sola.</p>
-            <?php if ($u): ?><div class="preview" style="background-image:url('<?= htmlspecialchars($u) ?>')"></div><?php endif; ?>
-            <label class="campo">Subir imagen nueva <span class="opc">(JPG o PNG, opcional)</span>
-              <input type="file" name="file_popup" accept="image/jpeg,image/png">
-            </label>
-          </fieldset>
+          <h3 class="sub-galeria">Imágenes de la ventana (hasta 4)</h3>
+          <p class="ayuda">La ventana muestra solo imágenes. Si subes más de una, pasan en carrusel.
+            La imagen 1 ya viene puesta; súbela aquí para cambiarla.</p>
+          <?php for ($i = 1; $i <= 4; $i++): $u = isset($pp[(string) $i]) ? '../' . $pp[(string) $i] : ''; ?>
+            <fieldset class="doc">
+              <legend>Imagen <?= $i ?></legend>
+              <p class="actual">Se muestra completa (no se recorta). Máx. 1000 × 1300, se ajusta sola.</p>
+              <?php if ($u): ?><div class="preview" style="background-image:url('<?= htmlspecialchars($u) ?>')"></div><?php endif; ?>
+              <label class="campo">Subir imagen <span class="opc">(JPG o PNG, opcional)</span>
+                <input type="file" name="file_popup_<?= $i ?>" accept="image/jpeg,image/png">
+              </label>
+            </fieldset>
+          <?php endfor; ?>
         <?php endif; ?>
 
         <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">

@@ -1935,8 +1935,13 @@
 @keyframes mpIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
 .mp-cerrar{position:absolute;top:10px;right:12px;z-index:2;border:0;background:rgba(0,0,0,.45);color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer}
 .mp-cerrar:hover{background:rgba(0,0,0,.7)}
-.mp-img{display:block;width:100%;height:auto;border-radius:18px 18px 0 0}
-.mp-cuerpo{padding:22px 24px 26px;text-align:center}
-.mp-tit{color:var(--verde-900);margin:0 0 8px;font-size:1.3rem}
-.mp-txt{color:#444;margin:0 0 18px}
-.mp-btn{display:inline-block}
+.mp-slider{position:relative;display:block;font-size:0}
+.mp-slide{display:block;width:100%;height:auto;border-radius:18px}
+.mp-slide.oculto{display:none}
+.mp-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;border:0;background:rgba(0,0,0,.45);color:#fff;width:40px;height:40px;border-radius:50%;font-size:20px;line-height:1;cursor:pointer}
+.mp-nav:hover{background:rgba(0,0,0,.7)}
+.mp-prev{left:10px}
+.mp-next{right:10px}
+.mp-dots{position:absolute;left:0;right:0;bottom:12px;display:flex;gap:8px;justify-content:center;z-index:2}
+.mp-dots button{width:10px;height:10px;border-radius:50%;border:0;background:rgba(255,255,255,.6);cursor:pointer;padding:0}
+.mp-dots button.activo{background:#fff}

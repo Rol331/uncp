@@ -498,13 +498,15 @@ Segunda ronda de correcciones (PDF distinto al de 12/09). Lo hecho:
   `modalidades_postulacion`), aplicada por `datos-web.js` con `data-modp`. **Los textos «a quién
   aplica» son un borrador**: el cliente debe revisarlos/ajustarlos con la información oficial. El
   enlace «Modalidades» del footer (48 páginas) pasó del sitio oficial externo a `inscripcion.html#modalidades`.
-- **Ventana emergente (popup)** en la portada: aparece una vez por visita si está activada. Sección
-  «Inicio · Ventana emergente» (clave `popup`): `pop_activo` (si/no), `pop_titulo`, `pop_texto`,
-  `pop_btn_txt`, `pop_btn_link` + **imagen** (subida, `medios['popup']`, procesada **sin recortar**
-  con `procesar_imagen_max` de `_imagen.php`). Markup `#modalPromo` en `index.html`; lógica en
-  `datos-web.js` (muestra/oculta, `sessionStorage 'promoVista'`); imagen aplicada por `medios-web.js`
-  (`#mpImg`); estilos `.modal-promo/.mp-*` en `estilos.css`. **Por defecto `pop_activo="no"`** (no se
-  muestra hasta que el cliente lo active y suba la imagen).
+- **Ventana emergente (popup)** en la portada: aparece una vez por visita si está activada. **Solo
+  imágenes** (carrusel de hasta 4). Sección «Inicio · Ventana emergente» (clave `popup`): un único
+  campo `pop_activo` (si/no) + **4 subidas de imagen**. Las imágenes van en `medios['popup']` como
+  objeto `{"1":url,...}` (procesadas sin recortar con `procesar_imagen_max`; `guardar.php` migra el
+  formato viejo string→slot 1). La **imagen 1 trae un default versionado** `imagenes/popup-1.jpg`.
+  Markup `#modalPromo` (con `#mpSlider`, flechas `.mp-nav` y `.mp-dots`) en `index.html`; `datos-web.js`
+  solo muestra/oculta (`sessionStorage 'promoVista'`); `medios-web.js` arma el carrusel (combina el
+  default del DOM por `data-pop-slot` con los overrides de `medios['popup']`, auto-avance 4.5s si hay
+  >1); estilos `.modal-promo/.mp-*` en `estilos.css`. **Por defecto `pop_activo="no"`**.
 
 **Pendiente del cliente en esta ronda:** el **WhatsApp nuevo** del footer, los **links de Examen y
 CEPRE** (Resultados), el **contenido del popup** (imagen/textos) y revisar los textos de

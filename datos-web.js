@@ -152,19 +152,11 @@
         }
       }
 
-      // Ventana emergente (popup) de la portada.
+      // Ventana emergente (popup) de la portada: solo activar/mostrar.
+      // Las imágenes y el carrusel los arma medios-web.js.
       if (d.popup) {
         var modal = document.getElementById('modalPromo');
         if (modal) {
-          var pTit = modal.querySelector('[data-pop="titulo"]');
-          var pTxt = modal.querySelector('[data-pop="texto"]');
-          var pBtn = modal.querySelector('[data-pop="btn"]');
-          if (pTit) { if (d.popup.pop_titulo) pTit.textContent = d.popup.pop_titulo; else pTit.hidden = true; }
-          if (pTxt) { if (d.popup.pop_texto) pTxt.textContent = d.popup.pop_texto; else pTxt.hidden = true; }
-          if (pBtn) {
-            if (d.popup.pop_btn_txt) pBtn.textContent = d.popup.pop_btn_txt; else pBtn.hidden = true;
-            if (d.popup.pop_btn_link) pBtn.setAttribute('href', d.popup.pop_btn_link);
-          }
           var cerrarPop = function () { modal.hidden = true; document.body.style.overflow = ''; };
           modal.querySelectorAll('[data-pop-cerrar]').forEach(function (b) { b.addEventListener('click', cerrarPop); });
           document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrarPop(); });

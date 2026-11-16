@@ -881,17 +881,18 @@
 
 <!-- ================= VENTANA EMERGENTE (POPUP) =================
      Aparece una vez por visita si está activada en el panel (Inicio ·
-     Ventana emergente). Imagen, textos y botón son editables. -->
+     Ventana emergente). Solo imágenes (hasta 4); se editan en el panel.
+     La imagen 1 viene por defecto; las demás se suben desde el panel. -->
 <div class="modal-promo" id="modalPromo" hidden>
   <div class="mp-fondo" data-pop-cerrar></div>
   <div class="mp-caja" role="dialog" aria-modal="true" aria-label="Aviso">
     <button class="mp-cerrar" type="button" aria-label="Cerrar" data-pop-cerrar>&times;</button>
-    <img class="mp-img" id="mpImg" src="" alt="" hidden>
-    <div class="mp-cuerpo">
-      <h3 class="mp-tit" data-pop="titulo"></h3>
-      <p class="mp-txt" data-pop="texto"></p>
-      <a class="btn btn-primario mp-btn" data-pop="btn" data-pop-href="btn_link" href="inscripcion.html">Inscríbete aquí</a>
+    <div class="mp-slider" id="mpSlider">
+      <img class="mp-slide" src="imagenes/popup-1.jpg" alt="Aviso de admisión" data-pop-slot="1">
     </div>
+    <button class="mp-nav mp-prev" type="button" aria-label="Anterior" hidden>&#10094;</button>
+    <button class="mp-nav mp-next" type="button" aria-label="Siguiente" hidden>&#10095;</button>
+    <div class="mp-dots" id="mpDots" hidden></div>
   </div>
 </div>
 
