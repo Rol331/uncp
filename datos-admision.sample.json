@@ -105,14 +105,8 @@
     "pro_s3_tit": "Cómo conseguir el prospecto",
     "pro_s3_sub": "El prospecto es gratuito en su versión digital.",
     "res_s1_rot": "Resultados",
-    "res_s1_tit": "Consulta tu resultado",
-    "res_s1_sub": "Ingresa tu número de DNI para ver tu puntaje y tu condición en el proceso.",
-    "res_s2_rot": "Listado",
-    "res_s2_tit": "Resultados por programa",
-    "res_s2_sub": "Así se presentará el cuadro de ingresantes. Todavía no hay resultados publicados.",
-    "res_s3_rot": "Ya ingresé, ¿ahora qué?",
-    "res_s3_tit": "Los pasos después del resultado",
-    "res_s3_sub": "Si tu condición es INGRESANTE, este es el camino que sigue."
+    "res_s1_tit": "Resultados del proceso",
+    "res_s1_sub": "Haz clic en el cuadro que corresponde para ver el documento oficial."
   },
   "seo": {
     "home_title": "Pregrado | Universidad Nacional del Centro del Perú",
@@ -166,15 +160,21 @@
     "pro_b2_txt": "Ver qué contiene",
     "pro_b2_link": "#contenido",
     "res_tit": "Resultados de admisión",
-    "res_sub": "Consulta el resultado del examen de admisión y los pasos que siguen si ingresaste.",
-    "res_b1_txt": "Consultar resultado",
-    "res_b1_link": "#consulta",
-    "res_b2_txt": "Ver cronograma",
-    "res_b2_link": "admision.html#documentos",
-    "res_examen_txt": "Resultados · Examen de admisión",
-    "res_examen_link": "#",
-    "res_cepre_txt": "Resultados · CEPRE",
-    "res_cepre_link": "#"
+    "res_sub": "Consulta los resultados publicados por la Dirección de Admisión."
+  },
+  "resultados_cuadros": {
+    "rc1_txt": "2.° CEPRE Ciclo Normal",
+    "rc1_link": "#",
+    "rc2_txt": "Examen de admisión · 28 de noviembre",
+    "rc2_link": "#",
+    "rc3_txt": "Examen de admisión · 29 de noviembre",
+    "rc3_link": "#",
+    "rc4_txt": "Examen simulacro",
+    "rc4_link": "#",
+    "rc5_txt": "Examen médico físico",
+    "rc5_link": "#",
+    "rc6_txt": "Examen actitudinal",
+    "rc6_link": "#"
   },
   "prospecto_pagina": {
     "pro_check": [

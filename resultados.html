@@ -108,127 +108,49 @@
       <span class="actual">Resultados</span>
     </nav>
     <h1 data-banner="res_tit">Resultados de admisión</h1>
-    <p data-banner="res_sub">Consulta el resultado del examen de admisión y los pasos que siguen si ingresaste.</p>
-    <div class="acciones" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:30px">
-      <a href="#consulta" data-banner="res_b1_txt" data-banner-href="res_b1_link" class="btn btn-primario">Consultar resultado</a>
-      <a href="admision.html#documentos" data-banner="res_b2_txt" data-banner-href="res_b2_link" class="btn btn-linea">Ver cronograma</a>
-    </div>
+    <p data-banner="res_sub">Consulta los resultados publicados por la Dirección de Admisión.</p>
   </div>
 </section>
 
-<!-- ================= CONSULTA ================= -->
-<section class="seccion" id="consulta">
+<!-- ================= RESULTADOS (CUADROS) ================= -->
+<section class="seccion" id="resultados">
   <div class="contenedor">
     <div class="titulo-seccion revelar">
       <span data-sec="res_s1_rot">Resultados</span>
-      <h2 data-sec="res_s1_tit">Consulta tu resultado</h2>
-      <p data-sec="res_s1_sub">Ingresa tu número de DNI para ver tu puntaje y tu condición en el proceso.</p>
+      <h2 data-sec="res_s1_tit">Resultados del proceso</h2>
+      <p data-sec="res_s1_sub">Haz clic en el cuadro que corresponde para ver el documento oficial.</p>
     </div>
-
-    <div class="acciones revelar" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:0 0 30px">
-      <a href="#" data-banner="res_examen_txt" data-banner-href="res_examen_link" class="btn btn-primario" target="_blank" rel="noopener">Resultados · Examen de admisión</a>
-      <a href="#" data-banner="res_cepre_txt" data-banner-href="res_cepre_link" class="btn btn-linea" target="_blank" rel="noopener">Resultados · CEPRE</a>
-    </div>
-
-    <div class="maqueta revelar">
-      <span class="ico" aria-hidden="true">&#128736;</span>
-      <p><strong>Maqueta.</strong> Este buscador todavía no consulta nada y la tabla no contiene resultados reales: son casillas de ejemplo para mostrar cómo se verá la página cuando la Universidad publique los resultados oficiales.</p>
-    </div>
-
-    <form class="form-maqueta revelar" onsubmit="return false">
-      <div class="form-fila">
-        <div class="campo">
-          <label for="dniConsulta">Número de DNI</label>
-          <input type="text" id="dniConsulta" name="dni" placeholder="12345678" inputmode="numeric" disabled>
-        </div>
-        <div class="campo">
-          <label for="proceso">Proceso</label>
-          <select id="proceso" name="proceso" disabled>
-            <option value="" disabled selected>Selecciona el proceso</option>
-            <option>Admisión 2026-II</option>
-            <option>Admisión 2026-I</option>
-          </select>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primario" disabled>Consultar</button>
-      <p class="nota">Maqueta sin conexión: el botón está deshabilitado a propósito y no se consulta ningún dato.</p>
-    </form>
-  </div>
-</section>
-
-<!-- ================= TABLA ================= -->
-<section class="seccion" id="listado" style="background:var(--crema)">
-  <div class="contenedor">
-    <div class="titulo-seccion revelar">
-      <span data-sec="res_s2_rot">Listado</span>
-      <h2 data-sec="res_s2_tit">Resultados por programa</h2>
-      <p data-sec="res_s2_sub">Así se presentará el cuadro de ingresantes. Todavía no hay resultados publicados.</p>
-    </div>
-
-    <div class="tabla-marco revelar">
-      <table class="tabla">
-        <thead>
-          <tr>
-            <th>N°</th>
-            <th>Postulante</th>
-            <th>Programa</th>
-            <th>Puntaje</th>
-            <th>Condición</th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>—</td>
-          <td class="vacio">Apellidos y nombres del postulante</td>
-          <td class="vacio">Programa de estudio</td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>—</td>
-          <td class="vacio">Apellidos y nombres del postulante</td>
-          <td class="vacio">Programa de estudio</td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>—</td>
-          <td class="vacio">Apellidos y nombres del postulante</td>
-          <td class="vacio">Programa de estudio</td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="galeria-nota" style="text-align:center;margin-top:18px">
-      Ninguna fila contiene datos reales. El cuadro oficial se publicará aquí al cierre del proceso.
-    </p>
-  </div>
-</section>
-
-<!-- ================= DESPUÉS DEL RESULTADO ================= -->
-<section class="seccion" id="despues">
-  <div class="contenedor">
-    <div class="titulo-seccion revelar">
-      <span data-sec="res_s3_rot">Ya ingresé, ¿ahora qué?</span>
-      <h2 data-sec="res_s3_tit">Los pasos después del resultado</h2>
-      <p data-sec="res_s3_sub">Si tu condición es INGRESANTE, este es el camino que sigue.</p>
-    </div>
-
-    <div class="pasos">
-      <div class="paso revelar d1">
-        <h3>Revisa la lista de ingresantes</h3>
-        <p>Confirma tu nombre, tu programa y tu puntaje en el cuadro oficial publicado por la Dirección de Admisión.</p>
-      </div>
-      <div class="paso revelar d2">
-        <h3>Recoge tu constancia de ingreso</h3>
-        <p>En la Oficina de Admisión, con tu DNI. Es el documento que acredita que ingresaste.</p>
-      </div>
-      <div class="paso revelar d3">
-        <h3>Matrícula</h3>
-        <p>Presenta tu expediente completo en la facultad de tu programa dentro del plazo del cronograma.</p>
-      </div>
+    <div class="docs-grid">
+      <a class="doc revelar d1" data-rescard-card="rc1" data-rescard-href="rc1_link" href="#" target="_blank" rel="noopener">
+        <div class="doc-icono">&#127891;</div>
+        <h3 data-rescard="rc1_txt">2.° CEPRE Ciclo Normal</h3>
+        <span class="doc-link">Ver resultados &#8594;</span>
+      </a>
+      <a class="doc revelar d2" data-rescard-card="rc2" data-rescard-href="rc2_link" href="#" target="_blank" rel="noopener">
+        <div class="doc-icono">&#128221;</div>
+        <h3 data-rescard="rc2_txt">Examen de admisión · 28 de noviembre</h3>
+        <span class="doc-link">Ver resultados &#8594;</span>
+      </a>
+      <a class="doc revelar d3" data-rescard-card="rc3" data-rescard-href="rc3_link" href="#" target="_blank" rel="noopener">
+        <div class="doc-icono">&#128221;</div>
+        <h3 data-rescard="rc3_txt">Examen de admisión · 29 de noviembre</h3>
+        <span class="doc-link">Ver resultados &#8594;</span>
+      </a>
+      <a class="doc revelar d4" data-rescard-card="rc4" data-rescard-href="rc4_link" href="#" target="_blank" rel="noopener">
+        <div class="doc-icono">&#128203;</div>
+        <h3 data-rescard="rc4_txt">Examen simulacro</h3>
+        <span class="doc-link">Ver resultados &#8594;</span>
+      </a>
+      <a class="doc revelar d1" data-rescard-card="rc5" data-rescard-href="rc5_link" href="#" target="_blank" rel="noopener">
+        <div class="doc-icono">&#129658;</div>
+        <h3 data-rescard="rc5_txt">Examen médico físico</h3>
+        <span class="doc-link">Ver resultados &#8594;</span>
+      </a>
+      <a class="doc revelar d2" data-rescard-card="rc6" data-rescard-href="rc6_link" href="#" target="_blank" rel="noopener">
+        <div class="doc-icono">&#129504;</div>
+        <h3 data-rescard="rc6_txt">Examen actitudinal</h3>
+        <span class="doc-link">Ver resultados &#8594;</span>
+      </a>
     </div>
   </div>
 </section>

@@ -134,9 +134,7 @@ return [
             'Prospecto · Qué encontrarás en el prospecto' => ['pro_s1_rot' => 'Rótulo', 'pro_s1_tit' => 'Título', 'pro_s1_sub' => 'Subtítulo'],
             'Prospecto · El prospecto capítulo por capítulo' => ['pro_s2_rot' => 'Rótulo', 'pro_s2_tit' => 'Título', 'pro_s2_sub' => 'Subtítulo'],
             'Prospecto · Cómo conseguir el prospecto' => ['pro_s3_rot' => 'Rótulo', 'pro_s3_tit' => 'Título', 'pro_s3_sub' => 'Subtítulo'],
-            'Resultados · Consulta tu resultado' => ['res_s1_rot' => 'Rótulo', 'res_s1_tit' => 'Título', 'res_s1_sub' => 'Subtítulo'],
-            'Resultados · Resultados por programa' => ['res_s2_rot' => 'Rótulo', 'res_s2_tit' => 'Título', 'res_s2_sub' => 'Subtítulo'],
-            'Resultados · Los pasos después del resultado' => ['res_s3_rot' => 'Rótulo', 'res_s3_tit' => 'Título', 'res_s3_sub' => 'Subtítulo'],
+            'Resultados · Encabezado' => ['res_s1_rot' => 'Rótulo', 'res_s1_tit' => 'Título', 'res_s1_sub' => 'Subtítulo'],
         ],
     ],
 
@@ -159,6 +157,24 @@ return [
             'Resultados' => ['res_title' => 'Título de pestaña', 'res_desc' => 'Descripción (meta)'],
         ],
     ],
+    'resultados_cuadros' => [
+        'grupo'      => 'paginas',
+        'menu'       => 'Resultados · Cuadros',
+        'icono'      => '🧾',
+        'titulo'     => 'Cuadros de resultados',
+        'ayuda'      => 'Cada cuadro de resultados.html: su texto y el enlace al documento de Google '
+                      . '(pega la URL del Doc/Drive). Si dejas el texto vacío, el cuadro no se muestra.',
+        'tipo'       => 'textos',
+        'grupos'     => [
+            'Cuadro 1' => ['rc1_txt' => 'Texto', 'rc1_link' => 'Enlace (Google Doc)'],
+            'Cuadro 2' => ['rc2_txt' => 'Texto', 'rc2_link' => 'Enlace (Google Doc)'],
+            'Cuadro 3' => ['rc3_txt' => 'Texto', 'rc3_link' => 'Enlace (Google Doc)'],
+            'Cuadro 4' => ['rc4_txt' => 'Texto', 'rc4_link' => 'Enlace (Google Doc)'],
+            'Cuadro 5' => ['rc5_txt' => 'Texto', 'rc5_link' => 'Enlace (Google Doc)'],
+            'Cuadro 6' => ['rc6_txt' => 'Texto', 'rc6_link' => 'Enlace (Google Doc)'],
+        ],
+    ],
+
     'banners' => [
         'grupo'  => 'paginas',
         'menu'   => 'Banners de páginas',
@@ -180,8 +196,6 @@ return [
             'Prospecto'             => ['pro_tit' => 'Título', 'pro_sub' => 'Subtítulo'],
             'Resultados'            => ['res_tit' => 'Título', 'res_sub' => 'Subtítulo'],
             'Botones · Prospecto'   => ['pro_b1_txt' => 'Botón 1 · texto', 'pro_b1_link' => 'Botón 1 · enlace', 'pro_b2_txt' => 'Botón 2 · texto', 'pro_b2_link' => 'Botón 2 · enlace'],
-            'Botones · Resultados'  => ['res_b1_txt' => 'Botón 1 · texto', 'res_b1_link' => 'Botón 1 · enlace', 'res_b2_txt' => 'Botón 2 · texto', 'res_b2_link' => 'Botón 2 · enlace'],
-            'Resultados · Accesos (Examen / CEPRE)' => ['res_examen_txt' => 'Examen · texto', 'res_examen_link' => 'Examen · enlace', 'res_cepre_txt' => 'CEPRE · texto', 'res_cepre_link' => 'CEPRE · enlace'],
         ],
     ],
 

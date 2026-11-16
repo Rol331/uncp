@@ -233,16 +233,13 @@ del submenú de `admision.html`, así no hay una segunda lista que mantener, e i
 
 - **El formulario NO envía datos a ningún backend.** En el submit solo se oculta y muestra el
   mensaje de éxito (`#formOk`). Ver comentario `// Aquí luego puedes enviar los datos a tu servidor / correo.`
-- **`prospecto.html` y `resultados.html` son solo maquetación** (hechas el 12/08/2026 para que las
-  tarjetas de `#accesos` no manden al sitio oficial). No tienen backend:
-  - Los `<input>`, `<select>` y botones van con `disabled` y el `<form>` con `onsubmit="return false"`.
-  - Las dos llevan arriba una franja `.maqueta` diciéndolo. **No la quites** mientras siga sin
-    conexión, y no le saques el `disabled` a los campos: harían creer que se envía algo.
-  - La tabla de `resultados.html` **no tiene datos reales**: son guiones y textos de molde a
-    propósito, para que nadie los confunda con resultados oficiales.
-  - `prospecto.html` **sí entrega el PDF** con su botón del banner; su maqueta es el resto
-    (capítulos y formas de obtenerlo).
-  - **Falta conectar la consulta por DNI de `resultados.html`** al sistema de la Universidad.
+- **`resultados.html` ya NO es maqueta** (16/11/2026). A pedido del cliente se quitó todo lo
+  anterior (buscador por DNI, tabla de ejemplo y pasos «después del resultado») y la página pasó a
+  ser una **grilla de cuadros** (`.docs-grid` de tarjetas `.doc`): cada cuadro es un **enlace a un
+  documento de Google** con **texto y enlace editables**. Ver sección «Resultados como cuadros».
+- **`prospecto.html`**: su botón del banner **sí entrega el PDF**; el resto (capítulos y formas de
+  obtenerlo) es presentación y ya es editable (ver «Prospecto · Contenido»). Ya no lleva franja
+  `.maqueta`.
 - **`inscripcion.html` ya no es maqueta** (14/08/2026). El cliente marcó *NO VA* sobre la ficha de
   inscripción, así que se borró el formulario entero; sin formulario falso no hay nada que
   advertir y la página tampoco lleva la franja `.maqueta`. Queda como página explicativa —los
@@ -512,6 +509,20 @@ Segunda ronda de correcciones (PDF distinto al de 12/09). Lo hecho:
 **Pendiente del cliente en esta ronda:** el **WhatsApp nuevo** del footer, los **links de Examen y
 CEPRE** (Resultados), el **contenido del popup** (imagen/textos) y revisar los textos de
 **Modalidades de postulación**. Todo se carga desde el panel, sin tocar código.
+
+## Resultados como cuadros (16/11/2026)
+
+`resultados.html` se rehízo como **grilla de cuadros** (`.docs-grid`), según boceto del cliente. Se
+eliminaron el buscador por DNI (maqueta), la tabla de ejemplo y los pasos. Ahora son **6 tarjetas
+`.doc`**, cada una enlace a un **documento de Google** (abre en pestaña nueva), con **texto y enlace
+editables**: sección del panel «Resultados · Cuadros» (clave `resultados_cuadros`, grupo *paginas*),
+aplicada por `datos-web.js` con `data-rescard` (texto) y `data-rescard-href` (enlace). Cada tarjeta
+lleva `data-rescard-card="rcN"`; **si su texto (`rcN_txt`) queda vacío, el cuadro se oculta**. Los 6
+por defecto: 2.° CEPRE Ciclo Normal · Examen de admisión 28 nov · Examen de admisión 29 nov · Examen
+simulacro · Examen médico físico · Examen actitudinal (todos con enlace `#` hasta que el cliente
+pase los Docs). Se limpiaron los campos que quedaron sin uso: `res_b1/res_b2`, `res_examen/res_cepre`
+(grupos de «Banners») y `res_s2/res_s3` («Títulos de sección»); el banner de resultados quedó sin
+botones (solo título/subtítulo, editables).
 
 ## Git y publicación
 

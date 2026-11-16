@@ -81,6 +81,15 @@
         el.textContent = valor;
       });
 
+      // Resultados: cuadros (texto + enlace a Google Doc). Oculta el cuadro vacío.
+      if (d.resultados_cuadros) {
+        aplicar(d.resultados_cuadros, 'data-rescard', function (el, valor) { el.textContent = valor; });
+        aplicar(d.resultados_cuadros, 'data-rescard-href', function (el, valor) { el.setAttribute('href', valor); });
+        document.querySelectorAll('[data-rescard-card]').forEach(function (a) {
+          if (d.resultados_cuadros[a.getAttribute('data-rescard-card') + '_txt'] === '') a.hidden = true;
+        });
+      }
+
       // Textos de las tarjetas de admisión: <h3/p data-doctxt="clave">.
       aplicar(d.admision_textos, 'data-doctxt', function (el, valor) {
         el.textContent = valor;
